@@ -1,0 +1,118 @@
+<#import "parts/common.ftlh" as cmn>
+<@cmn.page>
+    <div class="form-group row">
+        <form id="testReportForm" method="post" action="/fillTestReport">
+            <div class="ml-3 mb-3"><h3>Заполните форму протокола испытаний:</h3></div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Номер протокола</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" name="protocolNumber" min="1" placeholder="1+ " value="<#if testReport??>${testReport.protocolNumber?c}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Выберите дату протокола </label>
+                <div class="col-sm-5">
+                    <input id="date" class="form-control" type="date" name="date" <#if testReport??>value="${testReport.date}"</#if> required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <#--<label class="col-sm-5 col-form-label">Наименование ТНПА, устанавливающей методы испытаний</label>-->
+                <label class="col-sm-5 col-form-label"><a class=" mb-2" data-toggle="collapse" href="#testMethod2" role="button" aria-expanded="false" aria-controls="testMethod2">Наименование ТНПА, устанавливающей методы испытаний</a></label>
+                <div class="col-sm-5">
+                    <select class="custom-select mt-2" name="testMethod1Select">
+                        <#list testMethods as testMethod>
+                            <option <#if testReport??><#if testReport.testMethods[0].id == testMethod.id>selected</#if></#if> value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">${testMethod.title?truncate(40, "...")}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+            <div class="collapse" id="testMethod2">
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label">Наименование ТНПА №2</label>
+                    <div class="col-sm-5">
+                        <select class="custom-select<#-- mt-2-->" name="testMethod2Select">
+                            <#list testMethods as testMethod>
+                                <option <#if testReport??><#if testReport.testMethods[1]??><#if testReport.testMethods[1].id == testMethod.id>selected</#if></#if></#if> value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">${testMethod.title?truncate(40, "...")}</option>
+                            </#list>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Начало проведения испытаний</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="date" name="startDate" <#if testReport??>value="${testReport.startDate}"</#if> required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Окончание проведения испытаний</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="date" name="endDate" <#if testReport??>value="${testReport.endDate}"</#if> required>
+                </div>
+            </div>
+            <#--<div class="form-group row">
+                <label class="col-sm-5 col-form-label">Минимальная температура</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="10" max="40" step="0.1" name="temperatureMin" placeholder="10,0 - 40,0" value="<#if testReport??>${testReport.temperatureMin?replace(",", ".")}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Максимальная температура</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="10" max="40" step="0.1" name="temperatureMax" placeholder="10,0 - 40,0" value="<#if testReport??>${testReport.temperatureMax?replace(",", ".")}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Минимальная влажность</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="1" max="100" step="0.1" name="humidityMin" placeholder="0,0 - 100,0" value="<#if testReport??>${testReport.humidityMin?replace(",", ".")}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Максимальная влажность</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="1" max="100" step="0.1" name="humidityMax" placeholder="0,0 - 100,0" value="<#if testReport??>${testReport.humidityMax?replace(",", ".")}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Минимальное давление</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="640" max="820" name="pressureMin" placeholder="640 - 820" value="<#if testReport??>${testReport.pressureMin}</#if>" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Максимальное давление</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="number" min="640" max="820" name="pressureMax" placeholder="640 - 820" value="<#if testReport??>${testReport.pressureMax}</#if>" required/>
+                </div>
+            </div>-->
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Выберите исполнителя 1</label>
+                <div class="col-sm-5">
+                    <select class="custom-select mt-2" name="testReportDoer1Select">
+                        <#list employees as employee>
+                            <option <#if testReport??><#if employee.id == testReport.performers[0].id >selected</#if></#if> value="${employee.id}">${employee.name}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Выберите исполнителя 2</label>
+                <div class="col-sm-5">
+                    <select class="custom-select mt-2" name="testReportDoer2Select">
+                        <#list employees as employee>
+                            <option <#if testReport??><#if testReport.performers[1].id == employee.id >selected</#if></#if> value="${employee.id}">${employee.name}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-2 mb-2">
+                <button class="btn btn-primary mb-2" <#if testReport??>disabled</#if> type="submit">Добавить</button>
+                <button class="btn btn-primary mb-2" <#if testReport??><#else>disabled</#if> formaction="/editTestReport">Изменить</button>
+                <a class="btn btn-outline-primary mb-2" href="/all_test_reports" role="button">Посмотреть все</a>
+                <#--<a class="btn btn-outline-primary mb-2" href="/choose_element_and_fill_sample" role="button">Далее</a>-->
+                <a class="btn btn-secondary mb-2" href="/objects_of_study" role="button">Назад</a>
+            </div>
+        </form>
+    </div>
+</@cmn.page>

@@ -1,0 +1,23 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# MyProject
+acts/
+prot_isp/
+protocols/
+templates_old/
+notes_on_LabAssist.txt
