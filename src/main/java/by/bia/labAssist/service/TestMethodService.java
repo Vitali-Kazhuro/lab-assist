@@ -5,7 +5,6 @@ import by.bia.labAssist.model.TestMethod;
 import java.util.List;
 
 public interface TestMethodService {
-
     List<TestMethod> findAll();
 
     TestMethod findById(Integer id);

@@ -124,11 +124,5 @@ public class MoneyToStr {
     public static String getRubleAddition(Integer num) {
         return getRubleAddition(new Double(num));
     }
-
-    /*public static void main(String[] args) {
-        for (int i = 0; i < 10000; i++){
-            System.out.println(num2str(i*72));
-        }
-    }*/
 }
 

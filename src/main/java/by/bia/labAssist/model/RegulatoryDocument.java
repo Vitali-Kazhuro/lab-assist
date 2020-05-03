@@ -12,10 +12,6 @@ public class RegulatoryDocument {
 
     private String title;
 
-    /*@ManyToOne
-    @JoinColumn(name = "applicant_id")
-    private Applicant applicant;*/
-
     @OneToMany(mappedBy = "regulatoryDocument", cascade = CascadeType.ALL)
     private List<ObjectOfStudy> objectsOfStudy;
 

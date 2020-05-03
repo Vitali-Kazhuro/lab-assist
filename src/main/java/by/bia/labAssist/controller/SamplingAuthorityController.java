@@ -31,8 +31,6 @@ public class SamplingAuthorityController {
         model.addAttribute("samplingAuthorities", samplingAuthorities);
 
         if(session.getAttribute("samplingAuthority")!= null){
-            /*SamplingAuthority samplingAuthority = (SamplingAuthority) session.getAttribute("samplingAuthority");
-            model.addAttribute("samplingAuthoritySelected", samplingAuthority);*/
             model.addAttribute("samplingAuthoritySelected", session.getAttribute("samplingAuthority"));
         }
 

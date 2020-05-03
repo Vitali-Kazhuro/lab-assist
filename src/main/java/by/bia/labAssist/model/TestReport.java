@@ -18,12 +18,6 @@ public class TestReport {
     private LocalDate date;
     private LocalDate startDate;
     private LocalDate endDate;
-    /*private Float temperatureMin;
-    private Float temperatureMax;
-    private Float humidityMin;
-    private Float humidityMax;
-    private Integer pressureMin;
-    private Integer pressureMax;*/
 
     @Transient
     private String dateS;
@@ -37,9 +31,6 @@ public class TestReport {
     @Transient
     private String notGreater;
 
-    /*@ManyToOne
-    @JoinColumn(name = "test_method_id")
-    private TestMethod testMethod;*/
     @ManyToMany
     @JoinTable(
             name = "test_report_test_method",
@@ -47,7 +38,7 @@ public class TestReport {
             inverseJoinColumns = @JoinColumn(name = "test_method_id"))
     private List<TestMethod> testMethods;
 
-    @ManyToMany//(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "test_report_doer",
             joinColumns = @JoinColumn(name = "test_report_id"),
@@ -56,38 +47,22 @@ public class TestReport {
 
     @OneToMany(mappedBy = "testReport", cascade = CascadeType.ALL)
     private List<Sample> samples;
-    //new{
+
     @ManyToOne
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
-    //new}
+
     public TestReport() {
     }
 
-    public TestReport(Integer protocolNumber, LocalDate date, LocalDate startDate, LocalDate endDate,
-                      /*Float temperatureMin, Float temperatureMax, Float humidityMin,
-                      Float humidityMax, Integer pressureMin, Integer pressureMax,*/
-                      //TestMethod testMethod,
-                      Applicant applicant) {
+    public TestReport(Integer protocolNumber, LocalDate date, LocalDate startDate, LocalDate endDate, Applicant applicant) {
         this.protocolNumber = protocolNumber;
         this.date = date;
         this.startDate = startDate;
         this.endDate = endDate;
-        /*this.temperatureMin = temperatureMin;
-        this.temperatureMax = temperatureMax;
-        this.humidityMin = humidityMin;
-        this.humidityMax = humidityMax;
-        this.pressureMin = pressureMin;
-        this.pressureMax = pressureMax;*/
-
-        //this.testMethod = testMethod;
         this.testMethods = new ArrayList<>();
-
         this.performers = new ArrayList<>();
         this.applicant = applicant;
-        /*this.dateS = date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        this.startDateS = startDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        this.endDateS = endDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));*/
     }
 
     public String getTestReportFileName(){
@@ -129,9 +104,6 @@ public class TestReport {
     }
 
     public String getDateS() {
-        /*if(dateS == null){
-            this.dateS = this.date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        }*/
         this.dateS = this.date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
         return dateS;
     }
@@ -141,9 +113,6 @@ public class TestReport {
     }
 
     public String getStartDateS() {
-        /*if (startDateS == null){
-            this.startDateS = this.startDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        }*/
         this.startDateS = this.startDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
         return startDateS;
     }
@@ -153,9 +122,6 @@ public class TestReport {
     }
 
     public String getEndDateS() {
-        /*if(this.endDateS == null){
-            this.endDateS = this.endDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        }*/
         this.endDateS = this.endDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
         return endDateS;
     }
@@ -203,62 +169,6 @@ public class TestReport {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-    /*public Float getTemperatureMin() {
-        return temperatureMin;
-    }
-
-    public void setTemperatureMin(Float temperatureMin) {
-        this.temperatureMin = temperatureMin;
-    }
-
-    public Float getTemperatureMax() {
-        return temperatureMax;
-    }
-
-    public void setTemperatureMax(Float temperatureMax) {
-        this.temperatureMax = temperatureMax;
-    }
-
-    public Float getHumidityMin() {
-        return humidityMin;
-    }
-
-    public void setHumidityMin(Float humidityMin) {
-        this.humidityMin = humidityMin;
-    }
-
-    public Float getHumidityMax() {
-        return humidityMax;
-    }
-
-    public void setHumidityMax(Float humidityMax) {
-        this.humidityMax = humidityMax;
-    }
-
-    public Integer getPressureMin() {
-        return pressureMin;
-    }
-
-    public void setPressureMin(Integer pressureMin) {
-        this.pressureMin = pressureMin;
-    }
-
-    public Integer getPressureMax() {
-        return pressureMax;
-    }
-
-    public void setPressureMax(Integer pressureMax) {
-        this.pressureMax = pressureMax;
-    }*/
-
-    /*public TestMethod getTestMethod() {
-        return testMethod;
-    }
-
-    public void setTestMethod(TestMethod testMethod) {
-        this.testMethod = testMethod;
-    }*/
 
     public List<TestMethod> getTestMethods() {
         return testMethods;

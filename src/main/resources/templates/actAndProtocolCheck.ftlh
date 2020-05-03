@@ -19,7 +19,7 @@
                 Итого выполнено работ на сумму: ${sum}
             </div>
             <div class="row">
-                <label <#--for="number"--> class="col-form-label ml-3 mb-2">Номер акта и протокола:</label>
+                <label class="col-form-label ml-3 mb-2">Номер акта и протокола:</label>
                 <div class="col-sm-1">
                     <input id="number" class="form-control ml-1 mb-2" type="number" min="1" step="1" name="number" required>
                 </div>
@@ -30,31 +30,6 @@
             <a class="btn btn-outline-secondary my-2" href="/act_and_protocol" role="button">Назад</a>
         </form>
     </div>
-    <#--<div class="row">
-        <table class="table table-striped">
-            <thead class="thead-inverse">
-            <tr>
-                <th>Номер протокола</th>
-                <th>Дата</th>
-                <th>Заявитель</th>
-                <th>Образец</th>
-                <th>Заявленные виды работ</th>
-            </tr>
-            </thead>
-            <tbody>
-            <#list allTestReports as testReport>
-                <tr>
-                    <td><small>${testReport.protocolNumber}</small></td>
-                    <td><small>${testReport.dateS}</small></td>
-                    <td><small><#if testReport.samples[0]??>${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.organization}</#if></small></td>
-                    <td><small><#if testReport.samples[0]??>${testReport.samples[0].objectOfStudy.title} ${testReport.samples[0].series} ${testReport.samples[0].objectOfStudy.producer!""}</small></#if></td>
-                    &lt;#&ndash;<td><small><#if testReport.samples[0]??><#list testReport.samples[0].norms as norm>${norm.element.title}<#sep>, </#list></#if></small></td>&ndash;&gt;
-                    <td><small><#if testReport.samples[0]??><#list testReport.samples[0].sampleNorms as sampleNorm>${sampleNorm.norm.element.title}<#sep>, </#list></#if></small></td>
-                </tr>
-            </#list>
-            </tbody>
-        </table>
-    </div>-->
     <div><h5>Протоколы испытаний, включенные в создаваемые акт и протокол:</h5></div>
     <div class="row">
         <table class="table table-sm table-striped">
@@ -84,7 +59,6 @@
                     <td><small><#list thisTestReport.samples as sample><#if sample??><div class="mb-2">${sample.objectOfStudy.regulatoryDocument.title}</div></#if></#list></small></td>
                     <td><small>${thisTestReport.startDateS}</small></td>
                     <td><small>${thisTestReport.endDateS}</small></td>
-                    <#--<td><small>${thisTestReport.testMethod.title}</small></td>-->
                     <td><small><#list thisTestReport.testMethods as testMethod>${testMethod.title}<#sep>; </#list></small></td>
                 </tr>
             </#list>

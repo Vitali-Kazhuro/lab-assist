@@ -45,14 +45,8 @@ public class TestReportController {
                                   @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
 
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Page<TestReport> allTestReportsPage = testReportService.findAllPages(pageable);
         model.addAttribute("allTestReportsPage", allTestReportsPage);
-
-        /*List<TestReport> allTestReports = testReportService.findAll();
-        Collections.reverse(allTestReports);//
-        model.addAttribute("allTestReports", allTestReports);*/
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         if(testReport != null){
             TestReport testReportInContext = testReportService.findById(testReport.getId());
@@ -65,14 +59,12 @@ public class TestReportController {
     @GetMapping("add_results")
     public String addResultsPage(Model model, HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
-
         //проверка выблрали ли мы протокол на предыдущих этапах
         if(testReport == null){
             return "redirect:/start_test_report";
         }
 
         TestReport testReportInContext = testReportService.findById(testReport.getId());
-
         model.addAttribute("testReport", testReportInContext);
 
         return "addResults";
@@ -81,7 +73,6 @@ public class TestReportController {
     @PostMapping("addResults")
     public String addResults(@RequestParam Map<String, String> form, HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
-
         //проверка выблрали ли мы протокол на предыдущих этапах
         if(testReport == null){
             return "redirect:/start_test_report";
@@ -129,7 +120,6 @@ public class TestReportController {
         TestMethod testMethod1 = testMethodService.findById(testMethod1Select);
         TestMethod testMethod2 = testMethodService.findById(testMethod2Select);
 
-        /*TestReport testReport = (TestReport) session.getAttribute("testReport");*/
         TestReport tR = (TestReport) session.getAttribute("testReport");
         TestReport testReport = testReportService.findById(tR.getId());
 
@@ -168,14 +158,8 @@ public class TestReportController {
             model.addAttribute("editTestReport", editTestReport);
         }
 
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Page<TestReport> allTestReportsPage = testReportService.findAllPages(pageable);
         model.addAttribute("allTestReportsPage", allTestReportsPage);
-
-        /*List<TestReport> allTestReports = testReportService.findAll();
-        Collections.reverse(allTestReports);//
-        model.addAttribute("allTestReports", allTestReports);*/
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         return "allTestReports";
     }

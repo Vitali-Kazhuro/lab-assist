@@ -66,8 +66,6 @@ function sortTable() {
 function selectFromListAndClick(id) {
     var element = document.getElementById("oneSelect");
     if(id == 0){
-        /*alert("Не нажимайте на шапку таблицы!");*/
-        /*sortTable();*/
         startSorting();
         return;
     }

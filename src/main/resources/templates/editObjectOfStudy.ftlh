@@ -43,7 +43,7 @@
     <!-- Modal -->
     <@del.modalDelete "ObjectOfStudy">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить объект исследования <b>"${objectOfStudy.title}"</b>?</h5></div>
-        <div class="ml-3 my-2"><h7><em>Это удалит все образцы, связанные с этим объектом исследования!</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это удалит все образцы, связанные с этим объектом исследования!</em></h6></div>
         <input type="hidden" name="objectOfStudyId" value="${objectOfStudy.id}">
     </@del.modalDelete>
 </@cmn.page>

@@ -9,7 +9,6 @@ public class Norm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //private Double value;
     private String value;
     private String units;
 
@@ -21,19 +20,11 @@ public class Norm {
     @JoinColumn(name = "regulatory_document_id")
     private RegulatoryDocument regulatoryDocument;
 
-    /*@ManyToMany(mappedBy = "norms")
-    private List<Sample> samples;*/
-    @OneToMany(mappedBy = "norm", cascade = CascadeType.ALL) //TODO new 18/04/20
+    @OneToMany(mappedBy = "norm", cascade = CascadeType.ALL)
     private List<SampleNorm> sampleNorms;
 
     public Norm() {
     }
-
-    /*public Norm(Double value, Element element, RegulatoryDocument regulatoryDocument) {
-        this.value = value;
-        this.element = element;
-        this.regulatoryDocument = regulatoryDocument;
-    }*/
 
     public Norm(String value, String units, Element element, RegulatoryDocument regulatoryDocument) {
         this.value = value.replaceAll("\\s+", " ").trim();
@@ -82,14 +73,6 @@ public class Norm {
         this.regulatoryDocument = regulatoryDocument;
     }
 
-    /*public List<Sample> getSamples() {
-        return samples;
-    }
-
-    public void setSamples(List<Sample> samples) {
-        this.samples = samples;
-    }*/
-
     public List<SampleNorm> getSampleNorms() {
         return sampleNorms;
     }
@@ -97,18 +80,4 @@ public class Norm {
     public void setSampleNorms(List<SampleNorm> sampleNorms) {
         this.sampleNorms = sampleNorms;
     }
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Norm norm = (Norm) o;
-        return value.equals(norm.value) &&
-                element.equals(norm.element);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, element);
-    }*/
 }

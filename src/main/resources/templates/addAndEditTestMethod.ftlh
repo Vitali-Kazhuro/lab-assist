@@ -1,30 +1,7 @@
 <#import "parts/common.ftlh" as cmn>
 <#import "parts/modalDelete.ftlh" as del>
 <@cmn.page>
-    <#--<script>
-        function selectFromListAndClick(id) {
-            var element = document.getElementById("oneSelect");
-            if(id == 0){
-                alert("Не нажимайте на шапку таблицы!");
-                return;
-            }
-            element.value = id;
-            document.getElementById("chooseButton").click();
-        }
-        function addRowHandlers() {
-            var rows = document.getElementById("allTable").rows;
-            for (i = 0; i < rows.length; i++) {
-                rows[i].onclick = function(){ return function(){
-                    var cell = this.cells[0];
-                    var id = cell.id;
-                    selectFromListAndClick(id);
-                };}(rows[i]);
-            }
-        }
-        window.addEventListener('load', addRowHandlers);
-    </script>-->
     <script src="/static/js/script.js"></script>
-
     <#include "parts/sortTableModalPopup.ftlh">
     <div class="col-lg-6">
         <form method="post" id="testMethodForm" action="/addTestMethod">
@@ -45,12 +22,10 @@
             <button class="btn btn-outline-success my-1" formaction="/editTestMethod" <#if testMethodEdit??><#else>hidden</#if> >Изменить</button>
         </form>
     </div>
-
     <div class="mt-3 ml-3"><h5>Все ТНПА:</h5></div>
     <div class="form-group row">
         <form method="post" action="/chooseTestMethod">
             <div class="input-group">
-                <#--<label class="mt-2 ml-4">ТНПА:</label>-->
                 <select class="custom-select ml-5 mb-1" id="oneSelect" name="testMethodSelect">
                     <#list allTestMethods as testMethod>
                         <option <#if testMethodEdit??><#if testMethod.id == testMethodEdit.id>selected</#if></#if> value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">${testMethod.title?truncate(50,"...")}</option>
@@ -85,7 +60,7 @@
     <!-- Modal -->
     <@del.modalDelete "TestMethod">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить ТНПА <b>"<#if testMethodEdit??>${testMethodEdit.title}</#if>"</b>?</h5>
-        <div class="ml-3 my-2"><h7><em>Это возможно только, если он не был задействован в каком-либо протоколе испытаний</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это возможно только, если он не был задействован в каком-либо протоколе испытаний</em></h6></div>
         <input type="hidden" name="testMethodId" value="<#if testMethodEdit??>${testMethodEdit.id}</#if>">
     </@del.modalDelete>
 </@cmn.page>

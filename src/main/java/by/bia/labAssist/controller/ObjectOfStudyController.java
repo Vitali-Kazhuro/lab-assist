@@ -42,8 +42,6 @@ public class ObjectOfStudyController {
         model.addAttribute("allElements", elements);
 
         if(session.getAttribute("objectOfStudy")!= null){
-            /*ObjectOfStudy objectOfStudy = (ObjectOfStudy) session.getAttribute("objectOfStudy");
-            model.addAttribute("objectOfStudySelected", objectOfStudy);*/
             model.addAttribute("objectOfStudySelected", session.getAttribute("objectOfStudy"));
         }
 
@@ -136,24 +134,10 @@ public class ObjectOfStudyController {
         List<Element> allElements = elementService.findAll();
 
         model.addAttribute("allElements", allElements);
-        //model.addAttribute("regulatoryDocumentEdit", regulatoryDocument);
         session.setAttribute("regulatoryDocumentEdit", regulatoryDocument);
 
         return "addAndEditRegulatoryDocument";
     }
-
-    /*@PostMapping("editRegulatoryDocumentPage")
-    public String editRegulatoryDocumentPage(@RequestParam Integer regulatoryDocumentSelect, Model model,
-                                             HttpSession session){
-        RegulatoryDocument regulatoryDocument = regulatoryDocumentService.findById(regulatoryDocumentSelect);
-        List<Element> allElements = elementService.findAll();
-
-        model.addAttribute("allElements", allElements);
-        model.addAttribute("regulatoryDocument", regulatoryDocument);
-        session.setAttribute("regulatoryDocumentEdit", regulatoryDocument);
-
-        return "editRegulatoryDocument";
-    }*/
 
     @GetMapping("edit_regulatory_document")
     public String chooseRegulatoryDocumentToEdit(Model model){
@@ -194,7 +178,6 @@ public class ObjectOfStudyController {
         session.setAttribute("objectOfStudy", objectOfStudy);
         session.setAttribute("regulatoryDocument", regulatoryDocument);
 
-        //return "redirect:/choose_element_and_fill_sample";
         return "redirect:/fill_test_report";
     }
 }

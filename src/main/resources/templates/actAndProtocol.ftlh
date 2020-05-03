@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as cmn>
 <@cmn.page>
 <div class="form-group row">
-    <form id="applicantForm" method="post" action="/chooseApplicantAndDate"><#--style="width:500px"-->
+    <form id="applicantForm" method="post" action="/chooseApplicantAndDate">
         <div class="ml-3 mb-3"><h4>Выберите заявителя</h4></div>
         <div class="ml-3 mb-2">Список заявителей:</div>
         <div class="col">

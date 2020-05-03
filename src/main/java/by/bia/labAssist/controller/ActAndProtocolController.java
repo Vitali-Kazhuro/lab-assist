@@ -62,7 +62,6 @@ public class ActAndProtocolController {
         List<TestReport> actAndProtocolTestReports = (List<TestReport>)session.getAttribute("actAndProtocolTestReports");
 
         List<TestReport> testReports = testReportService.findAll(actAndProtocolTestReports);
-        //model.addAttribute("allTestReports", actAndProtocolTestReports);
         model.addAttribute("allTestReports", testReports);
 
         model.addAllAttributes(passageMap);

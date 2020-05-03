@@ -1,30 +1,7 @@
 <#import "parts/common.ftlh" as cmn>
 <#import "parts/modalDelete.ftlh" as del>
 <@cmn.page>
-    <#--<script>
-        function selectFromListAndClick(id) {
-            var element = document.getElementById("oneSelect");
-            if(id == 0){
-                alert("Не нажимайте на шапку таблицы!");
-                return;
-            }
-            element.value = id;
-            document.getElementById("chooseButton").click();
-        }
-        function addRowHandlers() {
-            var rows = document.getElementById("allTable").rows;
-            for (i = 0; i < rows.length; i++) {
-                rows[i].onclick = function(){ return function(){
-                    var cell = this.cells[0];
-                    var id = cell.id;
-                    selectFromListAndClick(id);
-                };}(rows[i]);
-            }
-        }
-        window.addEventListener('load', addRowHandlers);
-    </script>-->
     <script src="/static/js/script.js"></script>
-
     <#include "parts/sortTableModalPopup.ftlh">
     <div class="col-lg-6">
         <form method="post" id="employeeForm" action="/addEmployee">
@@ -47,12 +24,10 @@
             <button class="btn btn-outline-success my-1" formaction="/editEmployee" <#if employeeEdit??><#else>hidden</#if> >Изменить</button>
         </form>
     </div>
-
     <div class="mt-3 ml-3"><h5>Все сотрудники:</h5></div>
     <div class="form-group row">
         <form method="post" action="/chooseEmployee">
             <div class="input-group">
-                <#--<label class="mt-2 ml-4">Сотрудник:</label>-->
                 <select class="custom-select ml-5 mb-1" id="oneSelect" name="employeeSelect">
                     <#list allEmployees as employee>
                         <option <#if employeeEdit??><#if employee.id == employeeEdit.id>selected</#if></#if> value="${employee.id}">${employee.name}</option>
@@ -89,7 +64,7 @@
     <!-- Modal -->
     <@del.modalDelete "Employee">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить сотрудника <b>"<#if employeeEdit??>${employeeEdit.name}</#if>"</b>?</h5>
-        <div class="ml-3 my-2"><h7><em>Это возможно только, если он не был задействован в каком-либо протоколе испытаний</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это возможно только, если он не был задействован в каком-либо протоколе испытаний</em></h6></div>
         <input type="hidden" name="employeeId" value="<#if employeeEdit??>${employeeEdit.id}</#if>">
     </@del.modalDelete>
 </@cmn.page>

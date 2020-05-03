@@ -15,16 +15,6 @@
     <#else>
         <#assign body = 1..page.getTotalPages()>
     </#if>
-    <#--<script>
-        function visualizeSize() {
-            document.getElementById("size").innerHTML = document.getElementById("sizeRange").value;
-        }
-        function addSizeToHref() {
-            var size = document.getElementById("sizeRange").value;
-            var href = document.getElementById("sizeLink").getAttribute("href");
-            document.getElementById("sizeLink").setAttribute("href", href+size);
-        }
-    </script>-->
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item disabled">
@@ -38,7 +28,7 @@
             </li>
 
             <li class="page-item disabled">
-                <a class="page-link ml-2" href="#"<#-- tabindex="-1"-->>Страницы</a>
+                <a class="page-link ml-2" href="#">Страницы</a>
             </li>
             <#list body as p>
                 <#if (p-1)==page.getNumber()>
@@ -56,16 +46,5 @@
                 </#if>
             </#list>
         </ul>
-        <#--<ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Строк на странице</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" id="sizeLink" onclick="addSizeToHref()" href="${url}?page=${page.getNumber()}&size="><span id="size">${page.getSize()}</span></a>
-            </li>
-            <li>
-                <input class="form-control-range mt-2 ml-1" id="sizeRange" type="range" min="10" max="50" step="1" oninput="visualizeSize()" value="${page.getSize()}">
-            </li>
-        </ul>-->
     </nav>
 </#macro>

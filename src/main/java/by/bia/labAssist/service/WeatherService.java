@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface WeatherService {
-
     void save(String date, Float k53_10_temperature, Float k53_16_temperature, Float k42_10_temperature,
               Float k42_16_temperature, Float k53_10_humidity, Float k53_16_humidity, Float k42_10_humidity,
               Float k42_16_humidity, Integer k53_10_pressure, Integer k53_16_pressure, Integer k42_10_pressure,

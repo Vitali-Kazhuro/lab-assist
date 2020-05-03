@@ -47,19 +47,6 @@
         <table class="table table-sm table-striped table-bordered table-hover" id="allTable">
             <thead class="thead-inverse">
             <tr>
-                <#--<th><small><b>№ п/п</b></small></th>
-                <th><small><b>Дата поступ- ления</b></small></th>
-                <th><small><b>Наименование образца</b></small></th>
-                <th><small><b>Шифр образца</b></small></th>
-                <th><small><b>Количество поступившего</b></small></th>
-                <th width="30"><small><b>Отметка о сохран- ности тары</b></small></th>
-                <th><small><b>Наименование номер и дата сопроводительного документа</b></small></th>
-                <th><small><b>Заявленные виды работ</b></small></th>
-                <th width="40"><small><b>Сотрудник получивший образец (ФИО, подпись, дата)</b></small></th>
-                <th width="30"><small><b>№ прото- кола испы- таний</b></small></th>
-                <th><small><b>Начало испытаний</b></small></th>
-                <th><small><b>Окончание испытаний</b></small></th>
-                <th><small><b>Отметка об утили- зации</b></small></th>-->
                 <th id="0">№ п/п</th>
                 <th>Дата поступ- ления</th>
                 <th>Наименование образца</th>
@@ -78,13 +65,11 @@
             <tbody>
             <#--<#assign x = allSamplesPage.getNumber()*allSamplesPage.getSize()>-->
             <#assign x = 1 + allSamplesPage.getTotalElements() - (allSamplesPage.getNumber()*allSamplesPage.getSize())>
-            <#--<#list allSamples as sample>-->
             <#list allSamplesPage.content as sample>
                 <tr>
                     <td id="${sample.id}"><small><b><#assign x-->${x}</b></small></td>
                     <td><small>${sample.testReport.startDateS}</small></td>
                     <td><small>${sample.objectOfStudy.title} ${sample.series} ${sample.objectOfStudy.producer!""}</small></td>
-                    <#--<td><button type="submit" form="chooseSampleForm" class="btn btn-link" onclick="selectSample(${sample.id})"><small><b>${sample.cipher}</b></small></button></td>-->
                     <td><small><b>${sample.cipher}</b></small></td>
                     <td><small>${sample.quantity}</small></td>
                     <td><small>Сохр</small></td>
@@ -97,23 +82,6 @@
                     <td></td>
                 </tr>
             </#list>
-            <#--<#list allTestReports as testReport>
-                <tr>
-                    <td><small><b><#assign x=x+1> ${x}</b></small></td>
-                    <td><small>${testReport.startDateS}</small></td>
-                    <td><small><#list testReport.samples as sample><#if sample??><div class="mb-1">${sample.objectOfStudy.title} ${sample.series} ${sample.objectOfStudy.producer!""}</div></#if></#list></small></td>
-                    <td><small><#list testReport.samples as sample><#if sample??><div class="mb-5"><button type="submit" form="chooseSampleForm" class="btn btn-link" onclick="selectSample(${sample.id})"><small><b>${sample.cipher}</b></small></button></div></#if></#list></small></td>
-                    <td><small><#if testReport.samples[0]??>${testReport.samples[0].quantity}</#if></small></td>
-                    <td><small><#list testReport.samples as sample><#if sample??><div class="mb-5">Сохр</div></#if></#list></small></td>
-                    <td><small><#if testReport.samples[0]??>${testReport.samples[0].samplingReport}</#if></small></td>
-                    <td><small><#list testReport.samples as sample><#if sample??><div class="mb-4"><#list sample.sampleNorms as sampleNorm>${sampleNorm.norm.element.symbol}<#sep>, </#list></div></#if></#list></small></td>
-                    <td></td>
-                    <td><small>${testReport.protocolNumber}</small></td>
-                    <td><small>${testReport.startDateS}</small></td>
-                    <td><small>${testReport.endDateS}</small></td>
-                    <td></td>
-                </tr>
-            </#list>-->
             </tbody>
         </table>
     </div>

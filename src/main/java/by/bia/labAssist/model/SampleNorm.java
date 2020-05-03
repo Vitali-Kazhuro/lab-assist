@@ -43,9 +43,6 @@ public class SampleNorm {
     }
 
     public void setMean(String mean) {
-        /*if (this.result1 != null && this.result2 != null)
-            this.mean = ((BigDecimal.valueOf(result1).add(BigDecimal.valueOf(result2)))
-                    .divide(BigDecimal.valueOf(2))).toPlainString().replace(".",",");*/
         this.mean = mean;
     }
 

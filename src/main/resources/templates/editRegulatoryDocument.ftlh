@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as cmn>
 <@cmn.page>
-    <div class="<#--form-group row-->col-lg-6">
+    <div class="col-lg-6">
         <form id="regulatoryDocumentForm" method="post" action="/editRegulatoryDocumentPage">
             <h5>Добавить/редактировать нормативный документ</h5>
             <label class="ml-3" for="regulatoryDocument">Название нормативного документа в родительном падеже:</label>

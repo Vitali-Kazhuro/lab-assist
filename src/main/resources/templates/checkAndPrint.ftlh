@@ -77,7 +77,6 @@
     <div>
         ${conclusion?replace("\r\n", "<br>")?no_esc}
     </div>
-
     <div class="form-group row my-3">
         <form method="post" action="/checkAndPrint">
             <button class="btn btn-outline-success ml-2" type="submit">Вывести на сервер</button>
@@ -85,5 +84,4 @@
             Имя файла: <b>${fileName}</b>
         </form>
     </div>
-
 </@cmn.page>

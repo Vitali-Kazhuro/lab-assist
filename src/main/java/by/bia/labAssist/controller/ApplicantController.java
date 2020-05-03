@@ -27,8 +27,6 @@ public class ApplicantController {
         model.addAttribute("applicants", applicants);
 
         if(session.getAttribute("applicant")!= null){
-            /*Applicant applicant = (Applicant) session.getAttribute("applicant");
-            model.addAttribute("applicantSelected", applicant);*/
             model.addAttribute("applicantSelected", session.getAttribute("applicant"));
         }
 

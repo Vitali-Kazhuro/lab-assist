@@ -31,7 +31,6 @@ public class TestMethodServiceImpl implements TestMethodService {
     @Override
     public void edit(TestMethod testMethodEdit, String title) {
         testMethodEdit.setTitle(title);
-
         testMethodRepository.save(testMethodEdit);
     }
 

@@ -23,7 +23,7 @@
     <!-- Modal -->
     <@del.modalDelete "SamplingAuthority">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить орган отбора проб <b>"${samplingAuthority.title}"</b>?</h5></div>
-        <div class="ml-3 my-2"><h7><em>Это удалит все объекты иссдедования и образцы, связанные с этим органом отбора проб!</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это удалит все объекты иссдедования и образцы, связанные с этим органом отбора проб!</em></h6></div>
         <input type="hidden" name="samplingAuthorityId" value="${samplingAuthority.id}">
     </@del.modalDelete>
 </@cmn.page>

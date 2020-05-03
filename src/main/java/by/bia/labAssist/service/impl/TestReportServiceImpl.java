@@ -23,18 +23,14 @@ public class TestReportServiceImpl implements TestReportService {
 
     @Override
     public TestReport save(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
-                           String startDate, String endDate,
-                           /*Float temperatureMin, Float temperatureMax, Float humidityMin,
-                           Float humidityMax, Integer pressureMin, Integer pressureMax, */
-                           Employee employee1, Employee employee2, Applicant applicant){
+                           String startDate, String endDate, Employee employee1,
+                           Employee employee2, Applicant applicant){
         LocalDate formattedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedEndDate = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
-        TestReport testReport = new TestReport(protocolNumber, formattedDate, formattedStartDate, formattedEndDate,
-                //temperatureMin, temperatureMax, humidityMin, humidityMax, pressureMin, pressureMax,
-                //testMethod,
-                applicant);
+        TestReport testReport = new TestReport(protocolNumber, formattedDate,
+                                               formattedStartDate, formattedEndDate, applicant);
         testReport.getTestMethods().add(testMethod1);
         testReport.getTestMethods().add(testMethod2);
 
@@ -48,29 +44,19 @@ public class TestReportServiceImpl implements TestReportService {
 
     @Override
     public TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date,
-                           TestMethod testMethod1, TestMethod testMethod2, String startDate, String endDate,
-                           /*Float temperatureMin, Float temperatureMax, Float humidityMin, Float humidityMax,
-                           Integer pressureMin, Integer pressureMax,*/
-                           Employee employee1, Employee employee2){
+                           TestMethod testMethod1, TestMethod testMethod2, String startDate,
+                           String endDate, Employee employee1, Employee employee2){
         LocalDate formattedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedEndDate = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
         testReportEdit.setProtocolNumber(protocolNumber);
         testReportEdit.setDate(formattedDate);
-        //testReportEdit.setTestMethod(testMethod);
         testReportEdit.setStartDate(formattedStartDate);
         testReportEdit.setEndDate(formattedEndDate);
-        /*testReportEdit.setTemperatureMin(temperatureMin);
-        testReportEdit.setTemperatureMax(temperatureMax);
-        testReportEdit.setHumidityMin(humidityMin);
-        testReportEdit.setHumidityMax(humidityMax);
-        testReportEdit.setPressureMin(pressureMin);
-        testReportEdit.setPressureMax(pressureMax);*/
         testReportEdit.setPerformers(new ArrayList<>());
         testReportEdit.getPerformers().add(employee1);
         testReportEdit.getPerformers().add(employee2);
-
         testReportEdit.setTestMethods(new ArrayList<>());
         testReportEdit.getTestMethods().add(testMethod1);
         testReportEdit.getTestMethods().add(testMethod2);
@@ -132,24 +118,16 @@ public class TestReportServiceImpl implements TestReportService {
             Map.Entry<ObjectOfStudy, List<Sample>> entryByObjectOfStudy = entriesByObjectOfStudy.next();
             //достаём список образцов для данного объекта исследования
             List<Sample> samplesOfOneObjectOfStudy = entryByObjectOfStudy.getValue();
-            //группируем эти образцы по списку норм, чтобы можно было посчитать вместе образцы, исследовавшиеся на одинаковые элементы
-            ////Map<List<Norm>, List<Sample>> samplesByNorms = samplesOfOneObjectOfStudy.stream().collect(Collectors.groupingBy(Sample::getNorms));
             //группируем по кастомному методу, возвращающему строку для сравнения листов норм разных образцов (т.к. просто по листу норм не группируется)
             Map<String, List<Sample>> samplesByNorms = samplesOfOneObjectOfStudy.stream()
                     .collect(Collectors.groupingBy(Sample::forGrouping));
             //пройдёмся по всем образцам из каждой группы норм
-            ////Iterator<Map.Entry<List<Norm>, List<Sample>>> entries1 = samplesByNorms.entrySet().iterator();
             Iterator<Map.Entry<String, List<Sample>>> entriesByNorms = samplesByNorms.entrySet().iterator();
             while (entriesByNorms.hasNext()){
-                ////Map.Entry<List<Norm>, List<Sample>> item1 = entries1.next();
                 Map.Entry<String, List<Sample>> entryByNorms = entriesByNorms.next();
                 //начинаем формировать один абзац
                 sb.append("– по определению содержания массовой доли ");
-                ////List<Norm> norms = item1.getKey();
                 //достаём нормы нулевого образца группы(а они у всех в этой группе одинаковые)
-                //List<Norm> norms = item.getValue().get(0).getNorms();
-
-                //////List<Norm> norms = entryByNorms.getValue().get(0).getNorms();
                 List<Norm> norms = entryByNorms.getValue().get(0).getSampleNorms().stream()
                         .map(SampleNorm::getNorm)
                         .collect(Collectors.toList());

@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class ObjectOfStudyServiceImpl implements ObjectOfStudyService {
-
     @Autowired
     private ObjectOfStudyRepository objectOfStudyRepository;
 

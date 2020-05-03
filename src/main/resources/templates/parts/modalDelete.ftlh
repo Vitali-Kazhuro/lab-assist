@@ -13,8 +13,6 @@
                 <div class="form-group row">
                     <form id="delete${who}Form" method="post" action="/delete${who}">
                         <#nested>
-                        <#--<div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить заявителя <b>${applicant.organization}</b>?</h5></div>-->
-                        <#--<input type="hidden" value="${applicant.id}">-->
                     </form>
                 </div>
             </div>

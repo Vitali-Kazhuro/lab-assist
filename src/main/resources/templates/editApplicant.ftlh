@@ -77,7 +77,7 @@
     <!-- Modal -->
     <@del.modalDelete "Applicant">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить заявителя <b>"${applicant.organization}"</b>?</h5></div>
-        <div class="ml-3 my-2"><h7><em>Это удалит все органы отбора проб, объекты исследования, образцы, связанные с этим заявителем!</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это удалит все органы отбора проб, объекты исследования, образцы, связанные с этим заявителем!</em></h6></div>
         <input type="hidden" name="applicantId" value="${applicant.id}">
     </@del.modalDelete>
 </@cmn.page>

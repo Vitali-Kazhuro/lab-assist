@@ -17,7 +17,7 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     @Override
     public List<Applicant> findAll() {
-        return (List<Applicant>) applicantRepository.findAll();
+        return applicantRepository.findAll();
     }
 
     @Override

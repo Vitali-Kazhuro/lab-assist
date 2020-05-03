@@ -12,7 +12,6 @@ public class TestMethod {
 
     private String title;
 
-    //@OneToMany(mappedBy = "testMethod")
     @ManyToMany(mappedBy = "testMethods")
     private List<TestReport> testReports;
 

@@ -55,22 +55,6 @@ public class SampleNormServiceImpl implements SampleNormService {
 
     @Override
     public void processResults(Sample sample, Map<String, String> form) {
-        /*for (SampleNorm sampleNorm: sample.getSampleNorms()){
-            if (form.containsKey(sampleNorm.getId() +"-limitCheck")) {
-                sampleNorm.setDetectionLimit(form.get(sampleNorm.getId() + "-limit"));
-                sampleNorm.setResult1(null);
-                sampleNorm.setResult2(null);
-                sampleNormRepository.save(sampleNorm);
-                continue;
-            }
-            Double result1 = Double.parseDouble(form.get(sampleNorm.getId() + "-result1"));
-            Double result2 = Double.parseDouble(form.get(sampleNorm.getId() + "-result2"));
-            sampleNorm.setDetectionLimit("");
-            sampleNorm.setResult1(result1);
-            sampleNorm.setResult2(result2);
-            sampleNormRepository.save(sampleNorm);
-        }*/
-
         for (SampleNorm sampleNorm: sample.getSampleNorms()){
             String sampleIdPlusSampleNormId = sample.getId().toString() + sampleNorm.getId().toString();
             if (form.containsKey(sampleIdPlusSampleNormId + "-limitCheck")) {
@@ -88,5 +72,4 @@ public class SampleNormServiceImpl implements SampleNormService {
             sampleNormRepository.save(sampleNorm);
         }
     }
-
 }

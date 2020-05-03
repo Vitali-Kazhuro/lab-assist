@@ -23,7 +23,6 @@
         </tr>
         </thead>
         <tbody>
-        <#--<#list allTestReports as thisTestReport>-->
         <#list allTestReportsPage.content as thisTestReport>
             <tr>
                 <td id="${thisTestReport.id}"><small><b>${thisTestReport.protocolNumber}</b></small></td>
@@ -35,7 +34,6 @@
                 <td><small><#list thisTestReport.samples as sample><#if sample??><div class="mb-2">${sample.objectOfStudy.regulatoryDocument.title}</div></#if></#list></small></td>
                 <td><small>${thisTestReport.startDateS}</small></td>
                 <td><small>${thisTestReport.endDateS}</small></td>
-                <#--<td><small>${thisTestReport.testMethod.title}</small></td>-->
                 <td><small><#list thisTestReport.testMethods as testMethod>${testMethod.title}<#sep>; </#list></small></td>
             </tr>
         </#list>

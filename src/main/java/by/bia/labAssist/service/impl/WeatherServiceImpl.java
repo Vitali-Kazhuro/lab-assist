@@ -60,7 +60,7 @@ public class WeatherServiceImpl implements WeatherService {
     @Override
     public String getWeatherPassage(LocalDate startDate, LocalDate endDate) {
         List<Weather> weatherList = weatherRepository.findAllByDateBetween(startDate, endDate);
-        int i = 0;
+
         List<Float> temperatureList = weatherList.stream().map(Weather::getAllTemperature)
                 .flatMap(List::stream).collect(Collectors.toList());
         List<Float> humidityList = weatherList.stream().map(Weather::getAllHumidity)
@@ -73,6 +73,7 @@ public class WeatherServiceImpl implements WeatherService {
         Float maxHumidity = humidityList.stream().max(Float::compareTo).get();
         Integer minPressure = pressureList.stream().min(Integer::compareTo).get();
         Integer maxPressure = pressureList.stream().max(Integer::compareTo).get();
+
         StringBuilder sb = new StringBuilder();
         sb.append("Температура воздуха ");
         if (minTemperature.equals(maxTemperature))

@@ -7,7 +7,6 @@ import by.bia.labAssist.model.SamplingAuthority;
 import java.util.List;
 
 public interface ObjectOfStudyService {
-
     ObjectOfStudy findById(Integer id);
 
     List<ObjectOfStudy> findBySamplingAuthorityId(Integer id);

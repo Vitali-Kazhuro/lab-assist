@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface NormService {
-
     List<Norm> findByRegulatoryDocumentId(Integer id);
 
     List<Norm> getCheckedNorms(Map<String, String> form, List<Norm> allNorms);
@@ -17,6 +16,4 @@ public interface NormService {
                                           List<Element> allElements, RegulatoryDocument regulatoryDocument);
 
     RegulatoryDocument edit(Map<String, String> form, List<Element> allElements, RegulatoryDocument regulatoryDocumentEdit);
-
-/*    List<Norm> findAllBySamples(List<Sample> samples);*/
 }

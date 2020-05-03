@@ -18,13 +18,11 @@
     </div>
 
     <a class="btn btn-outline-secondary mb-2" data-toggle="collapse" href="#addSamplingAuthority" role="button" aria-expanded="false" aria-controls="addSamplingAuthority">
-        Добавить<#-- орган отбора проб-->
+        Добавить
     </a>
     <button class="btn btn-outline-primary mb-2" type="submit" form="samplingAuthorityForm" formmethod="post" formaction="/editSamplingAuthorityPage">
-        Редактировать<#-- орган отбора проб-->
+        Редактировать
     </button>
-
-    <#--<a class="btn btn-outline-primary mb-2" href="/objects_of_study" role="button">Далее</a>-->
 
     <a class="btn btn-secondary mb-2" href="/applicants" role="button">Назад</a>
 

@@ -20,43 +20,15 @@ public class SampleServiceImpl implements SampleService {
     @Autowired
     private SampleRepository sampleRepository;
 
-    /*@Override
-    public Sample save(String cipher, String series, String samplingReport, String quantity,
-                       ObjectOfStudy objectOfStudy, TestReport testReport, List<Norm> checkedNorms) {
-        Sample sample = new Sample(cipher, series, samplingReport, quantity, objectOfStudy, testReport);
-
-        sample.getNorms().addAll(checkedNorms);
-
-        sampleRepository.save(sample);
-
-        return sample;
-    }*/
-
     @Override
     public Sample save(String cipher, String series, String samplingReport, String quantity,
                        ObjectOfStudy objectOfStudy, TestReport testReport) {
         Sample sample = new Sample(cipher, series, samplingReport, quantity, objectOfStudy, testReport);
 
-        //sample.getNorms().addAll(checkedNorms);
-
         sampleRepository.save(sample);
 
         return sample;
     }
-
-    /*@Override
-    public Sample edit(Sample sampleEdit, String cipher, String series, String samplingReport,
-                       String quantity, List<Norm> checkedNorms) {
-        sampleEdit.setCipher(cipher);
-        sampleEdit.setSeries(series);
-        sampleEdit.setSamplingReport(samplingReport);
-        sampleEdit.setQuantity(quantity);
-        sampleEdit.setNorms(new ArrayList<>(checkedNorms));
-
-        sampleRepository.save(sampleEdit);
-
-        return sampleEdit;
-    }*/
 
     @Override
     @Transactional

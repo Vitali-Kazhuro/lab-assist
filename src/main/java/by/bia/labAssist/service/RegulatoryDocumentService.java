@@ -5,7 +5,6 @@ import by.bia.labAssist.model.RegulatoryDocument;
 import java.util.List;
 
 public interface RegulatoryDocumentService {
-
     List<RegulatoryDocument> findAll();
 
     RegulatoryDocument findById(Integer id);

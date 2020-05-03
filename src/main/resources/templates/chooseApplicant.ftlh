@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as cmn>
 <@cmn.page>
     <div class="form-group row">
-        <form id="applicantForm" method="post" action="/chooseApplicant"><#--style="width:500px"-->
+        <form id="applicantForm" method="post" action="/chooseApplicant">
             <div class="ml-3 mb-3"><h4>Выберите заявителя</h4></div>
             <div class="ml-3 mb-2">Список заявителей:</div>
             <div class="input-group">
@@ -18,13 +18,11 @@
     </div>
 
     <a class="btn btn-outline-secondary mb-2" data-toggle="collapse" href="#addApplicant" role="button" aria-expanded="false" aria-controls="addApplicant">
-        Добавить<#-- заявителя-->
+        Добавить
     </a>
     <button class="btn btn-outline-primary mb-2" type="submit" form="applicantForm" formmethod="post" formaction="/editApplicantPage">
-        Редактировать<#-- заявителя-->
+        Редактировать
     </button>
-
-    <#--<a class="btn btn-outline-primary mb-2" href="/sampling_authorities" role="button">Далее</a>-->
 
     <a class="btn btn-secondary mb-2" href="/register_sample" role="button">Назад</a>
 

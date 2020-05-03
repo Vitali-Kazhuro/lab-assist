@@ -24,12 +24,6 @@ public class Sample {
     @JoinColumn(name = "test_report_id")
     private TestReport testReport;
 
-    /*@ManyToMany//(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "sample_norm",
-            joinColumns = @JoinColumn(name = "sample_id"),
-            inverseJoinColumns = @JoinColumn(name = "norm_id"))
-    private List<Norm> norms;*/
     @OneToMany(mappedBy = "sample", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SampleNorm> sampleNorms;
 
@@ -49,7 +43,6 @@ public class Sample {
         this.quantity = quantity.replaceAll("\\s+", " ").trim();
         this.objectOfStudy = objectOfStudy;
         this.testReport = testReport;
-        //this.norms = new ArrayList<>();
         this.sampleNorms = new ArrayList<>();
     }
 
@@ -141,14 +134,6 @@ public class Sample {
         this.testReport = testReport;
     }
 
-    /*public List<Norm> getNorms() {
-        return norms;
-    }
-
-    public void setNorms(List<Norm> norms) {
-        this.norms = norms;
-    }*/
-
     public List<SampleNorm> getSampleNorms() {
         return sampleNorms;
     }
@@ -157,8 +142,6 @@ public class Sample {
         this.sampleNorms = sampleNorms;
     }
 
-    /*public String forGrouping(){
-        return this.getNorms().toString();*/
     public String forGrouping(){
         return this.getSampleNorms().stream().map(SampleNorm::getNorm).collect(Collectors.toList()).toString();
     }

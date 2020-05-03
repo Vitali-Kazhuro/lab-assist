@@ -33,13 +33,4 @@
     <div>
         <a href="/edit_regulatory_document">• Добавить/редактировать нормативный документ</a>
     </div>
-
-
-    <#--<h3><a href="/applicants">Начинаем заполнять</a></h3>
-    <br>
-    <div class="form-group row">
-        <form method="post" action="/newReport">
-            <button class="btn btn-outline-primary ml-2">Новый протокол анализа</button>
-        </form>
-    </div>-->
 </@cmn.page>

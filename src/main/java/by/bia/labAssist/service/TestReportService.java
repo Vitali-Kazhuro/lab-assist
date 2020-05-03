@@ -12,18 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface TestReportService {
-
     TestReport save(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
-                    String startDate, String endDate,
-                    /*Float temperatureMin, Float temperatureMax, Float humidityMin, Float humidityMax,
-                    Integer pressureMin, Integer pressureMax, */
-                    Employee employee1, Employee employee2, Applicant applicant);// throws ParseException;
+                    String startDate, String endDate, Employee employee1, Employee employee2, Applicant applicant);
 
     TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date, TestMethod testMethod1,
-                    TestMethod testMethod2,String startDate, String endDate,
-                    /*Float temperatureMin, Float temperatureMax, Float humidityMin, Float humidityMax,
-                    Integer pressureMin, Integer pressureMax,  */
-                    Employee employee1, Employee employee2);// throws ParseException;
+                    TestMethod testMethod2,String startDate, String endDate, Employee employee1, Employee employee2);
 
     List<TestReport> findAll();
 

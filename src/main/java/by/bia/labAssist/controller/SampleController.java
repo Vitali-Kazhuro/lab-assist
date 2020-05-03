@@ -38,44 +38,15 @@ public class SampleController {
         }
 
         List<Norm> norms = normService.findByRegulatoryDocumentId(regulatoryDocument.getId());
-
         session.setAttribute("allNorms", norms);
-
-        ////model.addAttribute("allNorms", norms);
-
         //если мы уже создали sample, то отобразим параметры уже созданного
-        if(session.getAttribute("sample")!= null){// && session.getAttribute("normList")!= null){
-            //List<Norm> checkedNorms = (List<Norm>) session.getAttribute("normList");
+        if(session.getAttribute("sample")!= null){
             Sample sample = (Sample) session.getAttribute("sample");
-            ///model.addAttribute("normList", sample.getNorms());//checkedNorms);
             model.addAttribute("normList", sample.getSampleNorms().stream().map(SampleNorm::getNorm).collect(Collectors.toList()));
-
-            ////model.addAttribute("sample", sample);
         }
 
         return "chooseElementAndFillSample";
     }
-
-    /*@PostMapping("editElementAndSample")
-    public String editElementsAndSample(@RequestParam Map<String, String> form,
-                                        @RequestParam String cipher,
-                                        @RequestParam String series,
-                                        @RequestParam String samplingReport,
-                                        @RequestParam String quantity,
-                                        HttpSession session){
-        List<Norm> allNorms = (List<Norm>) session.getAttribute("allNorms");
-        List<Norm> checkedNormsEdit = normService.getCheckedNorms(form, allNorms);
-
-        //session.setAttribute("normList", checkedNormsEdit);
-
-        Sample sample = (Sample) session.getAttribute("sample");
-
-        Sample sampleEdit = sampleService.edit(sample, cipher, series, samplingReport, quantity, checkedNormsEdit);
-
-        session.setAttribute("sample", sampleEdit);
-
-        return "redirect:/check_and_print";
-    }*/
 
     @PostMapping("editElementAndSample")
     public String editElementsAndSample(@RequestParam Map<String, String> form,
@@ -89,51 +60,13 @@ public class SampleController {
 
         Sample sample = (Sample) session.getAttribute("sample");
 
-        /*Sample sampleEdit = sampleService.edit(sample, cipher, series, samplingReport, quantity);
-
-        Sample sampleWithSampleNormsEdit = sampleNormService.editSampleNormForSample(sampleEdit, checkedNormsEdit);*/
-
         Sample sampleWithSampleNormsEdit = sampleNormService.editSampleNormForSample(sample, checkedNormsEdit);
-
-        //Sample sampleEdit =
         sampleService.edit(sampleWithSampleNormsEdit, cipher, series, samplingReport, quantity);
 
         Attributes.clearSession(session);
 
-        //session.setAttribute("sample", sampleEdit);//sampleWithSampleNormsEdit);
-
-        return "redirect:/all_samples_in"; //"redirect:/check_and_print";
+        return "redirect:/all_samples_in";
     }
-
-    /*@PostMapping("chooseElementAndFillSample")
-    public String chooseElementsAndFillSample(@RequestParam Map<String, String> form,
-                                              @RequestParam String cipher,
-                                              @RequestParam String series,
-                                              @RequestParam String samplingReport,
-                                              @RequestParam String quantity,
-                                              HttpSession session){
-        TestReport testReport = (TestReport) session.getAttribute("testReport");
-
-        //проверяем был ли заполнен testReport
-        if(testReport == null){
-            return "redirect:/fill_test_report";
-        }
-
-        List<Norm> allNorms = (List<Norm>) session.getAttribute("allNorms");
-        List<Norm> checkedNorms = normService.getCheckedNorms(form, allNorms);
-
-        //session.setAttribute("normList", checkedNorms);
-
-        ObjectOfStudy objectOfStudy = (ObjectOfStudy) session.getAttribute("objectOfStudy");
-        ObjectOfStudy objectOfStudyInContext = objectOfStudyService.findById(objectOfStudy.getId());
-
-        Sample sample = sampleService.save(cipher, series, samplingReport, quantity, objectOfStudyInContext,
-                testReport, checkedNorms);
-
-        session.setAttribute("sample", sample);
-
-        return "redirect:/check_and_print";
-    }*/
 
     @PostMapping("chooseElementAndFillSample")
     public String chooseElementsAndFillSample(@RequestParam Map<String, String> form,
@@ -143,7 +76,6 @@ public class SampleController {
                                               @RequestParam String quantity,
                                               HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
-
         //проверяем был ли заполнен testReport
         if(testReport == null){
             return "redirect:/fill_test_report";
@@ -157,15 +89,11 @@ public class SampleController {
 
         Sample sample = sampleService.save(cipher, series, samplingReport, quantity, objectOfStudyInContext,
                 testReport);
-
-        //Sample sampleWithSampleNorms =
         sampleNormService.createSampleNormForSample(sample, checkedNorms);
 
         Attributes.clearSession(session);
 
-        //session.setAttribute("sample", sampleWithSampleNorms);
-
-        return "redirect:/all_samples_in";//"redirect:/check_and_print";
+        return "redirect:/all_samples_in";
     }
 
     @PostMapping("chooseSample")
@@ -193,29 +121,6 @@ public class SampleController {
         return "redirect:/all_samples_in";
     }
 
-/*    @GetMapping("add_results")
-    public String addResultsPage(Model model, HttpSession session){
-        Sample sample = (Sample) session.getAttribute("sample");
-
-        //проверка выблрали ли мы образец на предыдущих этапах
-        if(sample == null){
-            return "redirect:/start_test_report";
-        }
-
-        model.addAttribute("allSampleNorms", sample.getSampleNorms());
-
-        return "addResults";
-    }
-
-    @PostMapping("addResults")
-    public String addResults(@RequestParam Map<String, String> form, HttpSession session){
-        Sample sample = (Sample) session.getAttribute("sample");
-
-        sampleNormService.processResults(sample, form);
-
-        return "redirect:/add_results";
-    }*/
-
     @GetMapping("register_sample")
     public String registerSample(){
         return "registerSample";
@@ -223,17 +128,9 @@ public class SampleController {
 
     @PostMapping("newSample")
     public String newReport(HttpSession session){
-        /*for (Attributes attribute: Attributes.values()){
-            if(session.getAttribute(attribute.title)!= null){
-                session.removeAttribute(attribute.title);
-            }
-        }
-        session.removeAttribute("editSample");*/
         Attributes.clearSession(session);
         session.setAttribute("new", true);
 
-        //return "redirect:/fill_test_report";
         return "redirect:/applicants";
     }
-
 }

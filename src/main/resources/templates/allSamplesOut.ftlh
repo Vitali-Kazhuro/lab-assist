@@ -12,7 +12,7 @@
     <script src="/static/js/script.js"></script>
     <#include "parts/sortTableModalPopup.ftlh">
     <a style="text-decoration: none; color: #000;" data-toggle="collapse" href="#chooseSample" role="button" aria-expanded="false" aria-controls="chooseSample">
-    <#--<div class="my-1">--><h6>Журнал регистрации протоколов испытаний, выдаваемых ИЛ НПООО "Белинтеланалит" 04 ЖР 2.19 (РК приложение 5)</h6><#--</div>-->
+    <h6>Журнал регистрации протоколов испытаний, выдаваемых ИЛ НПООО "Белинтеланалит" 04 ЖР 2.19 (РК приложение 5)</h6>
     </a>
     <div class="collapse show" id="chooseSample">
         <@pgr.pager "all_samples_out" allTestReportsPage />
@@ -34,23 +34,7 @@
             </tr>
             </thead>
             <tbody>
-            <#--<#assign x = 0>-->
             <#assign x = 1 + allTestReportsPage.getTotalElements() - (allTestReportsPage.getNumber()*allTestReportsPage.getSize())>
-            <#--<#list allSamples as sample>
-                <tr>
-                    <td><small><b><#assign x=x+1> ${x}</b></small></td>
-                    <td><small>${sample.testReport.dateS}</small></td>
-                    <td><small>${sample.objectOfStudy.title} ${sample.series} ${sample.objectOfStudy.producer!""}</small></td>
-                    <td><small>${sample.quantity}</small></td>
-                    <td><small>${sample.objectOfStudy.samplingAuthority.applicant.organization}</small></td>
-                    <td><small>Договор ${sample.objectOfStudy.samplingAuthority.applicant.contractNumber} от ${sample.objectOfStudy.samplingAuthority.applicant.contractDateS}г.</small></td>
-                    <td><small>${sample.samplingReport}</small></td>
-                    <td><small>${sample.testReport.performers[0].name}</small></td>
-                    <td></td>
-                    <td><small>${sample.testReport.protocolNumber}</small></td>
-                </tr>
-            </#list>-->
-            <#--<#list allTestReports as testReport>-->
             <#list allTestReportsPage.content as testReport>
                 <tr>
                     <td><small><b><#assign x--> ${x}</b></small></td>

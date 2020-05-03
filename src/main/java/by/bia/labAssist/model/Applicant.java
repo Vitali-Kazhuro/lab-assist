@@ -34,10 +34,7 @@ public class Applicant {
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
     private List<SamplingAuthority> samplingAuthorities;
 
-    /*@OneToMany(mappedBy = "applicant")
-    private List<RegulatoryDocument> regulatoryDocuments;*/
-
-    @OneToMany(mappedBy = "applicant")//, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "applicant")
     private List<TestReport> testReports;
 
     public Applicant() {

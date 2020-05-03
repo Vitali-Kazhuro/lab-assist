@@ -28,13 +28,6 @@ public class Weather {
 
     @Transient
     private String dateS;
-   /* @Transient
-    private List<Float> allTemperature;
-    @Transient
-    private List<Float> allHumidity;
-    @Transient
-    private List<Integer> allPressure;*/
-
 
     public Weather() {
     }
@@ -56,7 +49,6 @@ public class Weather {
         this.k53_16_pressure = k53_16_pressure;
         this.k42_10_pressure = k42_10_pressure;
         this.k42_16_pressure = k42_16_pressure;
-        //this.dateS = date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
     }
 
     public List<Float> getAllTemperature() {
@@ -66,17 +58,7 @@ public class Weather {
         allTemperature.add(k42_10_temperature);
         allTemperature.add(k42_16_temperature);
         return allTemperature;
-        /*this.allTemperature = new ArrayList<>();
-        this.allTemperature.add(k53_10_temperature);
-        this.allTemperature.add(k53_16_temperature);
-        this.allTemperature.add(k42_10_temperature);
-        this.allTemperature.add(k42_16_temperature);
-        return allTemperature;*/
     }
-
-    /*public void setAllTemperature(List<Float> allTemperature) {
-        this.allTemperature = allTemperature;
-    }*/
 
     public List<Float> getAllHumidity() {
         List<Float> allHumidity = new ArrayList<>();
@@ -85,17 +67,7 @@ public class Weather {
         allHumidity.add(k42_10_humidity);
         allHumidity.add(k42_16_humidity);
         return allHumidity;
-        /*this.allHumidity = new ArrayList<>();
-        this.allHumidity.add(k53_10_humidity);
-        this.allHumidity.add(k53_16_humidity);
-        this.allHumidity.add(k42_10_humidity);
-        this.allHumidity.add(k42_16_humidity);
-        return allHumidity;*/
     }
-
-    /*public void setAllHumidity(List<Float> allHumidity) {
-        this.allHumidity = allHumidity;
-    }*/
 
     public List<Integer> getAllPressure() {
         List<Integer> allPressure = new ArrayList<>();
@@ -104,22 +76,9 @@ public class Weather {
         allPressure.add(k42_10_pressure);
         allPressure.add(k42_16_pressure);
         return allPressure;
-        /*this.allPressure = new ArrayList<>();
-        this.allPressure.add(k53_10_pressure);
-        this.allPressure.add(k53_16_pressure);
-        this.allPressure.add(k42_10_pressure);
-        this.allPressure.add(k42_16_pressure);
-        return allPressure;*/
     }
 
-    /*public void setAllPressure(List<Integer> allPressure) {
-        this.allPressure = allPressure;
-    }*/
-
     public String getDateS() {
-        /*if(dateS == null){
-            this.dateS = this.date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
-        }*/
         this.dateS = this.date.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
         return dateS;
     }

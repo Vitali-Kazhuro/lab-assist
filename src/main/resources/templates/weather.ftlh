@@ -23,7 +23,6 @@
                     <input class="form-control" id="date" type="date" name="date" <#if editWeather??>value="${editWeather.date}"</#if> required>
                     <label for="oneSelect" class="mt-5">Редактировать:</label>
                     <select class="custom-select mb-2" id="oneSelect" name="weatherSelect">
-                        <#--<#list weatherList as weather>-->
                         <#list weatherPage.content as weather>
                             <option <#if editWeather??><#if editWeather.id == weather.id>selected</#if></#if> value="${weather.id}">${weather.dateS}</option>
                         </#list>
@@ -95,11 +94,8 @@
             </tr>
             </thead>
             <tbody>
-            <#--<#list weatherList as weather>-->
             <#list weatherPage.content as weather>
                 <tr>
-                    <#--<td><small>${weather.dateS}</small></td>-->
-                    <#--<td id="${weather.id}"><button type="submit" form="addWeatherForm" formaction="/chooseWeather" class="btn btn-link" onclick="selectWeather(${weather.id})" formnovalidate><small><b>${weather.dateS}</b></small></button></td>-->
                     <td id="${weather.id}" hidden>${weather.id}</td>
                     <td><small><b>${weather.dateS}</b></small></td>
                     <td><small>

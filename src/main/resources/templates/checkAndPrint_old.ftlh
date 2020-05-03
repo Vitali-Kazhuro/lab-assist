@@ -38,7 +38,6 @@
         Наименование органа, производившего отбор проб на испытания: <b>${samplingAuthority.title}</b>
     </div>
     <div class="my-2">
-        <#--Температура воздуха <b>${testReport.temperatureMin}-${testReport.temperatureMax}°С</b>, относительная влажность <b>${testReport.humidityMin}-${testReport.humidityMax}%</b>, атмосферное давление <b>${testReport.pressureMin}-${testReport.pressureMax} мм рт. ст.</b>-->
         <b>${weather}</b>
     </div>
     <div class="form-group col-lg-6">

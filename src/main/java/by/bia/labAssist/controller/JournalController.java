@@ -32,20 +32,11 @@ public class JournalController {
     public String allSamplesIn(Model model, HttpSession session,
                                @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 16) Pageable pageable){
         if (session.getAttribute("editSample") != null){
-            /*Sample editSample = (Sample) session.getAttribute("editSample");
-            model.addAttribute("editSample", editSample);*/
             model.addAttribute("editSample", session.getAttribute("editSample"));
         }
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         Page<Sample> allSamplesPage = sampleService.findAllPages(pageable);
         model.addAttribute("allSamplesPage", allSamplesPage);
-
-        /*List<Sample> allSamples = sampleService.findAll();
-        model.addAttribute("allSamples", allSamples);*/
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        /*List<TestReport> allTestReports = testReportService.findAll();
-        model.addAttribute("allTestReports", allTestReports);*/
 
         return "allSamplesIn";
     }
@@ -53,16 +44,8 @@ public class JournalController {
     @GetMapping("all_samples_out")
     public String allSamplesOut(Model model,
                                 @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 16) Pageable pageable){
-        /*List<Sample> allSamples = sampleService.findAll();
-        model.addAttribute("allSamples", allSamples);*/
-
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Page<TestReport> allTestReportsPage = testReportService.findAllPages(pageable);
         model.addAttribute("allTestReportsPage", allTestReportsPage);
-
-        /*List<TestReport> allTestReports = testReportService.findAll();
-        model.addAttribute("allTestReports", allTestReports);*/
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         return "allSamplesOut";
     }
@@ -71,19 +54,11 @@ public class JournalController {
     public String weather(Model model, HttpSession session,
                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 19) Pageable pageable){
         if (session.getAttribute("editWeather") != null){
-            /*Weather editWeather = (Weather) session.getAttribute("editWeather");
-            model.addAttribute("editWeather", editWeather);*/
             model.addAttribute("editWeather", session.getAttribute("editWeather"));
-            //session.removeAttribute("editWeather");
         }
 
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Page<Weather> weatherPage = weatherService.findAllPages(pageable);
         model.addAttribute("weatherPage", weatherPage);
-
-        /*List<Weather> weatherList = weatherService.findAll();
-        model.addAttribute("weatherList", weatherList);*/
-//TODO PAGINATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         return "weather";
     }

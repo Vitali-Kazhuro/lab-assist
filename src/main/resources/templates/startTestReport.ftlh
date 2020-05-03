@@ -34,7 +34,6 @@
                     <td><small><#list testReport.samples as sample><#if sample??><div class="mb-2">${sample.objectOfStudy.regulatoryDocument.title}</div></#if></#list></small></td>
                     <td><small>${testReport.startDateS}</small></td>
                     <td><small>${testReport.endDateS}</small></td>
-                    <#--<td><small>${testReport.testMethod.title}</small></td>-->
                     <td><small><#list testReport.testMethods as testMethod>${testMethod.title}<#sep>; </#list></small></td>
                 </tr>
                 </tbody>
@@ -75,7 +74,6 @@
                 <div class="input-group">
                     <label class="ml-2 mt-2">Протокол №</label>
                     <select class="custom-select ml-2 mb-1" id="oneSelect" name="testReportSelect">
-                        <#--<#list allTestReports as thisTestReport>-->
                         <#list allTestReportsPage.content as thisTestReport>
                             <option <#if testReport??><#if testReport.id == thisTestReport.id>selected</#if></#if> value="${thisTestReport.id}">${thisTestReport.protocolNumber}</option>
                         </#list>
@@ -96,7 +94,7 @@
     <!-- Modal -->
     <@del.modalDelete "TestReport">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить протокол испытаний № <b><#if testReport??>${testReport.protocolNumber}</#if></b>?</h5></div>
-        <div class="ml-3 my-2"><h7><em>Это удалит образец(-цы), связанный(-ые) с данным протоколом!</em></h7></div>
+        <div class="ml-3 my-2"><h6><em>Это удалит образец(-цы), связанный(-ые) с данным протоколом!</em></h6></div>
         <input type="hidden" name="testReportId" value="<#if testReport??>${testReport.id}</#if>">
     </@del.modalDelete>
 </@cmn.page>
