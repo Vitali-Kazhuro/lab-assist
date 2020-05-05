@@ -7,6 +7,8 @@ import java.util.List;
 public interface ApplicantService {
     List<Applicant> findAll();
 
+    List<Applicant> findAllByOrganizationContains(String search);
+
     Applicant findById(Integer id);
 
     void save(String organization, String address, String mailingAddress, String iban,

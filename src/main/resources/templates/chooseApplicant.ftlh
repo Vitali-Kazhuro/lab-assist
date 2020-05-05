@@ -23,8 +23,21 @@
     <button class="btn btn-outline-primary mb-2" type="submit" form="applicantForm" formmethod="post" formaction="/editApplicantPage">
         Редактировать
     </button>
-
+    <a class="btn btn-outline-info mb-2" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
+        Поиск
+    </a>
     <a class="btn btn-secondary mb-2" href="/register_sample" role="button">Назад</a>
+
+    <div class="collapse" id="search">
+        <form class="form-inline" method="get" action="/applicants">
+            <div class="form-group mx-sm-4 my-2">
+                <input class="form-control" type="text" name="search" value="${search!""}" placeholder="Поиск">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info ml-1" type="submit">Найти</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <div class="collapse" id="addApplicant">
         <div class="form-group row">

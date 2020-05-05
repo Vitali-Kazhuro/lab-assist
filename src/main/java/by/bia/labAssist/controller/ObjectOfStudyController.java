@@ -27,14 +27,30 @@ public class ObjectOfStudyController {
     private ElementService elementService;
 
     @GetMapping("objects_of_study")
-    public String objectOfStudyList(Model model, HttpSession session){
+    public String objectOfStudyList(@RequestParam(required = false, defaultValue = "") String searchObjectOfStudy,
+                                    @RequestParam(required = false, defaultValue = "") String searchRegulatoryDocument,
+                                    Model model, HttpSession session){
         SamplingAuthority samplingAuthority = (SamplingAuthority) session.getAttribute("samplingAuthority");
         if(samplingAuthority == null){
             return "redirect:/sampling_authorities";
         }
 
-        List<ObjectOfStudy> objectsOfStudy = objectOfStudyService.findBySamplingAuthorityId(samplingAuthority.getId());
-        List<RegulatoryDocument> regulatoryDocuments = regulatoryDocumentService.findAll();
+        List<ObjectOfStudy> objectsOfStudy;
+        if(searchObjectOfStudy != null && !searchObjectOfStudy.isEmpty()) {
+            objectsOfStudy = objectOfStudyService.findBySamplingAuthorityIdAndTitleContains(samplingAuthority.getId(), searchObjectOfStudy);
+        } else{
+            objectsOfStudy = objectOfStudyService.findBySamplingAuthorityId(samplingAuthority.getId());
+        }
+        List<RegulatoryDocument> regulatoryDocuments;
+
+        if(searchRegulatoryDocument != null && !searchRegulatoryDocument.isEmpty()) {
+            regulatoryDocuments = regulatoryDocumentService.findAllByTitleContains(searchRegulatoryDocument);
+            session.setAttribute("searchRegDocument", true);
+        } else{
+            regulatoryDocuments = regulatoryDocumentService.findAll();
+            session.setAttribute("searchRegDocument", false);
+        }
+
         List<Element> elements = elementService.findAll();
 
         model.addAttribute("objectsOfStudy", objectsOfStudy);
@@ -59,6 +75,8 @@ public class ObjectOfStudyController {
         SamplingAuthority samplingAuthorityInContext = samplingAuthorityService.findById(samplingAuthority.getId());
 
         objectOfStudyService.save(title, producer, samplingAuthorityInContext, regulatoryDocument);
+
+        session.setAttribute("newRegDocument", false);
 
         return "redirect:/objects_of_study";
     }
@@ -119,10 +137,13 @@ public class ObjectOfStudyController {
 
     @PostMapping("addRegulatoryDocument")
     public String addRegulatoryDocument(@RequestParam String title,
-                                        @RequestParam Map<String, String> form){
+                                        @RequestParam Map<String, String> form,
+                                        HttpSession session){
         RegulatoryDocument regulatoryDocument = regulatoryDocumentService.save(title);
         List<Element> allElements = elementService.findAll();
         normService.saveNormForNewRegulatoryDocument(form, allElements, regulatoryDocument);
+
+        session.setAttribute("newRegDocument", true);
 
         return "redirect:/objects_of_study";
     }
@@ -177,6 +198,7 @@ public class ObjectOfStudyController {
 
         session.setAttribute("objectOfStudy", objectOfStudy);
         session.setAttribute("regulatoryDocument", regulatoryDocument);
+        session.setAttribute("newRegDocument", false);
 
         return "redirect:/fill_test_report";
     }

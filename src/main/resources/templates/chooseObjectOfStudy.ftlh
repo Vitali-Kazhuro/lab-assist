@@ -23,9 +23,23 @@
     <button class="btn btn-outline-primary mb-2" type="submit" form="objectOfStudyForm" formmethod="post" formaction="/editObjectOfStudyPage">
         Редактировать
     </button>
+    <a class="btn btn-outline-info mb-2" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
+        Поиск
+    </a>
     <a class="btn btn-secondary mb-2" href="/sampling_authorities" role="button">Назад</a>
 
-    <div class="collapse" id="addObjectOfStudy">
+    <div class="collapse" id="search">
+        <form class="form-inline" method="get" action="/objects_of_study">
+            <div class="form-group mx-sm-4 my-2">
+                <input class="form-control" type="text" name="searchObjectOfStudy" value="${searchObjectOfStudy!""}" placeholder="Поиск">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info ml-1" type="submit">Найти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="collapse <#if newRegDocument>show<#elseif searchRegDocument>show</#if>" id="addObjectOfStudy">
         <div class="form-group row">
             <form id="regulatoryDocumentForm" method="post" action="/addObjectOfStudy">
                 <div class="mx-2 my-2"><h5>Новый объект исследования</h5></div>
@@ -45,18 +59,26 @@
                         </#list>
                     </select>
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-outline-primary mb-2 ml-1" form="regulatoryDocumentForm" formmethod="post" formaction="/editRegulatoryDocumentPage" formnovalidate>
+                        <button type="submit" class="btn btn-outline-primary mb-2 ml-1" formaction="/editRegulatoryDocumentPage" formnovalidate>
                             Редактировать
                         </button>
-                        <button type="submit" class="btn btn-outline-primary mb-2 ml-1" form="regulatoryDocumentForm" formmethod="post" formaction="/newRegulatoryDocument" formnovalidate>
+                        <button type="submit" class="btn btn-outline-primary mb-2 ml-1" formaction="/newRegulatoryDocument" formnovalidate>
                             Новый
                         </button>
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-outline-success my-2 ml-3" type="submit">Добавить</button>
-                </div>
             </form>
+            <div class="input-group">
+                <button class="btn btn-outline-success mt-2 ml-3" form="regulatoryDocumentForm" type="submit">Добавить</button>
+                <div class="input-group-append">
+                    <form class="form-inline" method="get" action="/objects_of_study">
+                        <input class="form-control  ml-5 mt-2" type="text" name="searchRegulatoryDocument" value="${searchRegulatoryDocument!""}" placeholder="Поиск">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info ml-1 mt-2" type="submit">Найти</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </@cmn.page>

@@ -7,6 +7,8 @@ import java.util.List;
 public interface RegulatoryDocumentService {
     List<RegulatoryDocument> findAll();
 
+    List<RegulatoryDocument> findAllByTitleContains(String search);
+
     RegulatoryDocument findById(Integer id);
 
     RegulatoryDocument save(String title);

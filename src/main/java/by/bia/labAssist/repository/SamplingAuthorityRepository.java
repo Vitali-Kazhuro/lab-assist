@@ -9,7 +9,7 @@ public interface SamplingAuthorityRepository extends JpaRepository<SamplingAutho
 
     List<SamplingAuthority> findByApplicantId(Integer id);
 
-
+    List<SamplingAuthority> findAllByApplicantIdAndTitleContains(Integer id, String search);
 
 }
 

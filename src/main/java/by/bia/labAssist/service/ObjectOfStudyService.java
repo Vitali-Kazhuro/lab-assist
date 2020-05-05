@@ -11,6 +11,8 @@ public interface ObjectOfStudyService {
 
     List<ObjectOfStudy> findBySamplingAuthorityId(Integer id);
 
+    List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search);
+
     void save(String title, String producer, SamplingAuthority samplingAuthority, RegulatoryDocument regulatoryDocument);
 
     void edit(ObjectOfStudy objectOfStudy, String title, String producer,

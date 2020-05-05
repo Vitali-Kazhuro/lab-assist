@@ -26,6 +26,11 @@ public class ObjectOfStudyServiceImpl implements ObjectOfStudyService {
     }
 
     @Override
+    public List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search) {
+        return objectOfStudyRepository.findBySamplingAuthorityIdAndTitleContains(id, search);
+    }
+
+    @Override
     public void save(String title, String producer, SamplingAuthority samplingAuthority,
                      RegulatoryDocument regulatoryDocument) {
         ObjectOfStudy objectOfStudy = new ObjectOfStudy(title, producer, samplingAuthority, regulatoryDocument);

@@ -18,12 +18,18 @@ public class ApplicantController {
     private ApplicantService applicantService;
 
     @GetMapping("applicants")
-    public String applicantList(Model model, HttpSession session) {
+    public String applicantList(@RequestParam(required = false, defaultValue = "") String search,
+                                Model model, HttpSession session) {
         if (session.getAttribute("applicant") == null && session.getAttribute("new") == null){
             return "redirect:/register_sample";
         }
 
-        List<Applicant> applicants = applicantService.findAll();
+        List<Applicant> applicants;
+        if(search != null && !search.isEmpty()) {
+            applicants = applicantService.findAllByOrganizationContains(search);
+        } else{
+            applicants = applicantService.findAll();
+        }
         model.addAttribute("applicants", applicants);
 
         if(session.getAttribute("applicant")!= null){

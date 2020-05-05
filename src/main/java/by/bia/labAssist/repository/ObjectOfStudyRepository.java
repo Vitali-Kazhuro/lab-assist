@@ -8,5 +8,7 @@ import java.util.List;
 public interface ObjectOfStudyRepository extends JpaRepository<ObjectOfStudy, Integer> {
 
     List<ObjectOfStudy> findBySamplingAuthorityId(Integer id);
+
+    List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search);
 }
 

@@ -22,6 +22,11 @@ public class SamplingAuthorityServiceImpl implements SamplingAuthorityService {
     }
 
     @Override
+    public List<SamplingAuthority> findAllByApplicantIdAndTitleContains(Integer id, String search) {
+        return samplingAuthorityRepository.findAllByApplicantIdAndTitleContains(id, search);
+    }
+
+    @Override
     public List<SamplingAuthority> findByApplicantId(Integer id) {
         return samplingAuthorityRepository.findByApplicantId(id);
     }

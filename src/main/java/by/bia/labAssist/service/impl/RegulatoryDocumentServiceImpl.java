@@ -26,6 +26,11 @@ public class RegulatoryDocumentServiceImpl implements RegulatoryDocumentService 
     }
 
     @Override
+    public List<RegulatoryDocument> findAllByTitleContains(String search) {
+        return regulatoryDocumentRepository.findAllByTitleContains(search);
+    }
+
+    @Override
     public RegulatoryDocument save(String title) {
         RegulatoryDocument regulatoryDocument = new RegulatoryDocument(title);
 

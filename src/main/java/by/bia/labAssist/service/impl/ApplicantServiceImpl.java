@@ -21,6 +21,11 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Override
+    public List<Applicant> findAllByOrganizationContains(String search) {
+        return applicantRepository.findAllByOrganizationContains(search);
+    }
+
+    @Override
     public Applicant findById(Integer id) {
         return applicantRepository.findById(id).get();
     }

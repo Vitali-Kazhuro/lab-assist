@@ -22,12 +22,19 @@ public class SamplingAuthorityController {
     private SamplingAuthorityService samplingAuthorityService;
 
     @GetMapping("sampling_authorities")
-    public String samplingAuthorityList(Model model, HttpSession session) {
+    public String samplingAuthorityList(@RequestParam(required = false, defaultValue = "") String search,
+                                        Model model, HttpSession session) {
         Applicant applicant = (Applicant) session.getAttribute("applicant");
         if(applicant == null){
             return "redirect:/register_sample";
         }
-        List<SamplingAuthority> samplingAuthorities = samplingAuthorityService.findByApplicantId(applicant.getId());
+
+        List<SamplingAuthority> samplingAuthorities;
+        if(search != null && !search.isEmpty()) {
+            samplingAuthorities = samplingAuthorityService.findAllByApplicantIdAndTitleContains(applicant.getId(), search);
+        } else{
+            samplingAuthorities = samplingAuthorityService.findByApplicantId(applicant.getId());
+        }
         model.addAttribute("samplingAuthorities", samplingAuthorities);
 
         if(session.getAttribute("samplingAuthority")!= null){
@@ -76,6 +83,7 @@ public class SamplingAuthorityController {
     public String chooseSamplingAuthority(@RequestParam Integer samplingAuthoritySelect, HttpSession session){
         SamplingAuthority samplingAuthority = samplingAuthorityService.findById(samplingAuthoritySelect);
         session.setAttribute("samplingAuthority", samplingAuthority);
+        session.setAttribute("newRegDocument", false);
 
         return "redirect:/objects_of_study";
     }

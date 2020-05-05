@@ -8,6 +8,8 @@ import java.util.List;
 public interface SamplingAuthorityService {
     SamplingAuthority findById(Integer id);
 
+    List<SamplingAuthority> findAllByApplicantIdAndTitleContains(Integer id, String search);
+
     List<SamplingAuthority> findByApplicantId(Integer id);
 
     void save(String title, Applicant applicant);

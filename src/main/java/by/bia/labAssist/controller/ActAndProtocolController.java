@@ -30,8 +30,13 @@ public class ActAndProtocolController {
     private TestReportService testReportService;
 
     @GetMapping("act_and_protocol")
-    public String actAndProtocol(Model model){
-        List<Applicant> applicants = applicantService.findAll();
+    public String actAndProtocol(@RequestParam(required = false, defaultValue = "") String search, Model model){
+        List<Applicant> applicants;
+        if(search != null && !search.isEmpty()) {
+            applicants = applicantService.findAllByOrganizationContains(search);
+        } else{
+            applicants = applicantService.findAll();
+        }
         model.addAttribute("applicants", applicants);
 
         return "actAndProtocol";

@@ -13,6 +13,8 @@ public enum Attributes {
     SAMPLE("sample"),
     EDIT_SAMPLE("editSample"),
     NEW("new"),
+    NEW_REG_DOCUMENT("newRegDocument"),
+    SEARCH_REG_DOCUMENT("searchRegDocument"),
     PRINT_MAP("printMap");
 
 

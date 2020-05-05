@@ -106,6 +106,7 @@ public class SampleController {
         session.setAttribute("regulatoryDocument", sample.getObjectOfStudy().getRegulatoryDocument());
         session.setAttribute("normList", sample.getSampleNorms().stream().map(SampleNorm::getNorm).collect(Collectors.toList()));
         session.setAttribute("sample", sample);
+        session.setAttribute("newRegDocument", false);
         //для подсвечивания в списке для выбора в журнале поступлений
         session.setAttribute("editSample", sample);
 
@@ -115,8 +116,7 @@ public class SampleController {
     @PostMapping("deleteSample")
     public String deleteSample(@RequestParam Integer sampleId, HttpSession session){
         sampleService.delete(sampleId);
-        session.removeAttribute("sample");
-        session.removeAttribute("editSample");
+        Attributes.clearSession(session);
 
         return "redirect:/all_samples_in";
     }
