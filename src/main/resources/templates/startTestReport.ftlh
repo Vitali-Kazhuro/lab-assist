@@ -86,6 +86,7 @@
                         </button>
                     </div>
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </form>
         </div>
         <@pgr.pager "start_test_report" allTestReportsPage />

@@ -28,6 +28,7 @@
             <button class="btn btn-primary my-2" formmethod="get" formaction="/downloadAct">Скачать акт</button>
             <button class="btn btn-primary my-2" formmethod="get" formaction="/downloadProtocol">Скачать протокол</button>
             <a class="btn btn-outline-secondary my-2" href="/act_and_protocol" role="button">Назад</a>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <div><h5>Протоколы испытаний, включенные в создаваемые акт и протокол:</h5></div>

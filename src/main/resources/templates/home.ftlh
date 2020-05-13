@@ -1,4 +1,5 @@
 <#import "parts/common.ftlh" as cmn>
+<#include "parts/security.ftlh">
 <@cmn.page>
     <h3>Добрый день, имя_пользователя!</h3>
     <div class="mt-4">
@@ -19,18 +20,19 @@
     <div>
         <a href="/start_test_report">• Сформировать протокол испытаний</a>
     </div>
-
-    <div class="mx-2 my-2"><h5>Администрирование:</h5></div>
-    <div>
-        <a href="add_and_edit_element">• Добавить/редактировать элемент</a>
-    </div>
-    <div>
-        <a href="/add_and_edit_employee">• Добавить/редактировать сотрудника</a>
-    </div>
-    <div>
-        <a href="/add_and_edit_test_method">• Добавить/редактировать ТНПА методов испытаний</a>
-    </div>
-    <div>
-        <a href="/edit_regulatory_document">• Добавить/редактировать нормативный документ</a>
-    </div>
+    <#if isAdmin>
+        <div class="mx-2 my-2"><h5>Администрирование:</h5></div>
+        <div>
+            <a href="add_and_edit_element">• Добавить/редактировать элемент</a>
+        </div>
+        <div>
+            <a href="/add_and_edit_employee">• Добавить/редактировать сотрудника</a>
+        </div>
+        <div>
+            <a href="/add_and_edit_test_method">• Добавить/редактировать ТНПА методов испытаний</a>
+        </div>
+        <div>
+            <a href="/edit_regulatory_document">• Добавить/редактировать нормативный документ</a>
+        </div>
+    </#if>
 </@cmn.page>

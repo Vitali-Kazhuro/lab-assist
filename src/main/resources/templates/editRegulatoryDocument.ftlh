@@ -19,6 +19,7 @@
                     </button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 </@cmn.page>

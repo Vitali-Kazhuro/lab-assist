@@ -28,12 +28,14 @@
                     </select>
                     <div class="form-group">
                         <button class="btn btn-outline-success" id="chooseButton" type="submit" >Выбрать</button>
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteSample" <#if editSample??><#else>hidden</#if>>
                             Удалить
                         </button>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
         <@pgr.pager "all_samples_in" allSamplesPage />
     </div>

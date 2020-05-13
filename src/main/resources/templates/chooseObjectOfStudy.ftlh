@@ -14,6 +14,7 @@
                     <button class="btn btn-primary ml-2" type="submit">Выбрать</button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 
@@ -67,6 +68,7 @@
                         </button>
                     </div>
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </form>
             <div class="input-group">
                 <button class="btn btn-outline-success mt-2 ml-3" form="regulatoryDocumentForm" type="submit">Добавить</button>

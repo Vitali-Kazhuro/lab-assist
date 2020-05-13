@@ -75,6 +75,7 @@
                 <a class="btn btn-outline-primary mb-2" href="/all_test_reports" role="button">Посмотреть все</a>
                 <a class="btn btn-secondary mb-2" href="/objects_of_study" role="button">Назад</a>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 </@cmn.page>

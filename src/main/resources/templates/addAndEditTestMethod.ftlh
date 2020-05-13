@@ -20,6 +20,7 @@
             </table>
             <button class="btn btn-outline-success my-1" type="submit" <#if testMethodEdit??>hidden</#if>>Добавить</button>
             <button class="btn btn-outline-success my-1" formaction="/editTestMethod" <#if testMethodEdit??><#else>hidden</#if> >Изменить</button>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <div class="mt-3 ml-3"><h5>Все ТНПА:</h5></div>
@@ -39,6 +40,7 @@
                     </button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <div class="col-lg-6">

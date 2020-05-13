@@ -23,13 +23,14 @@
                 <input id="date" class="form-control ml-3 mb-2" type="date" name="date" required>
             </div>
             <div class="row">
-                <label for="price" class="col-form-label ml-3">Цена анализа</label>
+                <label for="price" class="col-form-label ml-3">Цена анализа (руб.)</label>
                 <input id="price" class="form-control ml-3 mb-2" type="number" name="price" value="72" required>
             </div>
             <div class="row">
                 <button class="btn btn-primary ml-3 mb-2" type="submit">Выбрать</button>
             </div>
         </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     </form>
 </div>
 <form class="form-inline" id="searchForm" method="get" action="/act_and_protocol"></form>

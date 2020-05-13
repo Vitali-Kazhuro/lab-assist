@@ -216,7 +216,7 @@ public class TestReportController {
             String weatherPassage = weatherService.getWeatherPassage(testReport.getStartDate(), testReport.getEndDate());
             model.addAttribute("weather", weatherPassage);
         }catch (NoSuchElementException ex){
-            return "error/noMeteoDataError";
+            return "errors/noMeteoDataError";
         }
 
         Map<String, Object> protocolPassages = testReportService.createProtocolPassages(testReport);

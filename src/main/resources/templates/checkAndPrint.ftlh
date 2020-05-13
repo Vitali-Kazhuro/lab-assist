@@ -82,6 +82,7 @@
             <button class="btn btn-outline-success ml-2" type="submit">Вывести на сервер</button>
             <button class="btn btn-primary mr-2" formmethod="get" formaction="/downloadTestProtocol">Скачать</button>
             Имя файла: <b>${fileName}</b>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 </@cmn.page>

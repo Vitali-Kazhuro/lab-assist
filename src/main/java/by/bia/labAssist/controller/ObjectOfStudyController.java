@@ -178,7 +178,7 @@ public class ObjectOfStudyController {
             regulatoryDocumentService.edit(regulatoryDocumentNormsEdit, title);
         }catch (Exception ex){
             ex.printStackTrace();
-            return "error/regulatoryDocumentEditError";
+            return "errors/regulatoryDocumentEditError";
         }
 
         return "redirect:/objects_of_study";

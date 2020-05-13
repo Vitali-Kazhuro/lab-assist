@@ -38,6 +38,7 @@
                     <a class="btn btn-outline-secondary ml-1 my-2" href="/objects_of_study" role="button">Назад</a>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <!-- Modal -->

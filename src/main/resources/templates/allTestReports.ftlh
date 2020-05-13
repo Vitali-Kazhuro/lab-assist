@@ -21,6 +21,7 @@
                     <a class="btn btn-outline-secondary ml-1 mb-2" href="/fill_test_report" role="button">Назад</a>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <@pgr.pager "all_test_reports" allTestReportsPage />

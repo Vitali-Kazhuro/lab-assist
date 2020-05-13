@@ -1,8 +1,6 @@
-CREATE DATABASE IF NOT  EXISTS entity_test;
+CREATE DATABASE IF NOT  EXISTS lab_assist;
 
-USE entity_test;
-
-
+USE lab_assist;
 
 CREATE TABLE `sample` (
                           `id` INT NOT NULL AUTO_INCREMENT,
@@ -19,19 +17,19 @@ CREATE TABLE `applicant` (
                              `id` INT NOT NULL AUTO_INCREMENT,
                              `organization` VARCHAR(255) NOT NULL,
                              `address` VARCHAR(255) NOT NULL,
-                             `mailingAddress` varchar(255) NOT NULL,
+                             `mailing_address` varchar(255) NOT NULL,
                              `iban` varchar(255) NOT NULL,
                              `bank` varchar(255) NOT NULL,
-                             `bankAddress` varchar(255) NOT NULL,
+                             `bank_address` varchar(255) NOT NULL,
                              `bic` varchar(255) NOT NULL,
                              `unn` varchar(255) NOT NULL,
                              `okpo` varchar(255) NOT NULL,
                              `telephones` varchar(255) NOT NULL,
                              `email` varchar(255) NOT NULL,
-                             `contractNumber` varchar(255) NOT NULL,
-                             `contractDate` date NOT NULL,
-                             `headPosition` varchar(255) NOT NULL,
-                             `headName` varchar(255) NOT NULL,
+                             `contract_number` varchar(255) NOT NULL,
+                             `contract_date` date NOT NULL,
+                             `head_position` varchar(255) NOT NULL,
+                             `head_name` varchar(255) NOT NULL,
                              PRIMARY KEY (`id`)
 );
 
@@ -108,7 +106,7 @@ CREATE TABLE `sample_norm` (
                                `norm_id` INT NOT NULL,
                                `result1` DOUBLE,
                                `result2` DOUBLE,
-                               `limit` VARCHAR(255),
+                               `detection_limit` VARCHAR(255),
                                PRIMARY KEY (`id`)
 );
 
@@ -123,16 +121,28 @@ CREATE TABLE `weather` (
                            `k53_16_humidity` FLOAT NOT NULL,
                            `k42_10_humidity` FLOAT NOT NULL,
                            `k42_16_humidity` FLOAT NOT NULL,
-                           `k53_10_pressure` FLOAT NOT NULL,
-                           `k53_16_pressure` FLOAT NOT NULL,
-                           `k42_10_pressure` FLOAT NOT NULL,
-                           `k42_16_pressure` FLOAT NOT NULL,
+                           `k53_10_pressure` INT NOT NULL,
+                           `k53_16_pressure` INT NOT NULL,
+                           `k42_10_pressure` INT NOT NULL,
+                           `k42_16_pressure` INT NOT NULL,
                            PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `test_report_test_method` (
                                            `test_report_id` INT NOT NULL,
                                            `test_method_id` INT NOT NULL
+);
+
+CREATE TABLE `user`(
+                        id       INT AUTO_INCREMENT PRIMARY KEY,
+                        active   BIT          NOT NULL,
+                        password VARCHAR(255) NULL,
+                        username VARCHAR(255) NULL
+);
+CREATE TABLE `user_role`(
+                        user_id INT          NOT NULL,
+                        roles   VARCHAR(255) NULL,
+                        CONSTRAINT `user_role_fk0` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
 
 ALTER TABLE `test_report_test_method` ADD CONSTRAINT `test_report_test_method_fk0` FOREIGN KEY (`test_report_id`) REFERENCES `test_report`(`id`);
@@ -164,3 +174,10 @@ ALTER TABLE `sample_norm` ADD CONSTRAINT `sample_norm_fk0` FOREIGN KEY (`sample_
 ALTER TABLE `sample_norm` ADD CONSTRAINT `sample_norm_fk1` FOREIGN KEY (`norm_id`) REFERENCES `norm`(`id`);
 
 ALTER TABLE `test_report` ADD CONSTRAINT `test_report_fk1` FOREIGN KEY (`applicant_id`) REFERENCES `applicant`(`id`);
+
+INSERT INTO `user` (id, username, password, active) VALUES
+                             (1, 'Administrator', '$2y$08$ni59Jix7BLXm8L0m8u33bu8Nmi2F9BWPpNnLWjyelZcf8w4tJ3FRK', true),
+                             (2, 'admin',  '$2y$08$nrIJ9s6C76GH4RhxksTsrOxrALVvCPaE1GfvAeFqh933S4NWjv9KG', true);
+INSERT INTO `user_role` (user_id, roles) VALUES
+                            (1, 'ADMIN'),
+                            (2, 'ADMIN');

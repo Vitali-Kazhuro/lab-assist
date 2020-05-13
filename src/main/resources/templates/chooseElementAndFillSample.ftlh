@@ -43,6 +43,7 @@
                     <a class="btn btn-secondary mb-2" href="/fill_test_report" role="button">Назад</a>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 </@cmn.page>

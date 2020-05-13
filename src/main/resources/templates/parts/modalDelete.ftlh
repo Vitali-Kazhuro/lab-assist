@@ -1,3 +1,4 @@
+<#include "security.ftlh">
 <#macro modalDelete who>
 
 <div class="modal fade" id="delete${who}" tabindex="-1" role="dialog" aria-labelledby="delete${who}Title" aria-hidden="true">
@@ -13,11 +14,18 @@
                 <div class="form-group row">
                     <form id="delete${who}Form" method="post" action="/delete${who}">
                         <#nested>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger" form="delete${who}Form">Удалить</button>
+                <#if isAdmin>
+                    <button type="submit" class="btn btn-danger" form="delete${who}Form">Удалить</button>
+                <#else>
+                    <div>
+                        У вас нет прав на удаление объекта из базы данных, обратитесь к администратору!
+                    </div>
+                </#if>
                 <button type="button" class="btn btn-dark" data-dismiss="modal">Отменить</button>
             </div>
         </div>

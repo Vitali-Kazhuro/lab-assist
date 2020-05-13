@@ -67,7 +67,7 @@ public class HomeController {
         try {
             elementService.delete(elementId);
         }catch (Exception ex){
-            return "error/elementEmployeeTestMethodDeleteError";
+            return "errors/elementEmployeeTestMethodDeleteError";
         }
 
         session.removeAttribute("elementEdit");
@@ -111,7 +111,7 @@ public class HomeController {
         try {
             employeeService.delete(employeeId);
         }catch (Exception ex){
-            return "error/elementEmployeeTestMethodDeleteError";
+            return "errors/elementEmployeeTestMethodDeleteError";
         }
 
         session.removeAttribute("employeeEdit");
@@ -155,7 +155,7 @@ public class HomeController {
         try {
             testMethodService.delete(testMethodId);
         }catch (Exception ex){
-            return "error/elementEmployeeTestMethodDeleteError";
+            return "errors/elementEmployeeTestMethodDeleteError";
         }
 
         session.removeAttribute("testMethodEdit");

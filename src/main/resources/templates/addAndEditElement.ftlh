@@ -22,6 +22,7 @@
             </table>
             <button class="btn btn-outline-success my-1" type="submit" <#if elementEdit??>hidden</#if>>Добавить</button>
             <button class="btn btn-outline-success my-1" formaction="/editElement" <#if elementEdit??><#else>hidden</#if> >Изменить</button>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <div class="mt-3 ml-3"><h5>Все элементы:</h5></div>
@@ -41,6 +42,7 @@
                     </button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <div class="col-lg-6">

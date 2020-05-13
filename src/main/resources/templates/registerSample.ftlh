@@ -14,6 +14,7 @@
         <form method="post" action="/newSample">
             <button class="btn btn-success ml-2">Новый образец</button>
             <a class="btn btn-outline-primary" href="/applicants" role="button">Далее</a>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 </@cmn.page>

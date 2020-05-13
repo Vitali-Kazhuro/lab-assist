@@ -77,6 +77,7 @@
                     </button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
         <@pgr.pager "weather" weatherPage />
     </div>

@@ -18,6 +18,7 @@
                     <a class="btn btn-outline-secondary my-2" href="/sampling_authorities" role="button">Назад</a>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <!-- Modal -->

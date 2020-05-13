@@ -14,6 +14,7 @@
                     <button class="btn btn-primary ml-2" type="submit">Выбрать</button>
                 </div>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
 
@@ -52,6 +53,7 @@
                         <button class="btn btn-outline-success mx-2 my-2" type="submit">Добавить</button>
                     </div>
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </form>
         </div>
     </div>

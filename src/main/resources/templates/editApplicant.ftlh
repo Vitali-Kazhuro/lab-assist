@@ -72,6 +72,7 @@
                 </button>
                 <a class="btn btn-outline-secondary my-2" href="/applicants" role="button">Назад</a>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
     <!-- Modal -->
