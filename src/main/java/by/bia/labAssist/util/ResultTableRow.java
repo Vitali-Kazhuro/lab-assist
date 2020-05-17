@@ -1,7 +1,6 @@
 package by.bia.labAssist.util;
 
 public class ResultTableRow {
-
     private String cipher;
     private String sampleName;
     private String elementNames;

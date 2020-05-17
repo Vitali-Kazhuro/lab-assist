@@ -13,7 +13,7 @@ public interface ObjectOfStudyService {
 
     List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search);
 
-    void save(String title, String producer, SamplingAuthority samplingAuthority, RegulatoryDocument regulatoryDocument);
+    void create(String title, String producer, SamplingAuthority samplingAuthority, RegulatoryDocument regulatoryDocument);
 
     void edit(ObjectOfStudy objectOfStudy, String title, String producer,
               SamplingAuthority samplingAuthority, RegulatoryDocument regulatoryDocument);

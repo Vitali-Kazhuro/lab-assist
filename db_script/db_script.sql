@@ -153,7 +153,7 @@ ALTER TABLE `sample` ADD CONSTRAINT `sample_fk0` FOREIGN KEY (`object_of_study_i
 
 ALTER TABLE `sample` ADD CONSTRAINT `sample_fk1` FOREIGN KEY (`test_report_id`) REFERENCES `test_report`(`id`);
 
-ALTER TABLE `test_report` ADD CONSTRAINT `test_report_fk0` FOREIGN KEY (`test_method_id`) REFERENCES `test_method`(`id`);
+#ALTER TABLE `test_report` ADD CONSTRAINT `test_report_fk0` FOREIGN KEY (`test_method_id`) REFERENCES `test_method`(`id`);
 
 ALTER TABLE `sampling_authority` ADD CONSTRAINT `sampling_authority_fk0` FOREIGN KEY (`applicant_id`) REFERENCES `applicant`(`id`);
 

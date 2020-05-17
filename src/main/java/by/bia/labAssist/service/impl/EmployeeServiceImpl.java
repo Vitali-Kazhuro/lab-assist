@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void save(String name, String position) {
+    public void create(String name, String position) {
         employeeRepository.save(new Employee(name, position));
     }
 

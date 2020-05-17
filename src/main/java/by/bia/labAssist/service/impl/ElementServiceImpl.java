@@ -24,7 +24,7 @@ public class ElementServiceImpl implements ElementService {
     }
 
     @Override
-    public void save(String title, String symbol) {
+    public void create(String title, String symbol) {
         elementRepository.save(new Element(title, symbol));
     }
 

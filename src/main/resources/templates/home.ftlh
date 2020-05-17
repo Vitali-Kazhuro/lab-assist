@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as cmn>
 <#include "parts/security.ftlh">
 <@cmn.page>
-    <h3>Добрый день, имя_пользователя!</h3>
+    <h3>Добрый день, ${name}!</h3>
     <div class="mt-4">
         <h6>Для начала, заполните журнал контроля состояния окружающей среды за сегодняшнюю дату:</h6>
     </div>
@@ -34,5 +34,9 @@
         <div>
             <a href="/edit_regulatory_document">• Добавить/редактировать нормативный документ</a>
         </div>
+        <form method="post" action="/shutdown">
+            <button class="btn btn-outline-danger btn-sm mt-4" type="submit">Остановить программу</button>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        </form>
     </#if>
 </@cmn.page>

@@ -19,10 +19,25 @@ public class WeatherServiceImpl implements WeatherService {
     private WeatherRepository weatherRepository;
 
     @Override
-    public void save(String date, Float k53_10_temperature, Float k53_16_temperature, Float k42_10_temperature,
-                     Float k42_16_temperature, Float k53_10_humidity, Float k53_16_humidity, Float k42_10_humidity,
-                     Float k42_16_humidity, Integer k53_10_pressure, Integer k53_16_pressure, Integer k42_10_pressure,
-                     Integer k42_16_pressure) {
+    public List<Weather> findAll() {
+        return weatherRepository.findAll();
+    }
+
+    @Override
+    public Page<Weather> findAllPages(Pageable pageable) {
+        return weatherRepository.findAll(pageable);
+    }
+
+    @Override
+    public Weather findById(Integer id) {
+        return weatherRepository.findById(id).get();
+    }
+
+    @Override
+    public void create(String date, Float k53_10_temperature, Float k53_16_temperature, Float k42_10_temperature,
+                       Float k42_16_temperature, Float k53_10_humidity, Float k53_16_humidity, Float k42_10_humidity,
+                       Float k42_16_humidity, Integer k53_10_pressure, Integer k53_16_pressure, Integer k42_10_pressure,
+                       Integer k42_16_pressure) {
         LocalDate formattedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 
         Weather weather = new Weather(formattedDate, k53_10_temperature, k53_16_temperature, k42_10_temperature,
@@ -30,7 +45,6 @@ public class WeatherServiceImpl implements WeatherService {
                 k53_10_pressure, k53_16_pressure, k42_10_pressure, k42_16_pressure);
 
         weatherRepository.save(weather);
-
     }
 
     @Override
@@ -58,6 +72,11 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
+    public void delete(Integer id) {
+        weatherRepository.deleteById(id);
+    }
+
+    @Override
     public String getWeatherPassage(LocalDate startDate, LocalDate endDate) {
         List<Weather> weatherList = weatherRepository.findAllByDateBetween(startDate, endDate);
 
@@ -74,45 +93,28 @@ public class WeatherServiceImpl implements WeatherService {
         Integer minPressure = pressureList.stream().min(Integer::compareTo).get();
         Integer maxPressure = pressureList.stream().max(Integer::compareTo).get();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Температура воздуха ");
-        if (minTemperature.equals(maxTemperature))
-            sb.append(minTemperature.toString().replace(".", ",")).append(" °С, ");
-        else
-            sb.append(minTemperature.toString().replace(".", ",")).append("-")
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Температура воздуха ");
+        if (minTemperature.equals(maxTemperature)){
+            stringBuilder.append(minTemperature.toString().replace(".", ",")).append(" °С, ");
+        } else{
+            stringBuilder.append(minTemperature.toString().replace(".", ",")).append("-")
                     .append(maxTemperature.toString().replace(".", ",")).append(" °С, ");
-        sb.append("относительная влажность ");
-        if (minHumidity.equals(maxHumidity))
-            sb.append(minHumidity.toString().replace(".", ",")).append(" %, \n\t");
-        else
-            sb.append(minHumidity.toString().replace(".", ",")).append("-")
+        }
+        stringBuilder.append("относительная влажность ");
+        if (minHumidity.equals(maxHumidity)){
+            stringBuilder.append(minHumidity.toString().replace(".", ",")).append(" %, \n\t");
+        } else{
+            stringBuilder.append(minHumidity.toString().replace(".", ",")).append("-")
                     .append(maxHumidity.toString().replace(".", ",")).append(" %, \n\t");
-        sb.append("атмосферное давление ");
-        if (minPressure.equals(maxPressure))
-            sb.append(minPressure).append(" мм рт. ст.");
-        else
-            sb.append(minPressure).append("-").append(maxPressure).append(" мм рт. ст.");
+        }
+        stringBuilder.append("атмосферное давление ");
+        if (minPressure.equals(maxPressure)){
+            stringBuilder.append(minPressure).append(" мм рт. ст.");
+        } else{
+            stringBuilder.append(minPressure).append("-").append(maxPressure).append(" мм рт. ст.");
+        }
 
-        return sb.toString();
-    }
-
-    @Override
-    public void delete(Integer id) {
-        weatherRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Weather> findAll() {
-        return weatherRepository.findAll();
-    }
-
-    @Override
-    public Page<Weather> findAllPages(Pageable pageable) {
-        return weatherRepository.findAll(pageable);
-    }
-
-    @Override
-    public Weather findById(Integer id) {
-        return weatherRepository.findById(id).get();
+        return stringBuilder.toString();
     }
 }

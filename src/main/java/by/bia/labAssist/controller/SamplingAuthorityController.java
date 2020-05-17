@@ -49,7 +49,7 @@ public class SamplingAuthorityController {
         Applicant applicant = (Applicant)session.getAttribute("applicant");
         Applicant applicantInContext = applicantService.findById(applicant.getId());
 
-        samplingAuthorityService.save(title, applicantInContext);
+        samplingAuthorityService.create(title, applicantInContext);
 
         return "redirect:/sampling_authorities";
     }

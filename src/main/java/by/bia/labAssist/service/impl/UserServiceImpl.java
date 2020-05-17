@@ -34,7 +34,21 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return user;
     }
 
-    public boolean addUser(User user){
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void updateProfile(User user, String password) {
+        if (!StringUtils.isEmpty(password)){
+            user.setPassword(passwordEncoder.encode(password));
+        }
+        userRepository.save(user);
+    }
+
+    @Override
+    public boolean create(User user){
         User userFromDB = userRepository.findByUsername(user.getUsername());
 
         if(userFromDB != null){
@@ -49,11 +63,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return true;
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    public void saveUser(User user, String username, Map<String, String> form) {
+    @Override
+    public void edit(User user, String username, Map<String, String> form) {
         user.setUsername(username);
 
         Set<String> roles = Arrays.stream(Role.values())
@@ -71,16 +82,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         userRepository.save(user);
     }
 
+    @Override
     public void delete(Integer userId){
         userRepository.deleteById(userId);
-    }
-
-    public void updateProfile(User user, String password) {
-        if (!StringUtils.isEmpty(password)){
-            user.setPassword(passwordEncoder.encode(password));
-            //user.setPassword(password);
-        }
-        userRepository.save(user);
     }
 }
 

@@ -4,6 +4,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MoneyToStr {
+    private static final String[][] SEX = {
+            {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
+            {"", "одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
+    };
+    private static final String[] STR_100 = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
+    private static final String[] STR_11 = {"", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
+            "семнадцать", "восемнадцать", "девятнадцать", "двадцать"};
+    private static final String[] STR_10 = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
+    private static final String[][] FORMS = {
+            {"копейка", "копейки", "копеек", "1"},
+            {"рубль", "рубля", "рублей", "0"},
+            {"тысяча", "тысячи", "тысяч", "1"},
+            {"миллион", "миллиона", "миллионов", "0"},
+            {"миллиард", "миллиарда", "миллиардов", "0"},
+            {"триллион", "триллиона", "триллионов", "0"},
+            //можно добавлять дальше секстиллионы и т.д.
+    };
+    private static long rub;
+    private static long kop;
+    private static StringBuilder stringBuilder;
 
     public static String num2str(Double amount) {
         return num2str(amount,true);
@@ -14,36 +34,88 @@ public class MoneyToStr {
     }
 
     public static String num2str(Double amount, boolean stripKop) {
-        String[][] sex = {
-                {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
-                {"", "одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
-        };
-        String[] str100= {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
-        String[] str11 = {"", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
-                "семнадцать", "восемнадцать", "девятнадцать", "двадцать"};
-        String[] str10 = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
-        String[][] forms = {
-                {"копейка", "копейки", "копеек", "1"},
-                {"рубль", "рубля", "рублей", "0"},
-                {"тысяча", "тысячи", "тысяч", "1"},
-                {"миллион", "миллиона", "миллионов", "0"},
-                {"миллиард", "миллиарда", "миллиардов", "0"},
-                {"триллион", "триллиона", "триллионов", "0"},
-                // можно добавлять дальше секстиллионы и т.д.
-        };
-        // получаем отдельно рубли и копейки
-        long rub = amount.longValue();
-        String[] moi = amount.toString().split("\\.");
-        long kop = Long.valueOf(moi[1]);
-        if (!moi[1].substring(0,1).equals("0")){// начинается не с нуля
-            if (kop < 10 )
-                kop *= 10;
+        //Получаем отдельно рубли и копейки
+        setRubs(amount);
+        String kopString = setKopsAndGetProperKopsString(amount);
+        //Разбиватель суммы на сегменты по 3 цифры с конца
+        ArrayList<Long> segments = getSegments();
+        stringBuilder = new StringBuilder(amount.toString().replace(".0", ",00") + " (");
+        //Анализируем сегменты
+        if (rub == 0) { //если ноль
+            stringBuilder = new StringBuilder("0,00 (ноль) " + morph(0, FORMS[1][0], FORMS[1][1], FORMS[1][2]));
+            if (stripKop){
+                return stringBuilder.toString();
+            } else{
+                return stringBuilder + " " + kop + " " + morph(kop, FORMS[0][0], FORMS[0][1], FORMS[0][2]);
+            }
         }
-        String kops = String.valueOf(kop);
-        if (kops.length() == 1)
-            kops = "0" + kops;
+        //Если больше нуля
+        processSegments(segments); //тут основная работа
+        //Добавляем копейки, если надо
+        addKopsIfNeeded(stripKop, kopString);
+        //Возвращаем получившееся
+        return stringBuilder.toString().replace(" руб", ") руб") + "в том числе НДC (20%) - "
+                + getRubleAddition(amount/6);
+    }
+
+    private static void addKopsIfNeeded(boolean stripKop, String kops) {
+        if (stripKop) {
+            stringBuilder = new StringBuilder(stringBuilder.toString().replaceAll(" {2,}", " "));
+        } else {
+            stringBuilder.append(kops).append(" ").append(morph(kop, FORMS[0][0], FORMS[0][1], FORMS[0][2]));
+            stringBuilder = new StringBuilder(stringBuilder.toString().replaceAll(" {2,}", " "));
+        }
+    }
+
+    private static void processSegments(ArrayList<Long> segments) {
+        int level = segments.size();
+        for (Object segment : segments) { //перебираем сегменты
+            int currentSex = Integer.valueOf(FORMS[level][3]); //определяем род
+            int currentSegment = Integer.valueOf(segment.toString()); //текущий сегмент
+            if (currentSegment == 0 && level > 1) { //если сегмент == 0 и не последний уровень(там Units)
+                level--;
+                continue;
+            }
+            String currentSegmentAsString = String.valueOf(currentSegment); //число в строку
+            //нормализация к трехзначному виду (***)
+            if (currentSegmentAsString.length() == 1) {
+                currentSegmentAsString = "00" + currentSegmentAsString; //два нуля в префикс
+            }
+            if (currentSegmentAsString.length() == 2) {
+                currentSegmentAsString = "0" + currentSegmentAsString; //или один?
+            }
+            //получаем цифры для анализа
+            int firstDigit = Integer.valueOf(currentSegmentAsString.substring(0, 1)); //первая цифра
+            int secondDigit = Integer.valueOf(currentSegmentAsString.substring(1, 2)); //вторая
+            int thirdDigit = Integer.valueOf(currentSegmentAsString.substring(2, 3)); //третья
+            int secondAndThirdDigits = Integer.valueOf(currentSegmentAsString.substring(1, 3)); //вторая и третья
+            //анализируем и записываем цифры
+            if (currentSegment > 99) {
+                stringBuilder.append(STR_100[firstDigit]).append(" "); //сотни
+            }
+            if (secondAndThirdDigits > 20) {
+                stringBuilder.append(STR_10[secondDigit]).append(" ")
+                            .append(SEX[currentSex][thirdDigit]).append(" ");
+            } else {
+                if (secondAndThirdDigits > 9) {
+                    stringBuilder.append(STR_11[secondAndThirdDigits - 9]).append(" "); //10-20
+                } else {
+                    stringBuilder.append(SEX[currentSex][thirdDigit]).append(" "); //0-9
+                }
+            }
+            //Единицы измерения (рубли...)
+            stringBuilder.append(morph(currentSegment, FORMS[level][0], FORMS[level][1], FORMS[level][2]));
+            if (level == 1) {
+                stringBuilder.append(", ");
+            } else {
+                stringBuilder.append(" ");
+            }
+            level--;
+        }
+    }
+
+    private static ArrayList<Long> getSegments() {
         long rub_tmp = rub;
-        // Разбиватель суммы на сегменты по 3 цифры с конца
         ArrayList<Long> segments = new ArrayList<>();
         while(rub_tmp > 999) {
             long seg = rub_tmp / 1000;
@@ -52,73 +124,47 @@ public class MoneyToStr {
         }
         segments.add(rub_tmp);
         Collections.reverse(segments);
-        // Анализируем сегменты
-        StringBuilder o = new StringBuilder(amount.toString().replace(".0", ",00") + " (");
-        if (rub == 0) {// если Ноль
-            o = new StringBuilder("0,00 (ноль) " + morph(0, forms[1][0], forms[1][1], forms[1][2]));
-            if (stripKop)
-                return o.toString();
-            else
-                return o + " " + kop + " " + morph(kop, forms[0][0], forms[0][1], forms[0][2]);
-        }
-        // Больше нуля
-        int lev = segments.size();
-        for (Object segment : segments) {// перебираем сегменты
-            int sexi = Integer.valueOf(forms[lev][3]);//.toString() );// определяем род
-            int ri = Integer.valueOf(segment.toString());// текущий сегмент
-            if (ri == 0 && lev > 1) {// если сегмент ==0 И не последний уровень(там Units)
-                lev--;
-                continue;
-            }
-            String rs = String.valueOf(ri); // число в строку
-            // нормализация
-            if (rs.length() == 1) rs = "00" + rs;// два нулика в префикс?
-            if (rs.length() == 2) rs = "0" + rs; // или лучше один?
-            // получаем циферки для анализа
-            int r1 = Integer.valueOf(rs.substring(0, 1)); //первая цифра
-            int r2 = Integer.valueOf(rs.substring(1, 2)); //вторая
-            int r3 = Integer.valueOf(rs.substring(2, 3)); //третья
-            int r22 = Integer.valueOf(rs.substring(1, 3)); //вторая и третья
-            // Супер-нано-анализатор циферок
-            if (ri > 99) o.append(str100[r1]).append(" "); // Сотни
-            if (r22 > 20) {// >20
-                o.append(str10[r2]).append(" ");
-                o.append(sex[sexi][r3]).append(" ");
-            } else { // <=20
-                if (r22 > 9) o.append(str11[r22 - 9]).append(" "); // 10-20
-                else o.append(sex[sexi][r3]).append(" "); // 0-9
-            }
-            // Единицы измерения (рубли...)
-            o.append(morph(ri, forms[lev][0], forms[lev][1], forms[lev][2]));//+" ";
-            if (lev == 1) o.append(", ");
-            else o.append(" ");
-            lev--;
-        }
-        // Копейки в цифровом виде
-        if (stripKop) {
-            o = new StringBuilder(o.toString().replaceAll(" {2,}", " "));
-        }
-        else {
-            o.append(kops).append(" ").append(morph(kop, forms[0][0], forms[0][1], forms[0][2]));
-            o = new StringBuilder(o.toString().replaceAll(" {2,}", " "));
-        }
-        return o.toString().replace(" руб", ") руб") + "в том числе НДC (20%) - "
-                + getRubleAddition(amount/6);
+        return segments;
     }
 
-    private static String morph(long n, String f1, String f2, String f5) {
-        n = Math.abs(n) % 100;
-        long n1 = n % 10;
-        if (n > 10 && n < 20) return f5;
-        if (n1 > 1 && n1 < 5) return f2;
-        if (n1 == 1) return f1;
-        return f5;
+    private static String setKopsAndGetProperKopsString(Double amount) {
+        String[] rubsAndKopsSep = amount.toString().split("\\.");
+        kop = Long.valueOf(rubsAndKopsSep[1]);
+        if (!rubsAndKopsSep[1].substring(0,1).equals("0")){ //начинается не с нуля
+            if (kop < 10 ){
+                kop *= 10;
+            }
+        }
+        String kopString = String.valueOf(kop);
+        if (kopString.length() == 1){
+            kopString = "0" + kopString;
+        }
+        return kopString;
+    }
+
+    private static void setRubs(Double amount) {
+        rub = amount.longValue();
+    }
+
+    private static String morph(long number, String wordForm1, String wordForm2, String wordForm3) {
+        number = Math.abs(number) % 100;
+        long n1 = number % 10;
+        if (number > 10 && number < 20) {
+            return wordForm3;
+        }
+        if (n1 > 1 && n1 < 5) {
+            return wordForm2;
+        }
+        if (n1 == 1) {
+            return wordForm1;
+        }
+        return wordForm3;
     }
 
     private static String getRubleAddition(Double num) {
-        Integer i = num.intValue();
+        int numAsInt = num.intValue();
         String numStr = num.toString().replace(".0", ",00");
-        return numStr + morph(i, " рубль", " рубля", " рублей");
+        return numStr + morph(numAsInt, " рубль", " рубля", " рублей");
     }
 
     public static String getRubleAddition(Integer num) {

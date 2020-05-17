@@ -32,12 +32,12 @@ public class SamplingAuthorityServiceImpl implements SamplingAuthorityService {
     }
 
     @Override
-    public void save(String title, Applicant applicant) {
-        SamplingAuthority sa = new SamplingAuthority();
-        sa.setTitle(title);
-        sa.setApplicant(applicant);
+    public void create(String title, Applicant applicant) {
+        SamplingAuthority samplingAuthority = new SamplingAuthority();
+        samplingAuthority.setTitle(title);
+        samplingAuthority.setApplicant(applicant);
 
-        samplingAuthorityRepository.save(sa);
+        samplingAuthorityRepository.save(samplingAuthority);
     }
 
     @Override

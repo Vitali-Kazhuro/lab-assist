@@ -45,7 +45,7 @@ public class ObjectOfStudyController {
 
         if(searchRegulatoryDocument != null && !searchRegulatoryDocument.isEmpty()) {
             regulatoryDocuments = regulatoryDocumentService.findAllByTitleContains(searchRegulatoryDocument);
-            session.setAttribute("searchRegDocument", true);
+            session.setAttribute("searchRegDocument", true); //to show that we're searching and this section needs to stay opened
         } else{
             regulatoryDocuments = regulatoryDocumentService.findAll();
             session.setAttribute("searchRegDocument", false);
@@ -74,9 +74,9 @@ public class ObjectOfStudyController {
         SamplingAuthority samplingAuthority = (SamplingAuthority) session.getAttribute("samplingAuthority");
         SamplingAuthority samplingAuthorityInContext = samplingAuthorityService.findById(samplingAuthority.getId());
 
-        objectOfStudyService.save(title, producer, samplingAuthorityInContext, regulatoryDocument);
+        objectOfStudyService.create(title, producer, samplingAuthorityInContext, regulatoryDocument);
 
-        session.setAttribute("newRegDocument", false);
+        session.setAttribute("newRegDocument", false);//to show that we should not leave this section opened next time
 
         return "redirect:/objects_of_study";
     }
@@ -139,11 +139,11 @@ public class ObjectOfStudyController {
     public String addRegulatoryDocument(@RequestParam String title,
                                         @RequestParam Map<String, String> form,
                                         HttpSession session){
-        RegulatoryDocument regulatoryDocument = regulatoryDocumentService.save(title);
+        RegulatoryDocument regulatoryDocument = regulatoryDocumentService.create(title);
         List<Element> allElements = elementService.findAll();
         normService.saveNormForNewRegulatoryDocument(form, allElements, regulatoryDocument);
 
-        session.setAttribute("newRegDocument", true);
+        session.setAttribute("newRegDocument", true);//to show that section needs to stay opened
 
         return "redirect:/objects_of_study";
     }
@@ -198,7 +198,7 @@ public class ObjectOfStudyController {
 
         session.setAttribute("objectOfStudy", objectOfStudy);
         session.setAttribute("regulatoryDocument", regulatoryDocument);
-        session.setAttribute("newRegDocument", false);
+        session.setAttribute("newRegDocument", false);//to show that we should not leave this section opened next time
 
         return "redirect:/fill_test_report";
     }

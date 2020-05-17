@@ -31,7 +31,7 @@ public class RegulatoryDocumentServiceImpl implements RegulatoryDocumentService 
     }
 
     @Override
-    public RegulatoryDocument save(String title) {
+    public RegulatoryDocument create(String title) {
         RegulatoryDocument regulatoryDocument = new RegulatoryDocument(title);
 
         regulatoryDocumentRepository.save(regulatoryDocument);

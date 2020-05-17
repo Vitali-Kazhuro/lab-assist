@@ -31,8 +31,8 @@ public class ObjectOfStudyServiceImpl implements ObjectOfStudyService {
     }
 
     @Override
-    public void save(String title, String producer, SamplingAuthority samplingAuthority,
-                     RegulatoryDocument regulatoryDocument) {
+    public void create(String title, String producer, SamplingAuthority samplingAuthority,
+                       RegulatoryDocument regulatoryDocument) {
         ObjectOfStudy objectOfStudy = new ObjectOfStudy(title, producer, samplingAuthority, regulatoryDocument);
 
         objectOfStudyRepository.save(objectOfStudy);

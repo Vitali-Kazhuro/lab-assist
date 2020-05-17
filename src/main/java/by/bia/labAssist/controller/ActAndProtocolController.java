@@ -75,7 +75,7 @@ public class ActAndProtocolController {
     }
 
     @PostMapping("printActAndProtocol")
-    public String printActAndProtocol(@RequestParam Integer number, HttpSession session){
+    public String printActAndProtocolToServer(@RequestParam Integer number, HttpSession session){
         Map<String, Object> passageMap = (Map<String,Object>)session.getAttribute("passageMap");
         passageMap.put("number", number);
 

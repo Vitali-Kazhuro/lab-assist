@@ -48,7 +48,7 @@ public class ApplicantController {
                                @RequestParam String email,          @RequestParam String contractNumber,
                                @RequestParam String contractDate,   @RequestParam String headPosition,
                                @RequestParam String headName){
-        applicantService.save(organization, address, mailingAddress, iban, bank, bankAddress,
+        applicantService.create(organization, address, mailingAddress, iban, bank, bankAddress,
                 bic, unn, okpo, telephones, email, contractNumber, contractDate, headPosition, headName);
 
         return "redirect:/applicants";
@@ -57,7 +57,7 @@ public class ApplicantController {
     @PostMapping("editApplicantPage")
     public String editApplicantPage(@RequestParam Integer applicantSelect, Model model, HttpSession session){
         Applicant applicant = applicantService.findById(applicantSelect);
-        model.addAttribute("applicant", applicant);         //TODO а зачем?
+        model.addAttribute("applicant", applicant);
         session.setAttribute("applicantEdit", applicant);
 
         return "editApplicant";

@@ -24,7 +24,7 @@ public class TestMethodServiceImpl implements TestMethodService {
     }
 
     @Override
-    public void save(String title) {
+    public void create(String title) {
         testMethodRepository.save(new TestMethod(title));
     }
 

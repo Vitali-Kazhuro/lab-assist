@@ -58,18 +58,18 @@ public class Applicant {
         this.contractDate = contractDate;
         this.headPosition = headPosition.replaceAll("\\s+", " ").trim();
         this.headName = headName.replaceAll("\\s+", " ").trim();
-        this.contractDateS = contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu"));
+        this.contractDateS = contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
     }
 
     public String getContractDateS() {
         if(contractDateS == null){
-            this.contractDateS = this.contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu"));
+            this.contractDateS = this.contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
         }
         return contractDateS;
     }
 
     public void setContractDateS(String contractDateS) {
-        this.contractDateS = this.contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu"));
+        this.contractDateS = this.contractDate.format(DateTimeFormatter.ofPattern("dd MMMM uuuu г."));
     }
 
     public Integer getId() {

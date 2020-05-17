@@ -31,9 +31,9 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Override
-    public void save(String organization, String address, String mailingAddress, String iban,
-                     String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
-                     String email, String contractNumber, String contractDate, String headPosition, String headName) {
+    public void create(String organization, String address, String mailingAddress, String iban,
+                       String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
+                       String email, String contractNumber, String contractDate, String headPosition, String headName) {
         LocalDate formattedContractDate = LocalDate.parse(contractDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
         applicantRepository.save(new Applicant(organization, address, mailingAddress, iban, bank, bankAddress,

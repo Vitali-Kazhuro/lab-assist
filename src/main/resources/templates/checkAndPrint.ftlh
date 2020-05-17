@@ -80,7 +80,8 @@
     <div class="form-group row my-3">
         <form method="post" action="/checkAndPrint">
             <button class="btn btn-outline-success ml-2" type="submit">Вывести на сервер</button>
-            <button class="btn btn-primary mr-2" formmethod="get" formaction="/downloadTestProtocol">Скачать</button>
+            <#--<button class="btn btn-primary mr-2" formmethod="get" formaction="/downloadTestProtocol">Скачать</button>-->
+            <a class="btn btn-primary mr-2" href="/downloadTestProtocol" role="button">Скачать</a>
             Имя файла: <b>${fileName}</b>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>

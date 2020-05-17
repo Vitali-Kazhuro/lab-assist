@@ -5,7 +5,6 @@ import java.util.List;
 
 @Entity
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

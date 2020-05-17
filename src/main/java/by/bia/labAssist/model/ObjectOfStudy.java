@@ -36,7 +36,7 @@ public class ObjectOfStudy {
 
     public String getTitleStripped() {
         if(title.length() >= 40) {
-            return title.substring(0, 40);// + "...";
+            return title.substring(0, 40);
         }
         return title;
     }

@@ -40,7 +40,7 @@ public class HomeController {
 
     @PostMapping("addElement")
     public String addElement(@RequestParam String title, @RequestParam String symbol){
-        elementService.save(title, symbol);
+        elementService.create(title, symbol);
 
         return "redirect:add_and_edit_element";
     }
@@ -84,7 +84,7 @@ public class HomeController {
 
     @PostMapping("addEmployee")
     public String addEmployee(@RequestParam String name, @RequestParam String position){
-        employeeService.save(name, position);
+        employeeService.create(name, position);
 
         return "redirect:add_and_edit_employee";
     }
@@ -128,7 +128,7 @@ public class HomeController {
 
     @PostMapping("addTestMethod")
     public String addTestMethod(@RequestParam String title){
-        testMethodService.save(title);
+        testMethodService.create(title);
 
         return "redirect:add_and_edit_test_method";
     }

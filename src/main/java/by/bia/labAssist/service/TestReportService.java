@@ -12,12 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface TestReportService {
-    TestReport save(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
-                    String startDate, String endDate, Employee employee1, Employee employee2, Applicant applicant);
-
-    TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date, TestMethod testMethod1,
-                    TestMethod testMethod2,String startDate, String endDate, Employee employee1, Employee employee2);
-
     List<TestReport> findAll();
 
     List<TestReport> findAll(List<TestReport> testReports);
@@ -26,9 +20,15 @@ public interface TestReportService {
 
     TestReport findById(Integer id);
 
-    void delete(Integer id);
-
     List<TestReport> findAllByDateAfterAndApplicantId(LocalDate date, Integer id);
+
+    TestReport create(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
+                      String startDate, String endDate, Employee employee1, Employee employee2, Applicant applicant);
+
+    TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date, TestMethod testMethod1,
+                    TestMethod testMethod2,String startDate, String endDate, Employee employee1, Employee employee2);
+
+    void delete(Integer id);
 
     /**
      * *
@@ -39,5 +39,10 @@ public interface TestReportService {
      */
     Map<String, Object> createActPassages(List<TestReport> testReports, Integer price);
 
+    /**
+     *
+     * @param testReport
+     * @return
+     */
     Map<String, Object> createProtocolPassages(TestReport testReport);
 }

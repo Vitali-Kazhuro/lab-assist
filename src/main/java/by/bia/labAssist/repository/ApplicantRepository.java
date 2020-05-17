@@ -8,6 +8,5 @@ import java.util.List;
 public interface ApplicantRepository extends JpaRepository<Applicant, Integer> {
 
     List<Applicant> findAllByOrganizationContains(String search);
-
 }
 

@@ -64,8 +64,7 @@ public class NormServiceImpl implements NormService {
                 norm.setUnits(form.get(norm.getElement().getTitle() + "-units"));
 
                 normRepository.save(norm);
-            }
-            else{
+            } else{
                 normsToDelete.add(norm);
             }
         }

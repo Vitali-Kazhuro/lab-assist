@@ -50,7 +50,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        if(!userService.addUser(user)){
+        if(!userService.create(user)){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует!");
             return "registration";
         }

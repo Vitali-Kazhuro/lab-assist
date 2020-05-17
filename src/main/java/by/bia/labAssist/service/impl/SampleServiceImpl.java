@@ -21,8 +21,23 @@ public class SampleServiceImpl implements SampleService {
     private SampleRepository sampleRepository;
 
     @Override
-    public Sample save(String cipher, String series, String samplingReport, String quantity,
-                       ObjectOfStudy objectOfStudy, TestReport testReport) {
+    public List<Sample> findAll() {
+        return sampleRepository.findAll();
+    }
+
+    @Override
+    public Page<Sample> findAllPages(Pageable pageable) {
+        return sampleRepository.findAll(pageable);
+    }
+
+    @Override
+    public Sample findById(Integer id) {
+        return sampleRepository.findById(id).get();
+    }
+
+    @Override
+    public Sample create(String cipher, String series, String samplingReport, String quantity,
+                         ObjectOfStudy objectOfStudy, TestReport testReport) {
         Sample sample = new Sample(cipher, series, samplingReport, quantity, objectOfStudy, testReport);
 
         sampleRepository.save(sample);
@@ -51,20 +66,5 @@ public class SampleServiceImpl implements SampleService {
     @Override
     public void delete(Integer id) {
         sampleRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Sample> findAll() {
-        return sampleRepository.findAll();
-    }
-
-    @Override
-    public Page<Sample> findAllPages(Pageable pageable) {
-        return sampleRepository.findAll(pageable);
-    }
-
-    @Override
-    public Sample findById(Integer id) {
-        return sampleRepository.findById(id).get();
     }
 }

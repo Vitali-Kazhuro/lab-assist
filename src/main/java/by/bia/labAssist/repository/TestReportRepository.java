@@ -9,5 +9,4 @@ import java.util.List;
 public interface TestReportRepository extends JpaRepository<TestReport, Integer> {
 
     List<TestReport> findAllByDateAfterAndApplicantId(LocalDate date, Integer id);
-
 }

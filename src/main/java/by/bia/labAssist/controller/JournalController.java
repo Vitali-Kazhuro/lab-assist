@@ -77,7 +77,7 @@ public class JournalController {
                              @RequestParam Integer k53_16_pressure,
                              @RequestParam Integer k42_10_pressure,
                              @RequestParam Integer k42_16_pressure){
-        weatherService.save(date, k53_10_temperature, k53_16_temperature, k42_10_temperature,
+        weatherService.create(date, k53_10_temperature, k53_16_temperature, k42_10_temperature,
                 k42_16_temperature, k53_10_humidity, k53_16_humidity, k42_10_humidity, k42_16_humidity,
                 k53_10_pressure, k53_16_pressure, k42_10_pressure, k42_16_pressure);
 

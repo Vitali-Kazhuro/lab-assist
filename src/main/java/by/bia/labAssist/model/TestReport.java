@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 @Entity
 public class TestReport {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -26,7 +26,9 @@
             </div>
             <button class="btn btn-outline-success ml-1 my-2">Вывести акт и протокол</button>
             <button class="btn btn-primary my-2" formmethod="get" formaction="/downloadAct">Скачать акт</button>
+            <#--<a class="btn btn-primary my-2" href="/downloadAct" role="button">Скачать акт</a>-->
             <button class="btn btn-primary my-2" formmethod="get" formaction="/downloadProtocol">Скачать протокол</button>
+            <#--<a class="btn btn-primary my-2" href="/downloadProtocol" role="button">Скачать протокол</a>-->
             <a class="btn btn-outline-secondary my-2" href="/act_and_protocol" role="button">Назад</a>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>

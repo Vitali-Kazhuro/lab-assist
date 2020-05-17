@@ -9,7 +9,7 @@ public interface EmployeeService {
 
     Employee findById(Integer id);
 
-    void save(String name, String position);
+    void create(String name, String position);
 
     void edit(Employee employeeEdit, String name, String position);
 

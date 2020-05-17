@@ -87,7 +87,7 @@ public class SampleController {
         ObjectOfStudy objectOfStudy = (ObjectOfStudy) session.getAttribute("objectOfStudy");
         ObjectOfStudy objectOfStudyInContext = objectOfStudyService.findById(objectOfStudy.getId());
 
-        Sample sample = sampleService.save(cipher, series, samplingReport, quantity, objectOfStudyInContext,
+        Sample sample = sampleService.create(cipher, series, samplingReport, quantity, objectOfStudyInContext,
                 testReport);
         sampleNormService.createSampleNormForSample(sample, checkedNorms);
 
@@ -107,8 +107,7 @@ public class SampleController {
         session.setAttribute("normList", sample.getSampleNorms().stream().map(SampleNorm::getNorm).collect(Collectors.toList()));
         session.setAttribute("sample", sample);
         session.setAttribute("newRegDocument", false);
-        //для подсвечивания в списке для выбора в журнале поступлений
-        session.setAttribute("editSample", sample);
+        session.setAttribute("editSample", sample);//для подсвечивания в списке для выбора в журнале поступлений
 
         return "redirect:/choose_element_and_fill_sample";
     }

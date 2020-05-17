@@ -10,7 +10,7 @@ public interface ElementService {
 
     Element findById(Integer id);
 
-    void save(String title, String symbol);
+    void create(String title, String symbol);
 
     void edit(Element elementEdit, String title, String symbol);
 

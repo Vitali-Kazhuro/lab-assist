@@ -9,7 +9,7 @@ public interface TestMethodService {
 
     TestMethod findById(Integer id);
 
-    void save(String title);
+    void create(String title);
 
     void edit(TestMethod testMethodEdit, String title);
 

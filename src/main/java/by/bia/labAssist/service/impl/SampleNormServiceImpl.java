@@ -35,7 +35,10 @@ public class SampleNormServiceImpl implements SampleNormService {
     public Sample editSampleNormForSample(Sample sample, List<Norm> checkedNormsEdit) {
         List<SampleNorm> sampleNormsToDelete = new ArrayList<>();
         for(SampleNorm sampleNorm : sample.getSampleNorms()){
-            if(!checkedNormsEdit.stream().map(Norm::getId).collect(Collectors.toList()).contains(sampleNorm.getNorm().getId())){
+            if(!checkedNormsEdit.stream()
+                                .map(Norm::getId)
+                                .collect(Collectors.toList())
+                                .contains(sampleNorm.getNorm().getId())){
                 sampleNormsToDelete.add(sampleNorm);
             }
         }
@@ -43,8 +46,11 @@ public class SampleNormServiceImpl implements SampleNormService {
         sample.getSampleNorms().removeAll(sampleNormsToDelete);
 
         for(Norm norm: checkedNormsEdit){
-            if(!sample.getSampleNorms().stream().map(SampleNorm::getNorm)
-                    .map(Norm::getId).collect(Collectors.toList()).contains(norm.getId())){
+            if(!sample.getSampleNorms().stream()
+                                        .map(SampleNorm::getNorm)
+                                        .map(Norm::getId)
+                                        .collect(Collectors.toList())
+                                        .contains(norm.getId())){
                 SampleNorm sampleNorm = new SampleNorm(sample, norm);
                 sample.getSampleNorms().add(sampleNorm);
                 sampleNormRepository.save(sampleNorm);

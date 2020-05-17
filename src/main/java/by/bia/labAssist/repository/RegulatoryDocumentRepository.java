@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RegulatoryDocumentRepository extends JpaRepository<RegulatoryDocument, Integer> {
-    List<RegulatoryDocument> findAllByTitleContains(String search);
 
+    List<RegulatoryDocument> findAllByTitleContains(String search);
 }
 

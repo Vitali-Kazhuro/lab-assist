@@ -59,7 +59,7 @@ public class TestReportController {
     @GetMapping("add_results")
     public String addResultsPage(Model model, HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
-        //проверка выблрали ли мы протокол на предыдущих этапах
+
         if(testReport == null){
             return "redirect:/start_test_report";
         }
@@ -73,7 +73,7 @@ public class TestReportController {
     @PostMapping("addResults")
     public String addResults(@RequestParam Map<String, String> form, HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
-        //проверка выблрали ли мы протокол на предыдущих этапах
+
         if(testReport == null){
             return "redirect:/start_test_report";
         }
@@ -196,7 +196,7 @@ public class TestReportController {
         Applicant applicant = (Applicant) session.getAttribute("applicant");
         Applicant applicantInContext = applicantService.findById(applicant.getId());
 
-        TestReport testReport = testReportService.save(protocolNumber, date, testMethod1, testMethod2,
+        TestReport testReport = testReportService.create(protocolNumber, date, testMethod1, testMethod2,
                 startDate, endDate, employee1, employee2, applicantInContext);
 
         session.setAttribute("testReport", testReport);
@@ -229,8 +229,6 @@ public class TestReportController {
 
     @PostMapping("checkAndPrint")
     public String checkAndPrint(HttpSession session){
-        //TODO добавить возможность загрузки тэмплэйта на сервер?
-
         String fileName = (String) session.getAttribute("fileName");
         PrintUtil.print((Map)session.getAttribute("printMap"), "templates/template_prot_isp_Nsample.docx",
                 "prot_isp/" + fileName);

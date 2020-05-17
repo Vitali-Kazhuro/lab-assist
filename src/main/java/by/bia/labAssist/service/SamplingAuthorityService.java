@@ -12,7 +12,7 @@ public interface SamplingAuthorityService {
 
     List<SamplingAuthority> findByApplicantId(Integer id);
 
-    void save(String title, Applicant applicant);
+    void create(String title, Applicant applicant);
 
     void edit(SamplingAuthority samplingAuthorityEdit, String title);
 

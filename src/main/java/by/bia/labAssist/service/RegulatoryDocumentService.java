@@ -11,7 +11,7 @@ public interface RegulatoryDocumentService {
 
     RegulatoryDocument findById(Integer id);
 
-    RegulatoryDocument save(String title);
+    RegulatoryDocument create(String title);
 
     void edit(RegulatoryDocument regulatoryDocumentEdit, String title);
 
