@@ -37,7 +37,7 @@ public class ElementServiceImpl implements ElementService {
     }
 
     @Override
-    public void delete(Integer elementId) {
-        elementRepository.deleteById(elementId);
+    public void delete(Integer id) {
+        elementRepository.deleteById(id);
     }
 }

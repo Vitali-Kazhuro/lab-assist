@@ -213,7 +213,7 @@ public class TestReportController {
         TestReport testReport = testReportService.findById(tR.getId());
 
         try{
-            String weatherPassage = weatherService.getWeatherPassage(testReport.getStartDate(), testReport.getEndDate());
+            String weatherPassage = weatherService.createWeatherPassage(testReport.getStartDate(), testReport.getEndDate());
             model.addAttribute("weather", weatherPassage);
         }catch (NoSuchElementException ex){
             return "errors/noMeteoDataError";

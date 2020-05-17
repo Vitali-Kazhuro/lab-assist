@@ -35,7 +35,7 @@ public class TestMethodServiceImpl implements TestMethodService {
     }
 
     @Override
-    public void delete(Integer testMethodId) {
-        testMethodRepository.deleteById(testMethodId);
+    public void delete(Integer id) {
+        testMethodRepository.deleteById(id);
     }
 }

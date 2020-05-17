@@ -77,7 +77,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public String getWeatherPassage(LocalDate startDate, LocalDate endDate) {
+    public String createWeatherPassage(LocalDate startDate, LocalDate endDate) {
         List<Weather> weatherList = weatherRepository.findAllByDateBetween(startDate, endDate);
 
         List<Float> temperatureList = weatherList.stream().map(Weather::getAllTemperature)
