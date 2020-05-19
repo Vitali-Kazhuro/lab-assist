@@ -31,9 +31,4 @@ public enum Attributes {
             }
         }
     }
-
-    /*public String getTitle() {
-        return title;
-    }*/
-
 }

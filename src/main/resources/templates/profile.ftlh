@@ -2,7 +2,7 @@
 
 <@cmn.page>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        // Script for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
             window.addEventListener('load', function() {

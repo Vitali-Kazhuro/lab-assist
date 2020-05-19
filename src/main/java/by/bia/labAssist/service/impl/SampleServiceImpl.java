@@ -52,9 +52,7 @@ public class SampleServiceImpl implements SampleService {
         sampleEdit.setSeries(series);
         sampleEdit.setSamplingReport(samplingReport);
         sampleEdit.setQuantity(quantity);
-        //костыль, потому что иначе на моменте сохранения, если убирали галку с элемента на котором она была до этого,
-        //вылетала ошибка что не может найти сэмпл-норму этого элемента по айди, и ничего не помогало
-        //видимо какой-то баг с памятью под старый лист сэмпл-норм, ну или я хз
+        //если этого не сделать, то при сохранении после удаления сэмпл_нормы может быть ошибка
         List<SampleNorm> newListBecauseBug = new ArrayList<>(sampleEdit.getSampleNorms());
         sampleEdit.setSampleNorms(newListBecauseBug);
 

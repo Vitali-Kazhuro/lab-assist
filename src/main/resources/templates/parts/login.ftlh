@@ -32,11 +32,6 @@
             <#if isRegisterForm>
                 <a class="btn btn-secondary input-group-append ml-1" type="button" href="/user">Назад</a>
             </#if>
-            <#--<#if !isRegisterForm>
-                <a class="btn btn-outline-success input-group-append ml-1" type="button" href="/registration">Регистрация</a>
-            <#else>
-                <a class="btn btn-secondary input-group-append ml-1" type="button" href="/login">Назад</a>
-            </#if>-->
         </div>
     </form>
 </#macro>

@@ -230,7 +230,7 @@ public class TestReportController {
     @PostMapping("checkAndPrint")
     public String checkAndPrint(HttpSession session){
         String fileName = (String) session.getAttribute("fileName");
-        PrintUtil.print((Map)session.getAttribute("printMap"), "templates/template_prot_isp_Nsample.docx",
+        PrintUtil.printToServer((Map)session.getAttribute("printMap"), "templates/template_prot_isp_Nsample.docx",
                 "prot_isp/" + fileName);
 
         session.removeAttribute("testReport");

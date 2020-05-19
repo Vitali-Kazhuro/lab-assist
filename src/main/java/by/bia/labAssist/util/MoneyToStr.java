@@ -18,8 +18,7 @@ public class MoneyToStr {
             {"тысяча", "тысячи", "тысяч", "1"},
             {"миллион", "миллиона", "миллионов", "0"},
             {"миллиард", "миллиарда", "миллиардов", "0"},
-            {"триллион", "триллиона", "триллионов", "0"},
-            //можно добавлять дальше секстиллионы и т.д.
+            {"триллион", "триллиона", "триллионов", "0"}
     };
     private static long rub;
     private static long kop;
@@ -41,7 +40,7 @@ public class MoneyToStr {
         ArrayList<Long> segments = getSegments();
         stringBuilder = new StringBuilder(amount.toString().replace(".0", ",00") + " (");
         //Анализируем сегменты
-        if (rub == 0) { //если ноль
+        if (rub == 0) {
             stringBuilder = new StringBuilder("0,00 (ноль) " + morph(0, FORMS[1][0], FORMS[1][1], FORMS[1][2]));
             if (stripKop){
                 return stringBuilder.toString();
@@ -50,10 +49,9 @@ public class MoneyToStr {
             }
         }
         //Если больше нуля
-        processSegments(segments); //тут основная работа
-        //Добавляем копейки, если надо
+        processSegments(segments);
         addKopsIfNeeded(stripKop, kopString);
-        //Возвращаем получившееся
+
         return stringBuilder.toString().replace(" руб", ") руб") + "в том числе НДC (20%) - "
                 + getRubleAddition(amount/6);
     }
@@ -69,26 +67,26 @@ public class MoneyToStr {
 
     private static void processSegments(ArrayList<Long> segments) {
         int level = segments.size();
-        for (Object segment : segments) { //перебираем сегменты
-            int currentSex = Integer.valueOf(FORMS[level][3]); //определяем род
-            int currentSegment = Integer.valueOf(segment.toString()); //текущий сегмент
-            if (currentSegment == 0 && level > 1) { //если сегмент == 0 и не последний уровень(там Units)
+        for (Object segment : segments) {
+            int currentSex = Integer.valueOf(FORMS[level][3]);
+            int currentSegment = Integer.valueOf(segment.toString());
+            if (currentSegment == 0 && level > 1) {
                 level--;
                 continue;
             }
-            String currentSegmentAsString = String.valueOf(currentSegment); //число в строку
-            //нормализация к трехзначному виду (***)
+            String currentSegmentAsString = String.valueOf(currentSegment);
+            //нормализация к трехзначному виду (***), дописываем нули в префикс
             if (currentSegmentAsString.length() == 1) {
-                currentSegmentAsString = "00" + currentSegmentAsString; //два нуля в префикс
+                currentSegmentAsString = "00" + currentSegmentAsString;
             }
             if (currentSegmentAsString.length() == 2) {
-                currentSegmentAsString = "0" + currentSegmentAsString; //или один?
+                currentSegmentAsString = "0" + currentSegmentAsString;
             }
             //получаем цифры для анализа
-            int firstDigit = Integer.valueOf(currentSegmentAsString.substring(0, 1)); //первая цифра
-            int secondDigit = Integer.valueOf(currentSegmentAsString.substring(1, 2)); //вторая
-            int thirdDigit = Integer.valueOf(currentSegmentAsString.substring(2, 3)); //третья
-            int secondAndThirdDigits = Integer.valueOf(currentSegmentAsString.substring(1, 3)); //вторая и третья
+            int firstDigit = Integer.valueOf(currentSegmentAsString.substring(0, 1));
+            int secondDigit = Integer.valueOf(currentSegmentAsString.substring(1, 2));
+            int thirdDigit = Integer.valueOf(currentSegmentAsString.substring(2, 3));
+            int secondAndThirdDigits = Integer.valueOf(currentSegmentAsString.substring(1, 3));
             //анализируем и записываем цифры
             if (currentSegment > 99) {
                 stringBuilder.append(STR_100[firstDigit]).append(" "); //сотни

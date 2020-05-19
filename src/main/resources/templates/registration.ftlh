@@ -4,8 +4,5 @@
     <div class="my-3">
         <h4>Добавить пользователя:</h4>
     </div>
-    <#--<div>
-        <i>${message!""}</i>
-    </div>-->
     <@lgn.login "/registration" true/>
 </@cmn.page>

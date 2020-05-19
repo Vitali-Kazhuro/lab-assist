@@ -42,9 +42,7 @@ public class RegulatoryDocumentServiceImpl implements RegulatoryDocumentService 
     @Override
     public void edit(RegulatoryDocument regulatoryDocumentEdit, String title) {
         regulatoryDocumentEdit.setTitle(title);
-        //костыль, потому что иначе на моменте сохранения, если убирали галку с элемента на котором она была до этого,
-        //вылетала ошибка что не может найти норму этого элемента по айди, и ничего не помогало
-        //видимо какой-то баг с памятью под старый лист норм, ну или я хз
+        //если этого не сделать, то при сохранении после удаления нормы может быть ошибка
         List<Norm> newListBecauseBug = new ArrayList<>(regulatoryDocumentEdit.getNorms());
         regulatoryDocumentEdit.setNorms(newListBecauseBug);
 

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class PrintUtil {
-    public static void print(Map<String, Object> map, String template, String fileName){
+    public static void printToServer(Map<String, Object> map, String template, String fileName){
         DocxTemplater docxTemplater = new DocxTemplater(new File(template));
         docxTemplater.process(new File(fileName + ".docx"), map);
     }

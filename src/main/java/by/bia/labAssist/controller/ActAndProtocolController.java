@@ -79,8 +79,8 @@ public class ActAndProtocolController {
         Map<String, Object> passageMap = (Map<String,Object>)session.getAttribute("passageMap");
         passageMap.put("number", number);
 
-        PrintUtil.print(passageMap, "templates/template_act.docx", "acts/act" + number);
-        PrintUtil.print(passageMap, "templates/template_protocol.docx", "protocols/protocol" + number);
+        PrintUtil.printToServer(passageMap, "templates/template_act.docx", "acts/act" + number);
+        PrintUtil.printToServer(passageMap, "templates/template_protocol.docx", "protocols/protocol" + number);
 
         return "redirect:/act_and_protocol";
     }

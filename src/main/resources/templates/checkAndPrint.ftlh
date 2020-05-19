@@ -23,7 +23,7 @@
         Вид испытаний: <b>${testType}</b>.
     </div>
     <div class="my-2">
-        Наименование ТНПА, устанавливающей методы испытаний: <b><#--${testReport.testMethod.title}-->${testMethods}</b>.
+        Наименование ТНПА, устанавливающей методы испытаний: <b>${testMethods}</b>.
     </div>
     <div class="my-2">
         Количество образца, поступившего на испытания: <b>${quantity}</b>.
@@ -80,7 +80,6 @@
     <div class="form-group row my-3">
         <form method="post" action="/checkAndPrint">
             <button class="btn btn-outline-success ml-2" type="submit">Вывести на сервер</button>
-            <#--<button class="btn btn-primary mr-2" formmethod="get" formaction="/downloadTestProtocol">Скачать</button>-->
             <a class="btn btn-primary mr-2" href="/downloadTestProtocol" role="button">Скачать</a>
             Имя файла: <b>${fileName}</b>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
