@@ -44,7 +44,6 @@ CREATE TABLE `test_report` (
                                `id` INT NOT NULL AUTO_INCREMENT,
                                `protocol_number` INT NOT NULL,
                                `date` DATE NOT NULL,
-                               `test_method_id` INT NOT NULL,
                                `start_date` DATE NOT NULL,
                                `end_date` DATE NOT NULL,
                                `applicant_id` INT NOT NULL,
