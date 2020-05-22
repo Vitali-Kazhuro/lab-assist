@@ -42,7 +42,7 @@
                     <td><small><#list testReport.samples as sample><#if sample??><div class="mb-1">${sample.objectOfStudy.title} ${sample.series} ${sample.objectOfStudy.producer!""}</div></#if></#list></small></td>
                     <td><small><#if testReport.samples[0]??>${testReport.samples[0].quantity}</#if></small></td>
                     <td><small><#if testReport.samples[0]??>${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.organization}</#if></small></td>
-                    <td><small>Договор <#if testReport.samples[0]??>${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.contractNumber} от ${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.contractDateS}г.</#if></small></td>
+                    <td><small>Договор <#if testReport.samples[0]??>${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.contractNumber} от ${testReport.samples[0].objectOfStudy.samplingAuthority.applicant.contractDateS}</#if></small></td>
                     <td><small><#if testReport.samples[0]??>${testReport.samples[0].samplingReport}</#if></small></td>
                     <td><small>${testReport.performers[0].name}</small></td>
                     <td></td>

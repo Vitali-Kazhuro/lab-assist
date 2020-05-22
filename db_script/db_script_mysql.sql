@@ -132,7 +132,7 @@ CREATE TABLE `test_report_test_method` (
                                            `test_method_id` INT NOT NULL
 );
 
-CREATE TABLE `user`(
+CREATE TABLE `usr`(
                         id       INT AUTO_INCREMENT PRIMARY KEY,
                         active   BIT          NOT NULL,
                         password VARCHAR(255) NULL,
@@ -141,7 +141,7 @@ CREATE TABLE `user`(
 CREATE TABLE `user_role`(
                         user_id INT          NOT NULL,
                         roles   VARCHAR(255) NULL,
-                        CONSTRAINT `user_role_fk0` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                        CONSTRAINT `user_role_fk0` FOREIGN KEY (`user_id`) REFERENCES `usr` (`id`)
 );
 
 ALTER TABLE `test_report_test_method` ADD CONSTRAINT `test_report_test_method_fk0` FOREIGN KEY (`test_report_id`) REFERENCES `test_report`(`id`);
@@ -172,7 +172,9 @@ ALTER TABLE `sample_norm` ADD CONSTRAINT `sample_norm_fk1` FOREIGN KEY (`norm_id
 
 ALTER TABLE `test_report` ADD CONSTRAINT `test_report_fk1` FOREIGN KEY (`applicant_id`) REFERENCES `applicant`(`id`);
 
-INSERT INTO `user` (id, username, password, active) VALUES
+INSERT INTO "test_method" (title) VALUES ('');
+
+INSERT INTO `usr` (id, username, password, active) VALUES
                              (1, 'Administrator', '$2y$08$ni59Jix7BLXm8L0m8u33bu8Nmi2F9BWPpNnLWjyelZcf8w4tJ3FRK', true),
                              (2, 'admin',  '$2y$08$nrIJ9s6C76GH4RhxksTsrOxrALVvCPaE1GfvAeFqh933S4NWjv9KG', true);
 INSERT INTO `user_role` (user_id, roles) VALUES
