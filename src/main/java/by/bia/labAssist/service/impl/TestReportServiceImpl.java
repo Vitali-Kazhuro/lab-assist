@@ -48,17 +48,15 @@ public class TestReportServiceImpl implements TestReportService {
     }
 
     @Override
-    public TestReport create(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
-                             String startDate, String endDate, Employee employee1,
-                             Employee employee2, Applicant applicant){
+    public TestReport create(Integer protocolNumber, String date, List<TestMethod> testMethods, String startDate,
+                             String endDate, Employee employee1, Employee employee2, Applicant applicant){
         LocalDate formattedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedEndDate = LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
         TestReport testReport = new TestReport(protocolNumber, formattedDate,
                                                formattedStartDate, formattedEndDate, applicant);
-        testReport.getTestMethods().add(testMethod1);
-        testReport.getTestMethods().add(testMethod2);
+        testReport.setTestMethods(testMethods);
 
         testReport.getPerformers().add(employee1);
         testReport.getPerformers().add(employee2);
@@ -70,7 +68,7 @@ public class TestReportServiceImpl implements TestReportService {
 
     @Override
     public TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date,
-                           TestMethod testMethod1, TestMethod testMethod2, String startDate,
+                           List<TestMethod> testMethods, String startDate,
                            String endDate, Employee employee1, Employee employee2){
         LocalDate formattedDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE);
@@ -83,9 +81,7 @@ public class TestReportServiceImpl implements TestReportService {
         testReportEdit.setPerformers(new ArrayList<>());
         testReportEdit.getPerformers().add(employee1);
         testReportEdit.getPerformers().add(employee2);
-        testReportEdit.setTestMethods(new ArrayList<>());
-        testReportEdit.getTestMethods().add(testMethod1);
-        testReportEdit.getTestMethods().add(testMethod2);
+        testReportEdit.setTestMethods(testMethods);
 
         testReportRepository.save(testReportEdit);
 
@@ -243,11 +239,7 @@ public class TestReportServiceImpl implements TestReportService {
     }
 
     private String getTestMethods(TestReport testReport) {
-        String testMethods = testReport.getTestMethods().stream().map(TestMethod::getTitle).collect(Collectors.joining("; "));
-        if(testMethods.lastIndexOf(";") == testMethods.length()-2){
-            testMethods = testMethods.substring(0, testMethods.length() - 2);
-        }
-        return testMethods;
+        return testReport.getTestMethods().stream().map(TestMethod::getTitle).collect(Collectors.joining("; "));
     }
 
     private String getTestType(TestReport testReport) {

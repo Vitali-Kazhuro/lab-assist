@@ -6,35 +6,29 @@
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Номер протокола</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="number" name="protocolNumber" min="1" placeholder="1+ " value="<#if testReport??>${testReport.protocolNumber?c}</#if>" required/>
+                    <input class="form-control" type="number" name="protocolNumber" min="1" placeholder="1+ "
+                           value="<#if testReport??>${testReport.protocolNumber?c}</#if>" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Выберите дату протокола </label>
                 <div class="col-sm-5">
-                    <input id="date" class="form-control" type="date" name="date" <#if testReport??>value="${testReport.date}"</#if> required>
+                    <input id="date" class="form-control" type="date" name="date"
+                           <#if testReport??>value="${testReport.date}"</#if> required>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-5 col-form-label"><a class=" mb-2" data-toggle="collapse" href="#testMethod2" role="button" aria-expanded="false" aria-controls="testMethod2">Наименование ТНПА, устанавливающей методы испытаний</a></label>
+                <label class="col-sm-5 col-form-label">Наименование ТНПА, устанавливающих методы испытаний</label>
                 <div class="col-sm-5">
-                    <select class="custom-select mt-2" name="testMethod1Select">
+                    <select class="custom-select mt-2" name="testMethodsSelect" multiple size="2" required>
                         <#list testMethods as testMethod>
-                            <option <#if testReport??><#if testReport.testMethods[0].id == testMethod.id>selected</#if></#if> value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">${testMethod.title?truncate(40, "...")}</option>
+                            <option <#if testReport??><#list testReport.testMethods as testMethodSelected>
+                                <#if testMethodSelected.id == testMethod.id>selected</#if></#list></#if>
+                                    value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">
+                                ${testMethod.title?truncate(40, "...")}
+                            </option>
                         </#list>
                     </select>
-                </div>
-            </div>
-            <div class="collapse" id="testMethod2">
-                <div class="form-group row">
-                    <label class="col-sm-5 col-form-label">Наименование ТНПА №2</label>
-                    <div class="col-sm-5">
-                        <select class="custom-select" name="testMethod2Select">
-                            <#list testMethods as testMethod>
-                                <option <#if testReport??><#if testReport.testMethods[1]??><#if testReport.testMethods[1].id == testMethod.id>selected</#if></#if></#if> value="${testMethod.id}" data-toggle="tooltip" title="${testMethod.title}">${testMethod.title?truncate(40, "...")}</option>
-                            </#list>
-                        </select>
-                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -54,7 +48,10 @@
                 <div class="col-sm-5">
                     <select class="custom-select mt-2" name="testReportDoer1Select">
                         <#list employees as employee>
-                            <option <#if testReport??><#if employee.id == testReport.performers[0].id >selected</#if></#if> value="${employee.id}">${employee.name}</option>
+                            <option <#if testReport??><#if employee.id == testReport.performers[0].id >selected</#if></#if>
+                                    value="${employee.id}">
+                                ${employee.name}
+                            </option>
                         </#list>
                     </select>
                 </div>
@@ -64,7 +61,10 @@
                 <div class="col-sm-5">
                     <select class="custom-select mt-2" name="testReportDoer2Select">
                         <#list employees as employee>
-                            <option <#if testReport??><#if testReport.performers[1].id == employee.id >selected</#if></#if> value="${employee.id}">${employee.name}</option>
+                            <option <#if testReport??><#if testReport.performers[1].id == employee.id >selected</#if></#if>
+                                    value="${employee.id}">
+                                ${employee.name}
+                            </option>
                         </#list>
                     </select>
                 </div>

@@ -54,8 +54,7 @@ public interface TestReportService {
      * Creates new TestReport instance and persists it into database
      * @param protocolNumber TestReport protocolNumber
      * @param date TestReport date
-     * @param testMethod1 TestReport first {@link TestMethod}
-     * @param testMethod2 TestReport second {@link TestMethod}
+     * @param testMethods TestReport {@link List<TestMethod>}
      * @param startDate TestReport startDate
      * @param endDate TestReport endDate
      * @param employee1 TestReport first {@link Employee}
@@ -63,24 +62,23 @@ public interface TestReportService {
      * @param applicant TestReport {@link Applicant}
      * @return {@link TestReport} instance that was created
      */
-    TestReport create(Integer protocolNumber, String date, TestMethod testMethod1, TestMethod testMethod2,
-                      String startDate, String endDate, Employee employee1, Employee employee2, Applicant applicant);
+    TestReport create(Integer protocolNumber, String date, List<TestMethod> testMethods, String startDate,
+                      String endDate, Employee employee1, Employee employee2, Applicant applicant);
 
     /**
      * Edits passed TestReport instance and persists it into database
      * @param testReportEdit edited instance of TestReport
      * @param protocolNumber TestReport protocolNumber
      * @param date TestReport date
-     * @param testMethod1 TestReport first {@link TestMethod}
-     * @param testMethod2 TestReport second {@link TestMethod}
+     * @param testMethods TestReport {@link List<TestMethod>}
      * @param startDate TestReport startDate
      * @param endDate TestReport endDate
      * @param employee1 TestReport first {@link Employee}
      * @param employee2 TestReport second {@link Employee}
      * @return {@link TestReport} instance that was edited
      */
-    TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date, TestMethod testMethod1,
-                    TestMethod testMethod2,String startDate, String endDate, Employee employee1, Employee employee2);
+    TestReport edit(TestReport testReportEdit, Integer protocolNumber, String date, List<TestMethod> testMethods,
+                    String startDate, String endDate, Employee employee1, Employee employee2);
 
     /**
      * Deletes instance of TestReport from database

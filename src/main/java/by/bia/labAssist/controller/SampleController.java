@@ -87,8 +87,14 @@ public class SampleController {
         ObjectOfStudy objectOfStudy = (ObjectOfStudy) session.getAttribute("objectOfStudy");
         ObjectOfStudy objectOfStudyInContext = objectOfStudyService.findById(objectOfStudy.getId());
 
-        Sample sample = sampleService.create(cipher, series, samplingReport, quantity, objectOfStudyInContext,
-                testReport);
+        Sample sample;
+        try {
+            sample = sampleService.create(cipher, series, samplingReport, quantity, objectOfStudyInContext,
+                    testReport);
+        }catch (Exception ex){
+            //ex.printStackTrace();
+            return "errors/sampleCipherError";
+        }
         sampleNormService.createSampleNormForSample(sample, checkedNorms);
 
         Attributes.clearSession(session);

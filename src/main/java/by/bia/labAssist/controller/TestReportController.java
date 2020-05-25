@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -100,8 +101,7 @@ public class TestReportController {
 
         if(session.getAttribute("testReport")!= null){
             TestReport tR = (TestReport) session.getAttribute("testReport");
-            TestReport testReport = testReportService.findById(tR.getId());
-            model.addAttribute("testReport", testReport);
+            TestReport testReport = testReportService.findById(tR.getId());            model.addAttribute("testReport", testReport);
         }
 
         return "fillTestReport";
@@ -110,15 +110,16 @@ public class TestReportController {
     @PostMapping("editTestReport")
     public String editTestReport(@RequestParam Integer protocolNumber,
                                  @RequestParam String date,
-                                 @RequestParam Integer testMethod1Select,
-                                 @RequestParam Integer testMethod2Select,
+                                 @RequestParam List<String> testMethodsSelect,
                                  @RequestParam String startDate,
                                  @RequestParam String endDate,
                                  @RequestParam Integer testReportDoer1Select,
                                  @RequestParam Integer testReportDoer2Select,
                                  HttpSession session){
-        TestMethod testMethod1 = testMethodService.findById(testMethod1Select);
-        TestMethod testMethod2 = testMethodService.findById(testMethod2Select);
+        List<TestMethod> testMethods = new ArrayList<>();
+        for (String s: testMethodsSelect) {
+            testMethods.add(testMethodService.findById(Integer.valueOf(s)));
+        }
 
         TestReport tR = (TestReport) session.getAttribute("testReport");
         TestReport testReport = testReportService.findById(tR.getId());
@@ -126,7 +127,7 @@ public class TestReportController {
         Employee employee1 = employeeService.findById(testReportDoer1Select);
         Employee employee2 = employeeService.findById(testReportDoer2Select);
 
-        TestReport testReportEdit = testReportService.edit(testReport, protocolNumber, date, testMethod1, testMethod2,
+        TestReport testReportEdit = testReportService.edit(testReport, protocolNumber, date, testMethods,
                 startDate, endDate, employee1, employee2);
 
         session.setAttribute("testReport", testReportEdit);
@@ -177,8 +178,7 @@ public class TestReportController {
     @PostMapping("fillTestReport")
     public String fillTestReport(@RequestParam Integer protocolNumber,
                                  @RequestParam String date,
-                                 @RequestParam Integer testMethod1Select,
-                                 @RequestParam Integer testMethod2Select,
+                                 @RequestParam List<String> testMethodsSelect,
                                  @RequestParam String startDate,
                                  @RequestParam String endDate,
                                  @RequestParam Integer testReportDoer1Select,
@@ -188,17 +188,25 @@ public class TestReportController {
             return "redirect:/objects_of_study";
         }
 
-        TestMethod testMethod1 = testMethodService.findById(testMethod1Select);
-        TestMethod testMethod2 = testMethodService.findById(testMethod2Select);
+        List<TestMethod> testMethods = new ArrayList<>();
+        for (String s: testMethodsSelect) {
+            testMethods.add(testMethodService.findById(Integer.valueOf(s)));
+        }
+
         Employee employee1 = employeeService.findById(testReportDoer1Select);
         Employee employee2 = employeeService.findById(testReportDoer2Select);
 
         Applicant applicant = (Applicant) session.getAttribute("applicant");
         Applicant applicantInContext = applicantService.findById(applicant.getId());
 
-        TestReport testReport = testReportService.create(protocolNumber, date, testMethod1, testMethod2,
-                startDate, endDate, employee1, employee2, applicantInContext);
-
+        TestReport testReport;
+        try {
+            testReport = testReportService.create(protocolNumber, date, testMethods, startDate, endDate,
+                    employee1, employee2, applicantInContext);
+        }catch (Exception ex){
+            //ex.printStackTrace();
+            return "errors/protocolNumberError";
+        }
         session.setAttribute("testReport", testReport);
 
         return "redirect:/choose_element_and_fill_sample";
