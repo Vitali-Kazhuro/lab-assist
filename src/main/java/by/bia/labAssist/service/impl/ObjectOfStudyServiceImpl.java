@@ -27,7 +27,7 @@ public class ObjectOfStudyServiceImpl implements ObjectOfStudyService {
 
     @Override
     public List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search) {
-        return objectOfStudyRepository.findBySamplingAuthorityIdAndTitleContains(id, search);
+        return objectOfStudyRepository.findBySamplingAuthorityIdAndTitleContainsIgnoreCase(id, search);
     }
 
     @Override

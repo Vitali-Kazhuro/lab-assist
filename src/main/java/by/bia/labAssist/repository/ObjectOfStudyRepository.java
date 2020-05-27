@@ -9,6 +9,6 @@ public interface ObjectOfStudyRepository extends JpaRepository<ObjectOfStudy, In
 
     List<ObjectOfStudy> findBySamplingAuthorityId(Integer id);
 
-    List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContains(Integer id, String search);
+    List<ObjectOfStudy> findBySamplingAuthorityIdAndTitleContainsIgnoreCase(Integer id, String search);
 }
 
