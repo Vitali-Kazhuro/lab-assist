@@ -27,7 +27,7 @@ public class RegulatoryDocumentServiceImpl implements RegulatoryDocumentService 
 
     @Override
     public List<RegulatoryDocument> findAllByTitleContains(String search) {
-        return regulatoryDocumentRepository.findAllByTitleContains(search);
+        return regulatoryDocumentRepository.findAllByTitleContainsIgnoreCase(search);
     }
 
     @Override

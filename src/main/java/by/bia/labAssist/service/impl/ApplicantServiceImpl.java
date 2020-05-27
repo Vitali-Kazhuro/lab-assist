@@ -22,7 +22,7 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     @Override
     public List<Applicant> findAllByOrganizationContains(String search) {
-        return applicantRepository.findAllByOrganizationContains(search);
+        return applicantRepository.findAllByOrganizationContainsIgnoreCase(search);
     }
 
     @Override

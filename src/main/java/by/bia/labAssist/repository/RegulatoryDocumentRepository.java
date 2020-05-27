@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RegulatoryDocumentRepository extends JpaRepository<RegulatoryDocument, Integer> {
 
-    List<RegulatoryDocument> findAllByTitleContains(String search);
+    List<RegulatoryDocument> findAllByTitleContainsIgnoreCase(String search);
 }
 
