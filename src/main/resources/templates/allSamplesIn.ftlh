@@ -13,7 +13,7 @@
     <script src="/static/js/script.js"></script>
 
     <a style="text-decoration: none; color: #000;" data-toggle="collapse" href="#chooseSample" role="button" aria-expanded="false" aria-controls="chooseSample">
-        <h6>Журнал учета образцов, поступивших на испытания 04 ЖО 2.48 (РК приложение Я)</h6>
+        <h6>Журнал учета образцов, поступивших на испытания</h6>
     </a>
     <div class="collapse show" id="chooseSample">
         <form method="post" id="chooseSampleForm" action="/chooseSample">

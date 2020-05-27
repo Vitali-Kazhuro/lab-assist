@@ -12,7 +12,7 @@
     <script src="/static/js/script.js"></script>
     <#include "parts/sortTableModalPopup.ftlh">
     <a style="text-decoration: none; color: #000;" data-toggle="collapse" href="#chooseSample" role="button" aria-expanded="false" aria-controls="chooseSample">
-    <h6>Журнал регистрации протоколов испытаний, выдаваемых ИЛ НПООО "Белинтеланалит" 04 ЖР 2.19 (РК приложение 5)</h6>
+    <h6>Журнал регистрации протоколов испытаний</h6>
     </a>
     <div class="collapse show" id="chooseSample">
         <@pgr.pager "all_samples_out" allTestReportsPage />

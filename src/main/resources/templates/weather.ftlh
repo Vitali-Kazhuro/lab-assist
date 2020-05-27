@@ -13,7 +13,7 @@
     <script src="/static/js/script.js"></script>
 
     <a style="text-decoration: none; color: #000;" data-toggle="collapse" href="#addWeather" role="button" aria-expanded="false" aria-controls="addWeather">
-        <h6>Журнал контроля состояния окружающей среды в помещениях испытательной лаборатории НПООО "Белинтераналит" 04 ОС 2-63 (РК приложение Ф)</h6>
+        <h6>Журнал контроля состояния окружающей среды в помещениях испытательной лаборатории</h6>
     </a>
     <div class="collapse show" id="addWeather">
         <form method="post" id="addWeatherForm" action="/addWeather">
