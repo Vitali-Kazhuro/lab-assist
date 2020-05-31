@@ -7,7 +7,7 @@
             <div class="input-group">
                 <select class="custom-select ml-3" name="objectOfStudySelect">
                     <#list objectsOfStudy as objectOfStudy>
-                        <option <#if objectOfStudySelected??><#if objectOfStudySelected.id == objectOfStudy.id>selected</#if></#if> value="${objectOfStudy.id}" data-toggle="tooltip" title="${objectOfStudy.title}; ${objectOfStudy.regulatoryDocument.title}">${objectOfStudy.title?truncate(40, "...")}</option>
+                        <option <#if objectOfStudySelected??><#if objectOfStudySelected.id == objectOfStudy.id>selected</#if></#if> value="${objectOfStudy.id}" data-toggle="tooltip" title="${objectOfStudy.title} ${objectOfStudy.producer}; ${objectOfStudy.regulatoryDocument.title}">${objectOfStudy.title?truncate(40, "...")}</option>
                     </#list>
                 </select>
                 <div class="input-group-append">

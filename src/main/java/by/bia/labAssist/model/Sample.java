@@ -87,7 +87,9 @@ public class Sample {
     }
 
     public String getSeries() {
-        return series;
+        if (series.equals("")) return series;
+        if (series.startsWith("(") && series.endsWith(")")) return series;
+        return "(" + series + ")";
     }
 
     public void setSeries(String series) {

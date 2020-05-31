@@ -33,7 +33,7 @@
                 <input class="form-control form-control-sm" id="bic" type="text" name="bic" value="${applicant.bic!""}" required/>
             </div>
             <div class="form-group row ml-2 mb-1">
-                <label class="col-form-label" for="unn">УНН</label>
+                <label class="col-form-label" for="unn">УНП</label>
                 <input class="form-control form-control-sm" id="unn" type="text" name="unn" value="${applicant.unn!""}" required/>
             </div>
             <div class="form-group row ml-2 mb-1">
