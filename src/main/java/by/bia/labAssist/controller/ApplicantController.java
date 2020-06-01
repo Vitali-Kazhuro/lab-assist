@@ -43,13 +43,13 @@ public class ApplicantController {
     public String addApplicant(@RequestParam String organization,   @RequestParam String address,
                                @RequestParam String mailingAddress, @RequestParam String iban,
                                @RequestParam String bank,           @RequestParam String bankAddress,
-                               @RequestParam String bic,            @RequestParam String unn,
+                               @RequestParam String bic,            @RequestParam String unp,
                                @RequestParam String okpo,           @RequestParam String telephones,
                                @RequestParam String email,          @RequestParam String contractNumber,
                                @RequestParam String contractDate,   @RequestParam String headPosition,
                                @RequestParam String headName){
         applicantService.create(organization, address, mailingAddress, iban, bank, bankAddress,
-                bic, unn, okpo, telephones, email, contractNumber, contractDate, headPosition, headName);
+                bic, unp, okpo, telephones, email, contractNumber, contractDate, headPosition, headName);
 
         return "redirect:/applicants";
     }
@@ -67,14 +67,14 @@ public class ApplicantController {
     public String editApplicant(@RequestParam String organization,   @RequestParam String address,
                                 @RequestParam String mailingAddress, @RequestParam String iban,
                                 @RequestParam String bank,           @RequestParam String bankAddress,
-                                @RequestParam String bic,            @RequestParam String unn,
+                                @RequestParam String bic,            @RequestParam String unp,
                                 @RequestParam String okpo,           @RequestParam String telephones,
                                 @RequestParam String email,          @RequestParam String contractNumber,
                                 @RequestParam String contractDate,   @RequestParam String headPosition,
                                 @RequestParam String headName,       HttpSession session){
         Applicant applicantEdit = (Applicant) session.getAttribute("applicantEdit");
         applicantService.edit(applicantEdit, organization, address, mailingAddress, iban, bank, bankAddress,
-                bic, unn, okpo, telephones, email, contractNumber, contractDate, headPosition, headName);
+                bic, unp, okpo, telephones, email, contractNumber, contractDate, headPosition, headName);
 
         return "redirect:/applicants";
     }

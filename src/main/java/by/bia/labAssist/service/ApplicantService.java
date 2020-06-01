@@ -37,7 +37,7 @@ public interface ApplicantService {
      * @param bank Applicant bank
      * @param bankAddress Applicant bankAddress
      * @param bic Applicant bic
-     * @param unn Applicant unn
+     * @param unp Applicant unp
      * @param okpo Applicant okpo
      * @param telephones Applicant telephones
      * @param email Applicant email
@@ -47,7 +47,7 @@ public interface ApplicantService {
      * @param headName Applicant headName
      */
     void create(String organization, String address, String mailingAddress, String iban,
-                String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
+                String bank, String bankAddress, String bic, String unp, String okpo, String telephones,
                 String email, String contractNumber, String contractDate, String headPosition, String headName);
 
     /**
@@ -60,7 +60,7 @@ public interface ApplicantService {
      * @param bank Applicant bank
      * @param bankAddress Applicant bankAddress
      * @param bic Applicant bic
-     * @param unn Applicant unn
+     * @param unp Applicant unp
      * @param okpo Applicant okpo
      * @param telephones Applicant telephones
      * @param email Applicant email
@@ -70,7 +70,7 @@ public interface ApplicantService {
      * @param headName Applicant headName
      */
     void edit(Applicant applicant, String organization, String address, String mailingAddress, String iban,
-              String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
+              String bank, String bankAddress, String bic, String unp, String okpo, String telephones,
               String email, String contractNumber, String contractDate, String headPosition, String headName);
 
     /**

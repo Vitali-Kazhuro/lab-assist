@@ -32,17 +32,17 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     @Override
     public void create(String organization, String address, String mailingAddress, String iban,
-                       String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
+                       String bank, String bankAddress, String bic, String unp, String okpo, String telephones,
                        String email, String contractNumber, String contractDate, String headPosition, String headName) {
         LocalDate formattedContractDate = LocalDate.parse(contractDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
         applicantRepository.save(new Applicant(organization, address, mailingAddress, iban, bank, bankAddress,
-                bic, unn, okpo, telephones, email, contractNumber, formattedContractDate, headPosition, headName));
+                bic, unp, okpo, telephones, email, contractNumber, formattedContractDate, headPosition, headName));
     }
 
     @Override
     public void edit(Applicant applicant, String organization, String address, String mailingAddress, String iban,
-                     String bank, String bankAddress, String bic, String unn, String okpo, String telephones,
+                     String bank, String bankAddress, String bic, String unp, String okpo, String telephones,
                      String email, String contractNumber, String contractDate, String headPosition, String headName) {
         LocalDate formattedContractDate = LocalDate.parse(contractDate, DateTimeFormatter.ISO_LOCAL_DATE);
 
@@ -53,7 +53,7 @@ public class ApplicantServiceImpl implements ApplicantService {
         applicant.setBank(bank);
         applicant.setBankAddress(bankAddress);
         applicant.setBic(bic);
-        applicant.setUnn(unn);
+        applicant.setUnp(unp);
         applicant.setOkpo(okpo);
         applicant.setTelephones(telephones);
         applicant.setEmail(email);
