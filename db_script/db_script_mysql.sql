@@ -22,7 +22,7 @@ CREATE TABLE `applicant` (
                              `bank` varchar(255) NOT NULL,
                              `bank_address` varchar(255) NOT NULL,
                              `bic` varchar(255) NOT NULL,
-                             `unn` varchar(255) NOT NULL,
+                             `unp` varchar(255) NOT NULL,
                              `okpo` varchar(255) NOT NULL,
                              `telephones` varchar(255) NOT NULL,
                              `email` varchar(255) NOT NULL,

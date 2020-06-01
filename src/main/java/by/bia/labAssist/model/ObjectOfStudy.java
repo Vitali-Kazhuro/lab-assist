@@ -59,7 +59,8 @@ public class ObjectOfStudy {
 
     public String getProducer() {
         if (producer.equals("")) return producer;
-        return "- производитель " + producer;
+        if (producer.startsWith("– производитель ")) return producer;
+        return "– производитель " + producer;
     }
 
     public void setProducer(String producer) {

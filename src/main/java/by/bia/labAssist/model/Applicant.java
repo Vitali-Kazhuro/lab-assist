@@ -19,7 +19,7 @@ public class Applicant {
     private String bank;
     private String bankAddress;
     private String bic;
-    private String unn;
+    private String unp;
     private String okpo;
     private String telephones;
     private String email;
@@ -41,7 +41,7 @@ public class Applicant {
     }
 
     public Applicant(String organization, String address, String mailingAddress, String iban, String bank,
-                     String bankAddress, String bic, String unn, String okpo, String telephones, String email,
+                     String bankAddress, String bic, String unp, String okpo, String telephones, String email,
                      String contractNumber, LocalDate contractDate, String headPosition, String headName) {
         this.organization = organization.replaceAll("\\s+", " ").trim();
         this.address = address.replaceAll("\\s+", " ").trim();
@@ -50,7 +50,7 @@ public class Applicant {
         this.bank = bank.replaceAll("\\s+", " ").trim();
         this.bankAddress = bankAddress.replaceAll("\\s+", " ").trim();
         this.bic = bic.replaceAll("\\s+", " ").trim();
-        this.unn = unn.replaceAll("\\s+", " ").trim();
+        this.unp = unp.replaceAll("\\s+", " ").trim();
         this.okpo = okpo.replaceAll("\\s+", " ").trim();
         this.telephones = telephones.replaceAll("\\s+", " ").trim();
         this.email = email.replaceAll("\\s+", " ").trim();
@@ -152,12 +152,12 @@ public class Applicant {
         this.bic = bic.replaceAll("\\s+", " ").trim();
     }
 
-    public String getUnn() {
-        return unn;
+    public String getUnp() {
+        return unp;
     }
 
-    public void setUnn(String unn) {
-        this.unn = unn.replaceAll("\\s+", " ").trim();
+    public void setUnp(String unp) {
+        this.unp = unp.replaceAll("\\s+", " ").trim();
     }
 
     public String getOkpo() {

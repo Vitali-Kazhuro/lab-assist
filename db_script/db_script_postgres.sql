@@ -20,7 +20,7 @@ CREATE TABLE "applicant" (
 	"bank" VARCHAR(255) NOT NULL,
 	"bank_address" VARCHAR(255) NOT NULL,
 	"bic" VARCHAR(255) NOT NULL,
-	"unn" VARCHAR(255) NOT NULL,
+	"unp" VARCHAR(255) NOT NULL,
 	"okpo" VARCHAR(255) NOT NULL,
 	"telephones" VARCHAR(255) NOT NULL,
 	"email" VARCHAR(255) NOT NULL,

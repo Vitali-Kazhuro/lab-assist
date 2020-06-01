@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-6 col-form-label">Серия</label>
+                    <label class="col-sm-6 col-form-label">Серия/партия</label>
                     <div class="col-sm-6">
                         <input class="form-control" type="text" name="series" placeholder="Необязательное" value="<#if sample??>${sample.series!""}</#if>"/>
                     </div>
