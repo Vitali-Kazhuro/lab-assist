@@ -21,7 +21,7 @@
     <a class="btn btn-outline-secondary mb-2" data-toggle="collapse" href="#addObjectOfStudy" role="button" aria-expanded="false" aria-controls="addObjectOfStudy">
         Добавить
     </a>
-    <button class="btn btn-outline-primary mb-2" type="submit" form="objectOfStudyForm" formmethod="post" formaction="/editObjectOfStudyPage">
+    <button class="btn btn-outline-primary mb-2" type="submit" form="objectOfStudyForm" formmethod="post" formaction="/goToEditObjectOfStudyPage">
         Редактировать
     </button>
     <a class="btn btn-outline-info mb-2" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">

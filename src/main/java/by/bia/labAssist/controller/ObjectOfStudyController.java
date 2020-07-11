@@ -26,6 +26,8 @@ public class ObjectOfStudyController {
     @Autowired
     private ElementService elementService;
 
+
+    //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @GetMapping("objects_of_study")
     public String objectOfStudyList(@RequestParam(required = false, defaultValue = "") String searchObjectOfStudy,
                                     @RequestParam(required = false, defaultValue = "") String searchRegulatoryDocument,
@@ -81,18 +83,31 @@ public class ObjectOfStudyController {
         return "redirect:/objects_of_study";
     }
 
-    @PostMapping("editObjectOfStudyPage")
-    public String editObjectOfStudyPage(@RequestParam Integer objectOfStudySelect,
-                                        Model model, HttpSession session){
+    @PostMapping("goToEditObjectOfStudyPage")
+    public String goToEditObjectOfStudyPage(@RequestParam Integer objectOfStudySelect, HttpSession session){
         ObjectOfStudy objectOfStudy = objectOfStudyService.findById(objectOfStudySelect);
         Applicant applicant = (Applicant) session.getAttribute("applicant");
         List<SamplingAuthority> samplingAuthorityList = samplingAuthorityService.findByApplicantId(applicant.getId());
         List<RegulatoryDocument> regulatoryDocumentList = regulatoryDocumentService.findAll();
 
-        model.addAttribute("samplingAuthorityList", samplingAuthorityList);
-        model.addAttribute("regulatoryDocumentList", regulatoryDocumentList);
-        model.addAttribute("objectOfStudy", objectOfStudy);
+        session.setAttribute("samplingAuthorityList", samplingAuthorityList);
+        session.setAttribute("regulatoryDocumentList", regulatoryDocumentList);
+        session.setAttribute("objectOfStudy", objectOfStudy);
         session.setAttribute("objectOfStudyEdit", objectOfStudy);
+
+        return "redirect:/editObjectOfStudyPage";
+    }
+
+    @GetMapping("editObjectOfStudyPage")
+    public String editObjectOfStudyPage(@RequestParam(required = false, defaultValue = "") String searchRegulatoryDocument,
+                                        Model model){
+        List<RegulatoryDocument> regulatoryDocumentList;
+        if(searchRegulatoryDocument != null && !searchRegulatoryDocument.isEmpty()) {
+            regulatoryDocumentList = regulatoryDocumentService.findAllByTitleContains(searchRegulatoryDocument);
+        } else{
+            regulatoryDocumentList = regulatoryDocumentService.findAll();
+        }
+        model.addAttribute("regulatoryDocumentList", regulatoryDocumentList);
 
         return "editObjectOfStudy";
     }
