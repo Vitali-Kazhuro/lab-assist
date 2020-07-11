@@ -113,6 +113,8 @@ public class TestReportServiceImpl implements TestReportService {
         //Количество образца, поступившего на испытания:
         String quantityTotal = testReport.getSamples().size() + "(";
         map.put("quantity", quantityTotal + getQuantityEach(testReport) + ")");
+        //Наименование ОРГАНОВ, производивших отбор проб на испытания
+        map.put("objectsOfStudy", getObjectsOfStudy(testReport));
         //Наименование проведенных видов испытаний:
         map.put("testTypeInTable", getTestTypeInTable(testReport));
         //таблица РЕЗУЛЬТАТЫ ИСПЫТАНИЙ:
@@ -226,6 +228,36 @@ public class TestReportServiceImpl implements TestReportService {
                 .distinct()
                 .collect(Collectors.joining(", "));
         return testTypeInTable;
+    }
+
+    private String getObjectsOfStudy(TestReport testReport) {
+        String allObjectOfStudyTitles = testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .map(SamplingAuthority::getTitle)
+                .collect(Collectors.joining("; "));
+
+        int distinctObjectsOfStudy = (int) testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .distinct()
+                .count();
+
+        boolean allContainOrganizationName = testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .allMatch(samplingAuthority ->
+                        samplingAuthority.getTitle().contains(testReport.getApplicant().getOrganization()));
+
+        if (distinctObjectsOfStudy == 1){
+            return testReport.getSamples().get(0).getObjectOfStudy().getSamplingAuthority().getTitle();
+        } else if (allContainOrganizationName){
+            String organizationTitle = testReport.getApplicant().getOrganization();
+            return organizationTitle + " - " + allObjectOfStudyTitles.replaceAll(organizationTitle, "")
+                    .replaceAll(" - ", "");
+        } else {
+            return allObjectOfStudyTitles;
+        }
     }
 
     private String getQuantityEach(TestReport testReport) {

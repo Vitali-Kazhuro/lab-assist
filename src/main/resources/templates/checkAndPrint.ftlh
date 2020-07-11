@@ -35,7 +35,7 @@
         Окончание проведения испытаний: <b>${testReport.endDateS}</b>
     </div>
     <div class="my-2">
-        Наименование органа, производившего отбор проб на испытания: <b>${testReport.samples[0].objectOfStudy.samplingAuthority.title}</b>.
+        Наименование органа, производившего отбор проб на испытания: <b>${objectsOfStudy}</b>.
     </div>
     Условия проведения испытаний:
     <div class="my-2">
