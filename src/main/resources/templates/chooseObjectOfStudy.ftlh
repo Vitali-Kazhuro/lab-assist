@@ -27,10 +27,10 @@
     <a class="btn btn-outline-info mb-2" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
         Поиск
     </a>
-    <a class="btn btn-secondary mb-2" href="/sampling_authorities" role="button">Назад</a>
+    <a class="btn btn-secondary mb-2" href="/samplingAuthorities" role="button">Назад</a>
 
     <div class="collapse" id="search">
-        <form class="form-inline" method="get" action="/objects_of_study">
+        <form class="form-inline" method="get" action="/objectsOfStudy">
             <div class="form-group mx-sm-4 my-2">
                 <input class="form-control" type="text" name="searchObjectOfStudy" value="${searchObjectOfStudy!""}" placeholder="Поиск">
                 <div class="input-group-append">
@@ -73,7 +73,7 @@
             <div class="input-group">
                 <button class="btn btn-outline-success mt-2 ml-3" form="regulatoryDocumentForm" type="submit">Добавить</button>
                 <div class="input-group-append">
-                    <form class="form-inline" method="get" action="/objects_of_study">
+                    <form class="form-inline" method="get" action="/objectsOfStudy">
                         <input class="form-control  ml-5 mt-2" type="text" name="searchRegulatoryDocument" value="${searchRegulatoryDocument!""}" placeholder="Поиск">
                         <div class="input-group-append">
                             <button class="btn btn-outline-info ml-1 mt-2" type="submit">Найти</button>

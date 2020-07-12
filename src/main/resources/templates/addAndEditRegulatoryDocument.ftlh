@@ -12,7 +12,7 @@
             <button type="button" class="btn btn-outline-danger my-2" data-toggle="modal" data-target="#deleteRegulatoryDocument" <#if regulatoryDocumentEdit??><#else>hidden</#if>>
                 Удалить
             </button>
-            <a class="btn btn-outline-secondary my-1" <#if samplingAuthority??>href="/objects_of_study" <#else>href="/edit_regulatory_document" </#if> role="button">Назад</a>
+            <a class="btn btn-outline-secondary my-1" <#if samplingAuthority??>href="/objectsOfStudy" <#else>href="/editRegulatoryDocument" </#if> role="button">Назад</a>
             <table class="table table-sm table-hover">
                 <thead class="thead-inverse">
                 <tr>

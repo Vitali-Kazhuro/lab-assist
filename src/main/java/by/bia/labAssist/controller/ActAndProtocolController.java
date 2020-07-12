@@ -29,7 +29,7 @@ public class ActAndProtocolController {
     @Autowired
     private TestReportService testReportService;
 
-    @GetMapping("act_and_protocol")
+    @GetMapping("actAndProtocol")
     public String actAndProtocol(@RequestParam(required = false, defaultValue = "") String search, Model model){
         List<Applicant> applicants;
         if(search != null && !search.isEmpty()) {
@@ -58,10 +58,10 @@ public class ActAndProtocolController {
         session.setAttribute("passageMap", passageMap);
         session.setAttribute("actAndProtocolTestReports", testReports);
 
-        return "redirect:/act_and_protocol_check";
+        return "redirect:/actAndProtocolCheck";
     }
 
-    @GetMapping("act_and_protocol_check")
+    @GetMapping("actAndProtocolCheck")
     public String actAndProtocolCheck(HttpSession session, Model model) {
         Map<String, Object> passageMap = (Map<String, Object>)session.getAttribute("passageMap");
         List<TestReport> actAndProtocolTestReports = (List<TestReport>)session.getAttribute("actAndProtocolTestReports");
@@ -82,10 +82,10 @@ public class ActAndProtocolController {
         PrintUtil.printToServer(passageMap, "templates/template_act.docx", "acts/act" + number);
         PrintUtil.printToServer(passageMap, "templates/template_protocol.docx", "protocols/protocol" + number);
 
-        return "redirect:/act_and_protocol";
+        return "redirect:/actAndProtocol";
     }
 
-    @GetMapping(value = "/downloadAct",
+    @GetMapping(value = "downloadAct",
             produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     public ResponseEntity<Resource> downloadAct(@RequestParam Integer number, HttpSession session) {
         Map<String, Object> passageMap = (Map<String,Object>)session.getAttribute("passageMap");
@@ -102,7 +102,7 @@ public class ActAndProtocolController {
                 .body(file);
     }
 
-    @GetMapping(value = "/downloadProtocol",
+    @GetMapping(value = "downloadProtocol",
             produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     public ResponseEntity<Resource> downloadProtocol(@RequestParam Integer number, HttpSession session) {
         Map<String, Object> passageMap = (Map<String,Object>)session.getAttribute("passageMap");

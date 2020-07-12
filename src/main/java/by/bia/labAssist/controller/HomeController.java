@@ -30,8 +30,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("add_and_edit_element")
-    public String addAndEditElementPage(Model model){
+    @GetMapping("addAndEditElement")
+    public String addAndEditElement(Model model){
         List<Element> allElements = elementService.findAll();
 
         model.addAttribute("allElements", allElements);
@@ -42,7 +42,7 @@ public class HomeController {
     public String addElement(@RequestParam String title, @RequestParam String symbol){
         elementService.create(title, symbol);
 
-        return "redirect:add_and_edit_element";
+        return "redirect:/addAndEditElement";
     }
 
     @PostMapping("chooseElement")
@@ -50,7 +50,7 @@ public class HomeController {
         Element elementEdit = elementService.findById(elementSelect);
 
         session.setAttribute("elementEdit", elementEdit);
-        return "redirect:add_and_edit_element";
+        return "redirect:/addAndEditElement";
     }
 
     @PostMapping("editElement")
@@ -59,7 +59,7 @@ public class HomeController {
         elementService.edit(elementEdit, title, symbol);
 
         session.removeAttribute("elementEdit");
-        return "redirect:add_and_edit_element";
+        return "redirect:/addAndEditElement";
     }
 
     @PostMapping("deleteElement")
@@ -71,10 +71,10 @@ public class HomeController {
         }
 
         session.removeAttribute("elementEdit");
-        return "redirect:add_and_edit_element";
+        return "redirect:/addAndEditElement";
     }
 
-    @GetMapping("add_and_edit_employee")
+    @GetMapping("addAndEditEmployee")
     public String addAndEditEmployee(Model model){
     List<Employee> allEmployees = employeeService.findAll();
 
@@ -86,7 +86,7 @@ public class HomeController {
     public String addEmployee(@RequestParam String name, @RequestParam String position){
         employeeService.create(name, position);
 
-        return "redirect:add_and_edit_employee";
+        return "redirect:/addAndEditEmployee";
     }
 
     @PostMapping("chooseEmployee")
@@ -94,7 +94,7 @@ public class HomeController {
         Employee employeeEdit = employeeService.findById(employeeSelect);
 
         session.setAttribute("employeeEdit", employeeEdit);
-        return "redirect:add_and_edit_employee";
+        return "redirect:/addAndEditEmployee";
     }
 
     @PostMapping("editEmployee")
@@ -103,7 +103,7 @@ public class HomeController {
         employeeService.edit(employeeEdit, name, position);
 
         session.removeAttribute("employeeEdit");
-        return "redirect:add_and_edit_employee";
+        return "redirect:/addAndEditEmployee";
     }
 
     @PostMapping("deleteEmployee")
@@ -115,11 +115,11 @@ public class HomeController {
         }
 
         session.removeAttribute("employeeEdit");
-        return "redirect:add_and_edit_employee";
+        return "redirect:/addAndEditEmployee";
     }
 
-    @GetMapping("add_and_edit_test_method")
-    public String addAndEditTestMethodPage(Model model){
+    @GetMapping("addAndEditTestMethod")
+    public String addAndEditTestMethod(Model model){
         List<TestMethod> allTestMethods = testMethodService.findAll();
 
         model.addAttribute("allTestMethods", allTestMethods);
@@ -130,7 +130,7 @@ public class HomeController {
     public String addTestMethod(@RequestParam String title){
         testMethodService.create(title);
 
-        return "redirect:add_and_edit_test_method";
+        return "redirect:/addAndEditTestMethod";
     }
 
     @PostMapping("chooseTestMethod")
@@ -138,7 +138,7 @@ public class HomeController {
         TestMethod testMethodEdit = testMethodService.findById(testMethodSelect);
 
         session.setAttribute("testMethodEdit", testMethodEdit);
-        return "redirect:add_and_edit_test_method";
+        return "redirect:/addAndEditTestMethod";
     }
 
     @PostMapping("editTestMethod")
@@ -147,7 +147,7 @@ public class HomeController {
         testMethodService.edit(testMethodEdit, title);
 
         session.removeAttribute("testMethodEdit");
-        return "redirect:add_and_edit_test_method";
+        return "redirect:/addAndEditTestMethod";
     }
 
     @PostMapping("deleteTestMethod")
@@ -159,6 +159,6 @@ public class HomeController {
         }
 
         session.removeAttribute("testMethodEdit");
-        return "redirect:add_and_edit_test_method";
+        return "redirect:/addAndEditTestMethod";
     }
 }

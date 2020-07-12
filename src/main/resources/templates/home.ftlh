@@ -12,27 +12,27 @@
         <h6>Регистрацию нового образца следует начинать отсюда:</h6>
     </div>
     <div>
-        <a href="/register_sample">• Регистрация нового образца</a>
+        <a href="/registerSample">• Регистрация нового образца</a>
     </div>
     <div class="mt-4">
         <h6>Сформировать протокол испытаний для нового или уже зарегистрированного образца можно здесь:</h6>
     </div>
     <div>
-        <a href="/start_test_report">• Сформировать протокол испытаний</a>
+        <a href="/startTestReport">• Сформировать протокол испытаний</a>
     </div>
     <#if isAdmin>
         <div class="mx-2 my-2"><h5>Администрирование:</h5></div>
         <div>
-            <a href="add_and_edit_element">• Добавить/редактировать элемент</a>
+            <a href="addAndEditElement">• Добавить/редактировать элемент</a>
         </div>
         <div>
-            <a href="/add_and_edit_employee">• Добавить/редактировать сотрудника</a>
+            <a href="/addAndEditEmployee">• Добавить/редактировать сотрудника</a>
         </div>
         <div>
-            <a href="/add_and_edit_test_method">• Добавить/редактировать ТНПА методов испытаний</a>
+            <a href="/addAndEditTestMethod">• Добавить/редактировать ТНПА методов испытаний</a>
         </div>
         <div>
-            <a href="/edit_regulatory_document">• Добавить/редактировать нормативный документ</a>
+            <a href="/editRegulatoryDocument">• Добавить/редактировать нормативный документ</a>
         </div>
         <form method="post" action="/shutdown">
             <button class="btn btn-outline-danger btn-sm mt-4" type="submit">Остановить программу</button>

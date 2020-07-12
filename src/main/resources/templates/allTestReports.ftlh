@@ -18,13 +18,13 @@
                     <button type="button" class="btn btn-outline-danger ml-1 mb-2" data-toggle="modal" data-target="#deleteTestReport" <#if editTestReport??><#else>hidden</#if>>
                         Удалить
                     </button>
-                    <a class="btn btn-outline-secondary ml-1 mb-2" href="/fill_test_report" role="button">Назад</a>
+                    <a class="btn btn-outline-secondary ml-1 mb-2" href="/fillTestReport" role="button">Назад</a>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
-    <@pgr.pager "all_test_reports" allTestReportsPage />
+    <@pgr.pager "allTestReports" allTestReportsPage />
     <#include "parts/allTestReportsTable.ftlh">
     <!-- Modal -->
     <@del.modalDelete "TestReport">

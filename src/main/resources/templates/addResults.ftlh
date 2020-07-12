@@ -41,7 +41,7 @@
                 </tbody>
             </table>
             <button class="btn btn-success my-2" type="submit">Сохранить</button>
-            <a class="btn btn-primary" href="/check_and_print" role="button">Далее</a>
+            <a class="btn btn-primary" href="/checkAndPrint" role="button">Далее</a>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>

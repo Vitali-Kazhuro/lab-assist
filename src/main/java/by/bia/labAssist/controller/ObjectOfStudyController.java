@@ -26,15 +26,13 @@ public class ObjectOfStudyController {
     @Autowired
     private ElementService elementService;
 
-
-    //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    @GetMapping("objects_of_study")
-    public String objectOfStudyList(@RequestParam(required = false, defaultValue = "") String searchObjectOfStudy,
+    @GetMapping("objectsOfStudy")
+    public String objectsOfStudyPage(@RequestParam(required = false, defaultValue = "") String searchObjectOfStudy,
                                     @RequestParam(required = false, defaultValue = "") String searchRegulatoryDocument,
                                     Model model, HttpSession session){
         SamplingAuthority samplingAuthority = (SamplingAuthority) session.getAttribute("samplingAuthority");
         if(samplingAuthority == null){
-            return "redirect:/sampling_authorities";
+            return "redirect:/samplingAuthorities";
         }
 
         List<ObjectOfStudy> objectsOfStudy;
@@ -80,7 +78,7 @@ public class ObjectOfStudyController {
 
         session.setAttribute("newRegDocument", false);//to show that we should not leave this section opened next time
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("goToEditObjectOfStudyPage")
@@ -124,24 +122,24 @@ public class ObjectOfStudyController {
 
         objectOfStudyService.edit(objectOfStudyEdit, title, producer, samplingAuthority, regulatoryDocument);
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("deleteObjectOfStudy")
     public String deleteObjectOfStudy(@RequestParam Integer objectOfStudyId){
         objectOfStudyService.delete(objectOfStudyId);
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("newRegulatoryDocument")
     public String newRegulatoryDocument(HttpSession session){
         session.removeAttribute("regulatoryDocumentEdit");
 
-        return "redirect:/add_regulatory_document";
+        return "redirect:/addRegulatoryDocument";
     }
 
-    @GetMapping("add_regulatory_document")
+    @GetMapping("addRegulatoryDocument")
     public String addRegulatoryDocumentPage(Model model){
         List<Element> elements = elementService.findAll();
 
@@ -160,7 +158,7 @@ public class ObjectOfStudyController {
 
         session.setAttribute("newRegDocument", true);//to show that section needs to stay opened
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("editRegulatoryDocumentPage")
@@ -175,7 +173,7 @@ public class ObjectOfStudyController {
         return "addAndEditRegulatoryDocument";
     }
 
-    @GetMapping("edit_regulatory_document")
+    @GetMapping("editRegulatoryDocument")
     public String chooseRegulatoryDocumentToEdit(Model model){
         model.addAttribute("regulatoryDocuments", regulatoryDocumentService.findAll());
 
@@ -196,14 +194,14 @@ public class ObjectOfStudyController {
             return "errors/regulatoryDocumentEditError";
         }
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("deleteRegulatoryDocument")
     public String deleteRegulatoryDocument(@RequestParam Integer regulatoryDocumentId){
         regulatoryDocumentService.delete(regulatoryDocumentId);
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 
     @PostMapping("chooseObjectOfStudy")
@@ -215,6 +213,6 @@ public class ObjectOfStudyController {
         session.setAttribute("regulatoryDocument", regulatoryDocument);
         session.setAttribute("newRegDocument", false);//to show that we should not leave this section opened next time
 
-        return "redirect:/fill_test_report";
+        return "redirect:/fillTestReport";
     }
 }

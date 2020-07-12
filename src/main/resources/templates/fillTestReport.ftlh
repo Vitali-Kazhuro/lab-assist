@@ -72,8 +72,8 @@
             <div class="mt-2 mb-2">
                 <button class="btn btn-primary mb-2" <#if testReport??>disabled</#if> type="submit">Добавить</button>
                 <button class="btn btn-primary mb-2" <#if testReport??><#else>disabled</#if> formaction="/editTestReport">Изменить</button>
-                <a class="btn btn-outline-primary mb-2" href="/all_test_reports" role="button">Посмотреть все</a>
-                <a class="btn btn-secondary mb-2" href="/objects_of_study" role="button">Назад</a>
+                <a class="btn btn-outline-primary mb-2" href="/allTestReports" role="button">Посмотреть все</a>
+                <a class="btn btn-secondary mb-2" href="/objectsOfStudy" role="button">Назад</a>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>

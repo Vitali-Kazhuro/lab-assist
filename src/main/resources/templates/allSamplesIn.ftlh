@@ -37,7 +37,7 @@
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
-        <@pgr.pager "all_samples_in" allSamplesPage />
+        <@pgr.pager "allSamplesIn" allSamplesPage />
     </div>
     <!-- Modal -->
     <@del.modalDelete "Sample">
