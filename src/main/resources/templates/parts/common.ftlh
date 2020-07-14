@@ -2,13 +2,13 @@
     <!DOCTYPE HTML>
     <html lang="en">
     <head>
-        <META charset="UTF-8">
+        <META charset="UTF-8"/>
         <title>Lab Assist</title>
-        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png">
+        <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png"/>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
     </head>
     <body>
 
