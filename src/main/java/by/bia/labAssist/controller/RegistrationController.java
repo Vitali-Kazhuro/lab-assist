@@ -21,12 +21,12 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/registration")
+    @GetMapping("registration")
     public String registration(){
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("registration")
     public String addUser(@RequestParam String passwordConfirm,
                           @Valid User user,
                           BindingResult bindingResult,

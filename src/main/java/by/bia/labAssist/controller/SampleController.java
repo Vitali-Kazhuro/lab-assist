@@ -29,12 +29,12 @@ public class SampleController {
     @Autowired
     private SampleNormService sampleNormService;
 
-    @GetMapping("choose_element_and_fill_sample")
+    @GetMapping("chooseElementAndFillSample")
     public String elementsAndSample(Model model, HttpSession session){
         RegulatoryDocument regulatoryDocument = (RegulatoryDocument) session.getAttribute("regulatoryDocument");
         //проверка выблрали ли мы объект исследования на предыдущем этапе
         if(regulatoryDocument == null){
-            return "redirect:/objects_of_study";
+            return "redirect:/objectsOfStudy";
         }
 
         List<Norm> norms = normService.findByRegulatoryDocumentId(regulatoryDocument.getId());
@@ -65,7 +65,7 @@ public class SampleController {
 
         Attributes.clearSession(session);
 
-        return "redirect:/all_samples_in";
+        return "redirect:/allSamplesIn";
     }
 
     @PostMapping("chooseElementAndFillSample")
@@ -78,7 +78,7 @@ public class SampleController {
         TestReport testReport = (TestReport) session.getAttribute("testReport");
         //проверяем был ли заполнен testReport
         if(testReport == null){
-            return "redirect:/fill_test_report";
+            return "redirect:/fillTestReport";
         }
 
         List<Norm> allNorms = (List<Norm>) session.getAttribute("allNorms");
@@ -99,7 +99,7 @@ public class SampleController {
 
         Attributes.clearSession(session);
 
-        return "redirect:/all_samples_in";
+        return "redirect:/allSamplesIn";
     }
 
     @PostMapping("chooseSample")
@@ -115,7 +115,7 @@ public class SampleController {
         session.setAttribute("newRegDocument", false);
         session.setAttribute("editSample", sample);//для подсвечивания в списке для выбора в журнале поступлений
 
-        return "redirect:/choose_element_and_fill_sample";
+        return "redirect:/chooseElementAndFillSample";
     }
 
     @PostMapping("deleteSample")
@@ -123,10 +123,10 @@ public class SampleController {
         sampleService.delete(sampleId);
         Attributes.clearSession(session);
 
-        return "redirect:/all_samples_in";
+        return "redirect:/allSamplesIn";
     }
 
-    @GetMapping("register_sample")
+    @GetMapping("registerSample")
     public String registerSample(){
         return "registerSample";
     }

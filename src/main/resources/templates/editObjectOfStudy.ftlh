@@ -29,18 +29,27 @@
                         </#list>
                     </select>
                 </div>
+                <div class="input-group">
+                    <div class="input-group-append mb-1">
+                        <input class="form-control  ml-5 mt-2" form="searchForm" type="text" name="searchRegulatoryDocument" value="${searchRegulatoryDocument!""}" placeholder="Поиск">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info ml-1 mt-2" form="searchForm" type="submit">Найти</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <button class="btn btn-outline-success ml-2 my-2" type="submit">Сохранить</button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-danger ml-1 my-2" data-toggle="modal" data-target="#deleteObjectOfStudy">
                         Удалить
                     </button>
-                    <a class="btn btn-outline-secondary ml-1 my-2" href="/objects_of_study" role="button">Назад</a>
+                    <a class="btn btn-outline-secondary ml-1 my-2" href="/objectsOfStudy" role="button">Назад</a>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </form>
     </div>
+    <form id="searchForm" class="form-inline" method="get" action="/editObjectOfStudyPage"></form>
     <!-- Modal -->
     <@del.modalDelete "ObjectOfStudy">
         <div class="mx-3 my-2"><h5>Вы уверены, что хотите удалить объект исследования <b>"${objectOfStudy.title}"</b>?</h5></div>

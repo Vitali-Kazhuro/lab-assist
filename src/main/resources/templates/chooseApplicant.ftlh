@@ -27,7 +27,7 @@
     <a class="btn btn-outline-info mb-2" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
         Поиск
     </a>
-    <a class="btn btn-secondary mb-2" href="/register_sample" role="button">Назад</a>
+    <a class="btn btn-secondary mb-2" href="/registerSample" role="button">Назад</a>
 
     <div class="collapse" id="search">
         <form class="form-inline" method="get" action="/applicants">

@@ -59,7 +59,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("/user/profile")
+    @GetMapping("user/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user){
         if (user.getId().equals(1)){
             return "errors/adminEditError";
@@ -70,7 +70,7 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("/user/profile")
+    @PostMapping("user/profile")
     public String updateProfile(@AuthenticationPrincipal User user,
                                 @RequestParam String password,
                                 @RequestParam String passwordConfirm,

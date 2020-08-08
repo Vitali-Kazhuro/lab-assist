@@ -41,7 +41,7 @@ public class TestReportController {
     @Autowired
     private WeatherService weatherService;
 
-    @GetMapping("start_test_report")
+    @GetMapping("startTestReport")
     public String startTestReport(HttpSession session, Model model,
                                   @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
@@ -57,12 +57,12 @@ public class TestReportController {
         return "startTestReport";
     }
 
-    @GetMapping("add_results")
+    @GetMapping("addResults")
     public String addResultsPage(Model model, HttpSession session){
         TestReport testReport = (TestReport) session.getAttribute("testReport");
 
         if(testReport == null){
-            return "redirect:/start_test_report";
+            return "redirect:/startTestReport";
         }
 
         TestReport testReportInContext = testReportService.findById(testReport.getId());
@@ -76,7 +76,7 @@ public class TestReportController {
         TestReport testReport = (TestReport) session.getAttribute("testReport");
 
         if(testReport == null){
-            return "redirect:/start_test_report";
+            return "redirect:/startTestReport";
         }
 
         TestReport testReportInContext = testReportService.findById(testReport.getId());
@@ -84,13 +84,13 @@ public class TestReportController {
             sampleNormService.processResults(sample, form);
         }
 
-        return "redirect:/add_results";
+        return "redirect:/addResults";
     }
 
-    @GetMapping("fill_test_report")
+    @GetMapping("fillTestReport")
     public String testReport(Model model, HttpSession session){
         if(session.getAttribute("objectOfStudy") == null && session.getAttribute("testReport") == null){
-            return "redirect:/objects_of_study";
+            return "redirect:/objectsOfStudy";
         }
 
         List<TestMethod> testMethods = testMethodService.findAll();
@@ -132,7 +132,7 @@ public class TestReportController {
 
         session.setAttribute("testReport", testReportEdit);
 
-        return "redirect:/choose_element_and_fill_sample";
+        return "redirect:/chooseElementAndFillSample";
     }
 
     @PostMapping("changeTestReport")
@@ -140,7 +140,7 @@ public class TestReportController {
         TestReport testReport = testReportService.findById(testReportSelect);
         session.setAttribute("testReport", testReport);
 
-        return "redirect:/fill_test_report";
+        return "redirect:/fillTestReport";
     }
 
     @PostMapping("selectTestReport")
@@ -148,10 +148,10 @@ public class TestReportController {
         TestReport testReport = testReportService.findById(testReportSelect);
         session.setAttribute("testReport", testReport);
 
-        return "redirect:/start_test_report";
+        return "redirect:/startTestReport";
     }
 
-    @GetMapping("all_test_reports")
+    @GetMapping("allTestReports")
     public String allTestReports(Model model, HttpSession session,
                                  @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
         if (session.getAttribute("testReport") != null){
@@ -172,7 +172,7 @@ public class TestReportController {
         session.removeAttribute("testReport");
         session.removeAttribute("editTestReport");
 
-        return "redirect:/start_test_report";
+        return "redirect:/startTestReport";
     }
 
     @PostMapping("fillTestReport")
@@ -185,7 +185,7 @@ public class TestReportController {
                                  @RequestParam Integer testReportDoer2Select,
                                  HttpSession session){
         if (session.getAttribute("objectOfStudy") == null){
-            return "redirect:/objects_of_study";
+            return "redirect:/objectsOfStudy";
         }
 
         List<TestMethod> testMethods = new ArrayList<>();
@@ -209,14 +209,14 @@ public class TestReportController {
         }
         session.setAttribute("testReport", testReport);
 
-        return "redirect:/choose_element_and_fill_sample";
+        return "redirect:/chooseElementAndFillSample";
     }
 
-    @GetMapping("check_and_print")
+    @GetMapping("checkAndPrint")
     public String checkAndPrintPage(Model model, HttpSession session){
         TestReport tR = (TestReport)session.getAttribute("testReport");
         if(tR == null){
-            return "redirect:/start_test_report";
+            return "redirect:/startTestReport";
         }
         TestReport testReport = testReportService.findById(tR.getId());
 
@@ -245,7 +245,7 @@ public class TestReportController {
         return "redirect:/";
     }
 
-    @GetMapping(value = "/downloadTestProtocol",
+    @GetMapping(value = "downloadTestProtocol",
             produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     public ResponseEntity<Resource> downloadTestProtocol(HttpSession session) {
         String fileName = session.getAttribute("fileName") + ".docx";

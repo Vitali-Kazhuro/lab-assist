@@ -18,13 +18,13 @@
                         Регистрация образца
                     </a>
                     <div class="dropdown-menu" aria-labelledby="registerSample">
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/register_sample")>active</#if>" href="/register_sample" >Начало</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/registerSample")>active</#if>" href="/registerSample" >Начало</a>
                         <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/applicants")>active</#if>" href="/applicants" >Заявитель</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/sampling_authorities")>active</#if>" href="/sampling_authorities">Орган отбора проб</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/objects_of_study")>active</#if>" href="/objects_of_study">Объект исследования</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/samplingAuthorities")>active</#if>" href="/samplingAuthorities">Орган отбора проб</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/objectsOfStudy")>active</#if>" href="/objectsOfStudy">Объект исследования</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/fill_test_report")>active</#if>" href="/fill_test_report" >Данные протокола испытаний</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/choose_element_and_fill_sample")>active</#if>" href="/choose_element_and_fill_sample">Элементы и образец</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/fillTestReport")>active</#if>" href="/fillTestReport" >Данные протокола испытаний</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/chooseElementAndFillSample")>active</#if>" href="/chooseElementAndFillSample">Элементы и образец</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,9 +32,9 @@
                         Протокол испытаний
                     </a>
                     <div class="dropdown-menu" aria-labelledby="testReport">
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/start_test_report")>active</#if>" href="/start_test_report">Начало</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/add_results")>active</#if>" href="/add_results" >Результаты анализа</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/check_and_print")>active</#if>" href="/check_and_print">Проверка и вывод</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/startTestReport")>active</#if>" href="/startTestReport">Начало</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/addResults")>active</#if>" href="/addResults" >Результаты анализа</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/checkAndPrint")>active</#if>" href="/checkAndPrint">Проверка и вывод</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,14 +42,14 @@
                         Журналы
                     </a>
                     <div class="dropdown-menu" aria-labelledby="journals">
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/all_samples_in")>active</#if>" href="/all_samples_in">Журнал учета поступивших образцов</a>
-                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/all_samples_out")>active</#if>" href="/all_samples_out">Журнал регистрации протоколов испытаний</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/allSamplesIn")>active</#if>" href="/allSamplesIn">Журнал учета поступивших образцов</a>
+                        <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/allSamplesOut")>active</#if>" href="/allSamplesOut">Журнал регистрации протоколов испытаний</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item <#if springMacroRequestContext.requestUri?contains("/weather")>active</#if>" href="/weather">Журнал контроля состояния окружающей среды</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <#if springMacroRequestContext.requestUri?contains("/act_and_protocol")>active</#if>" href="/act_and_protocol">Сформировать акт и протокол</a>
+                    <a class="nav-link <#if springMacroRequestContext.requestUri?contains("/actAndProtocol")>active</#if>" href="/actAndProtocol">Сформировать акт и протокол</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/profile">Профиль</a>

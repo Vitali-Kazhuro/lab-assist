@@ -21,7 +21,7 @@ public class ApplicantController {
     public String applicantList(@RequestParam(required = false, defaultValue = "") String search,
                                 Model model, HttpSession session) {
         if (session.getAttribute("applicant") == null && session.getAttribute("new") == null){
-            return "redirect:/register_sample";
+            return "redirect:/registerSample";
         }
 
         List<Applicant> applicants;
@@ -91,6 +91,6 @@ public class ApplicantController {
         Applicant applicant = applicantService.findById(applicantSelect);
         session.setAttribute("applicant", applicant);
 
-        return "redirect:/sampling_authorities";
+        return "redirect:/samplingAuthorities";
     }
 }

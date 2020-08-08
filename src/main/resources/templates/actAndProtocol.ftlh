@@ -15,7 +15,7 @@
             <div class="input-group col-md-12">
                 <input class="form-control ml-3" form="searchForm" type="text" name="search" value="${search!""}" placeholder="Поиск">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-info ml-1" form="searchForm" formmethod="get" formaction="/act_and_protocol" type="submit">Найти</button>
+                    <button class="btn btn-outline-info ml-1" form="searchForm" formmethod="get" formaction="/actAndProtocol" type="submit">Найти</button>
                 </div>
             </div>
             <div class="row">
@@ -33,5 +33,5 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     </form>
 </div>
-<form class="form-inline" id="searchForm" method="get" action="/act_and_protocol"></form>
+<form class="form-inline" id="searchForm" method="get" action="/actAndProtocol"></form>
 </@cmn.page>

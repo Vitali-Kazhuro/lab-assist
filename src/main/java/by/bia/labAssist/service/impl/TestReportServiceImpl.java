@@ -4,7 +4,6 @@ import by.bia.labAssist.model.*;
 import by.bia.labAssist.repository.TestReportRepository;
 import by.bia.labAssist.service.TestReportService;
 import by.bia.labAssist.util.ActPassagesCreator;
-import by.bia.labAssist.util.MoneyToStr;
 import by.bia.labAssist.util.ResultTableRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -113,6 +112,8 @@ public class TestReportServiceImpl implements TestReportService {
         //Количество образца, поступившего на испытания:
         String quantityTotal = testReport.getSamples().size() + "(";
         map.put("quantity", quantityTotal + getQuantityEach(testReport) + ")");
+        //Наименование ОРГАНОВ, производивших отбор проб на испытания
+        map.put("objectsOfStudy", getSamplingAuthorities(testReport));
         //Наименование проведенных видов испытаний:
         map.put("testTypeInTable", getTestTypeInTable(testReport));
         //таблица РЕЗУЛЬТАТЫ ИСПЫТАНИЙ:
@@ -226,6 +227,36 @@ public class TestReportServiceImpl implements TestReportService {
                 .distinct()
                 .collect(Collectors.joining(", "));
         return testTypeInTable;
+    }
+
+    private String getSamplingAuthorities(TestReport testReport) {
+        String allSamplingAuthorities = testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .map(SamplingAuthority::getTitle)
+                .collect(Collectors.joining("; "));
+
+        int distinctSamplingAuthorities = (int) testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .distinct()
+                .count();
+
+        boolean isAllContainOrganizationName = testReport.getSamples().stream()
+                .map(Sample::getObjectOfStudy)
+                .map(ObjectOfStudy::getSamplingAuthority)
+                .allMatch(samplingAuthority ->
+                        samplingAuthority.getTitle().contains(testReport.getApplicant().getOrganization()));
+
+        if (distinctSamplingAuthorities == 1){
+            return testReport.getSamples().get(0).getObjectOfStudy().getSamplingAuthority().getTitle();
+        } else if (isAllContainOrganizationName){
+            String organizationTitle = testReport.getApplicant().getOrganization();
+            return organizationTitle + " - " + allSamplingAuthorities.replaceAll(organizationTitle, "")
+                    .replaceAll(" - ", "");
+        } else {
+            return allSamplingAuthorities;
+        }
     }
 
     private String getQuantityEach(TestReport testReport) {

@@ -39,8 +39,8 @@
                 <div>
                     <button class="btn btn-primary ml-2 mb-2" <#if sample??>disabled</#if> type="submit">Добавить</button>
                     <button class="btn btn-primary mb-2" <#if sample??><#else>disabled</#if> formaction="/editElementAndSample">Изменить</button>
-                    <button class="btn btn-outline-success mb-2" <#if sample??><#else>disabled</#if> formmethod="get" formaction="/add_results">Ввести результаты</button>
-                    <a class="btn btn-secondary mb-2" href="/fill_test_report" role="button">Назад</a>
+                    <button class="btn btn-outline-success mb-2" <#if sample??><#else>disabled</#if> formmethod="get" formaction="/addResults">Ввести результаты</button>
+                    <a class="btn btn-secondary mb-2" href="/fillTestReport" role="button">Назад</a>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>

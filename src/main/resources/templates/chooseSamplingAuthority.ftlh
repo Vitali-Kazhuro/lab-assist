@@ -30,7 +30,7 @@
     <a class="btn btn-secondary mb-2" href="/applicants" role="button">Назад</a>
 
     <div class="collapse" id="search">
-        <form class="form-inline" method="get" action="/sampling_authorities">
+        <form class="form-inline" method="get" action="/samplingAuthorities">
             <div class="form-group mx-sm-4 my-2">
                 <input class="form-control" type="text" name="search" value="${search!""}" placeholder="Поиск">
                 <div class="input-group-append">

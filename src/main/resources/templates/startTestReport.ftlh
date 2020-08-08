@@ -46,21 +46,21 @@
             <h6>Чтобы изменить данные выбранного протокола, нажмите "Изменить"</h6>
         </div>
         <div class="my-3">
-            <h6>Чтобы выбрать другой протокол нажмите "Все протоколы" или перейдите в <a href="/all_samples_in">Журнал учёта поступивших образцов</a> и выберите образец из нужного протокола</h6>
+            <h6>Чтобы выбрать другой протокол нажмите "Все протоколы" или перейдите в <a href="/allSamplesIn">Журнал учёта поступивших образцов</a> и выберите образец из нужного протокола</h6>
         </div>
         <div class="row">
             <a class="btn btn-outline-success ml-1" data-toggle="collapse" href="#allTestReports" role="button" aria-expanded="false" aria-controls="allTestReports" <#--onclick="addRowHandlers()-->">
                 Все протоколы
             </a>
-            <a class="btn btn-outline-primary ml-1" href="/fill_test_report" role="button">Изменить</a>
-            <a class="btn btn-primary ml-1" href="/add_results" role="button">Далее</a>
+            <a class="btn btn-outline-primary ml-1" href="/fillTestReport" role="button">Изменить</a>
+            <a class="btn btn-primary ml-1" href="/addResults" role="button">Далее</a>
         </div>
     <#else>
         <div class="my-3">
             <h6>В данный момент не выбрано протокола испытаний.</h6>
         </div>
         <div class="my-3">
-            <h6>Выберете протокол из всех протоколов или перейдите в <a href="/all_samples_in">Журнал учёта поступивших образцов</a> и выберите образец из нужного протокола</h6>
+            <h6>Выберете протокол из всех протоколов или перейдите в <a href="/allSamplesIn">Журнал учёта поступивших образцов</a> и выберите образец из нужного протокола</h6>
         </div>
         <a class="btn btn-success ml-1" data-toggle="collapse" href="#allTestReports" role="button" aria-expanded="false" aria-controls="allTestReports" <#--onclick="addRowHandlers()-->">
             Все протоколы
@@ -89,7 +89,7 @@
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </form>
         </div>
-        <@pgr.pager "start_test_report" allTestReportsPage />
+        <@pgr.pager "startTestReport" allTestReportsPage />
         <#include "parts/allTestReportsTable.ftlh">
     </div>
     <!-- Modal -->

@@ -21,12 +21,12 @@ public class SamplingAuthorityController {
     @Autowired
     private SamplingAuthorityService samplingAuthorityService;
 
-    @GetMapping("sampling_authorities")
+    @GetMapping("samplingAuthorities")
     public String samplingAuthorityList(@RequestParam(required = false, defaultValue = "") String search,
                                         Model model, HttpSession session) {
         Applicant applicant = (Applicant) session.getAttribute("applicant");
         if(applicant == null){
-            return "redirect:/register_sample";
+            return "redirect:/registerSample";
         }
 
         List<SamplingAuthority> samplingAuthorities;
@@ -51,7 +51,7 @@ public class SamplingAuthorityController {
 
         samplingAuthorityService.create(title, applicantInContext);
 
-        return "redirect:/sampling_authorities";
+        return "redirect:/samplingAuthorities";
     }
 
     @PostMapping("editSamplingAuthorityPage")
@@ -69,14 +69,14 @@ public class SamplingAuthorityController {
         SamplingAuthority samplingAuthorityEdit = (SamplingAuthority) session.getAttribute("samplingAuthorityEdit");
         samplingAuthorityService.edit(samplingAuthorityEdit, title);
 
-        return "redirect:/sampling_authorities";
+        return "redirect:/samplingAuthorities";
     }
 
     @PostMapping("deleteSamplingAuthority")
     public String deleteSamplingAuthority(@RequestParam Integer samplingAuthorityId){
         samplingAuthorityService.delete(samplingAuthorityId);
 
-        return "redirect:/sampling_authorities";
+        return "redirect:/samplingAuthorities";
     }
 
     @PostMapping("chooseSamplingAuthority")
@@ -85,6 +85,6 @@ public class SamplingAuthorityController {
         session.setAttribute("samplingAuthority", samplingAuthority);
         session.setAttribute("newRegDocument", false);
 
-        return "redirect:/objects_of_study";
+        return "redirect:/objectsOfStudy";
     }
 }

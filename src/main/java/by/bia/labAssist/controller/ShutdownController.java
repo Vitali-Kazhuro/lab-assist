@@ -12,7 +12,7 @@ public class ShutdownController implements ApplicationContextAware {
 
     private ApplicationContext context;
 
-    @PostMapping("/shutdown")
+    @PostMapping("shutdown")
     public void shutdownContext() {
         ((ConfigurableApplicationContext) context).close();
     }

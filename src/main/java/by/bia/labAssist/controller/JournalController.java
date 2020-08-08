@@ -28,7 +28,7 @@ public class JournalController {
     @Autowired
     private TestReportService testReportService;
 
-    @GetMapping("all_samples_in")
+    @GetMapping("allSamplesIn")
     public String allSamplesIn(Model model, HttpSession session,
                                @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 16) Pageable pageable){
         if (session.getAttribute("editSample") != null){
@@ -41,7 +41,7 @@ public class JournalController {
         return "allSamplesIn";
     }
 
-    @GetMapping("all_samples_out")
+    @GetMapping("allSamplesOut")
     public String allSamplesOut(Model model,
                                 @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 16) Pageable pageable){
         Page<TestReport> allTestReportsPage = testReportService.findAllPages(pageable);

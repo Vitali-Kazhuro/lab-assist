@@ -15,7 +15,7 @@
     <h6>Журнал регистрации протоколов испытаний</h6>
     </a>
     <div class="collapse show" id="chooseSample">
-        <@pgr.pager "all_samples_out" allTestReportsPage />
+        <@pgr.pager "allSamplesOut" allTestReportsPage />
     </div>
     <div class="row">
         <table class="table table-sm table-striped table-bordered" id="allTable">

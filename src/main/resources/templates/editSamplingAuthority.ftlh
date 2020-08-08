@@ -15,7 +15,7 @@
                     <button type="button" class="btn btn-outline-danger my-2" data-toggle="modal" data-target="#deleteSamplingAuthority">
                         Удалить
                     </button>
-                    <a class="btn btn-outline-secondary my-2" href="/sampling_authorities" role="button">Назад</a>
+                    <a class="btn btn-outline-secondary my-2" href="/samplingAuthorities" role="button">Назад</a>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
