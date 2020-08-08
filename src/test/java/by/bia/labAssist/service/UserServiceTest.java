@@ -25,7 +25,7 @@ class UserServiceTest {
     private UserRepository userRepository;
 
     @Test
-    public void addUserTest(){
+    public void addUserSuccessTest(){
         User user = new User();
         boolean isUserCreated = userService.create(user);
         Assertions.assertTrue(isUserCreated);

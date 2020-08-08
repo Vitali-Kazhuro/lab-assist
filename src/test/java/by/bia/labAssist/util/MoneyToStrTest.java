@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoneyToStrTest {
     @Test
-    void num2str() {
+    void num2strFrom72to1080() {
         Assertions.assertEquals("234,00 (двести тридцать четыре) рубля, в том числе НДC (20%) - 39,00 рублей", MoneyToStr.num2str(234));
         Assertions.assertEquals("72,00 (семьдесят два) рубля, в том числе НДC (20%) - 12,00 рублей", MoneyToStr.num2str(72));
         Assertions.assertEquals("144,00 (сто сорок четыре) рубля, в том числе НДC (20%) - 24,00 рубля", MoneyToStr.num2str(144));
